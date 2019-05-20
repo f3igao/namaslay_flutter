@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'workouts_tab.dart';
+import 'home_tab.dart';
+import 'explore_tab.dart';
 
 class Namaslay extends StatelessWidget {
   @override
@@ -24,9 +26,9 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Text('HOME'),
+    HomeTab(),
     WorkoutsTab(),
-    Text('EXPLORE'),
+    ExploreTab(),
   ];
 
   void _onItemTapped(int index) {
@@ -39,8 +41,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(
-        // title: const Text('Namaslay'),
-        // backgroundColor: Colors.transparent,
+      // title: const Text('Namaslay'),
+      // backgroundColor: Colors.transparent,
       // ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
