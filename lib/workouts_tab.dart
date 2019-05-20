@@ -42,10 +42,9 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: 'Recommended'),
   const Choice(title: 'Uplift'),
   const Choice(title: 'Relax'),
-  const Choice(title: 'Relax'),
-  const Choice(title: 'Relax'),
-  const Choice(title: 'Relax'),
-  const Choice(title: 'Relax'),
+  const Choice(title: 'Summer'),
+  const Choice(title: 'Stress'),
+  const Choice(title: 'Detox'),
 ];
 
 class ChoiceCard extends StatelessWidget {
