@@ -1,35 +1,51 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'workouts_tab.dart';
 
 class Namaslay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CupertinoApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: CupertinoPageScaffold(
-        child: TabBar(),
-      ),
+      title: 'Namaslay',
+      home: HomePage(),
     );
   }
 }
 
-// class HomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return CupertinoPageScaffold(
-//       navigationBar: CupertinoNavigationBar(
-//         leading: const Text('Home'),
-//       ),
-//       child: TabBar(),
-//     );
-//   }
-// }
+class HomePage extends StatefulWidget {
+  HomePage({Key key}) : super(key: key);
 
-class TabBar extends StatelessWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+  static List<Widget> _widgetOptions = <Widget>[
+    Text('HOME'),
+    WorkoutsTab(),
+    Text('EXPLORE'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
+    return Scaffold(
+      // appBar: AppBar(
+        // title: const Text('Namaslay'),
+        // backgroundColor: Colors.transparent,
+      // ),
+      body: Center(
+        child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -44,87 +60,10 @@ class TabBar extends StatelessWidget {
             title: Text('Explore'),
           ),
         ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.amber[800],
+        onTap: _onItemTapped,
       ),
-      tabBuilder: (context, index) {
-        switch (index) {
-          case 0:
-            return CupertinoTabView(builder: (context) {
-              // return CupertinoPageScaffold(child: Container());
-              return CupertinoPageScaffold(child: HomeTab());
-            });
-          case 1:
-            return CupertinoTabView(builder: (context) {
-              // return CupertinoPageScaffold(child: Container());
-              return CupertinoPageScaffold(child: WorkoutTab());
-            });
-          case 2:
-            return CupertinoTabView(builder: (context) {
-              // return CupertinoPageScaffold(child: Container());
-              return CupertinoPageScaffold(child: ExploreTab());
-            });
-        }
-      },
-    );
-  }
-}
-
-class HomeTab extends StatefulWidget {
-  @override
-  _HomeTabState createState() {
-    return _HomeTabState();
-  }
-}
-
-class _HomeTabState extends State<HomeTab> {
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: const <Widget>[
-        CupertinoSliverNavigationBar(
-          largeTitle: Text('Home'),
-        ),
-      ],
-    );
-  }
-}
-
-class WorkoutTab extends StatefulWidget {
-  @override
-  _WorkoutTabState createState() {
-    return _WorkoutTabState();
-  }
-}
-
-class _WorkoutTabState extends State<WorkoutTab> {
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: const <Widget>[
-        CupertinoSliverNavigationBar(
-          largeTitle: Text('Workouts'),
-        ),
-      ],
-    );
-  }
-}
-
-
-class ExploreTab extends StatefulWidget {
-  @override
-  _ExploreTabState createState() {
-    return _ExploreTabState();
-  }
-}
-
-class _ExploreTabState extends State<ExploreTab> {
-  @override
-  Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: const <Widget>[
-        CupertinoSliverNavigationBar(
-          largeTitle: Text('Explore'),
-        ),
-      ],
     );
   }
 }
