@@ -22,6 +22,7 @@ class WorkoutsTab extends StatelessWidget {
                 return Tab(text: choice.title);
               }).toList(),
               labelColor: Colors.black87,
+              unselectedLabelColor: Colors.black26,
             ),
           ),
           body: TabBarView(

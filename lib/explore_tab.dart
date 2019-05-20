@@ -18,10 +18,12 @@ class ExploreTab extends StatelessWidget {
             elevation: 0,
             bottom: TabBar(
               isScrollable: true,
+              indicatorColor: Colors.blueAccent,
               tabs: choices.map((Choice choice) {
                 return Tab(text: choice.title);
               }).toList(),
               labelColor: Colors.black87,
+              unselectedLabelColor: Colors.black26,
             ),
           ),
           body: TabBarView(
