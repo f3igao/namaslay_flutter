@@ -9,12 +9,19 @@ class WorkoutsTab extends StatelessWidget {
         length: choices.length,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Workouts'),
+            title: const Text(
+              'Workouts',
+              style: TextStyle(color: Colors.black87),
+            ),
+            centerTitle: true,
+            backgroundColor: Colors.white,
+            elevation: 0,
             bottom: TabBar(
               isScrollable: true,
               tabs: choices.map((Choice choice) {
                 return Tab(text: choice.title);
               }).toList(),
+              labelColor: Colors.black87,
             ),
           ),
           body: TabBarView(
@@ -56,7 +63,7 @@ class ChoiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Card(
-      color: Colors.white,
+      color: Colors.grey,
       child: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

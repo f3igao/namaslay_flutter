@@ -6,11 +6,17 @@ class HomeTab extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Home'),
+        appBar: AppBar(
+          title: const Text(
+            'Home',
+            style: TextStyle(color: Colors.black87),
           ),
-          // body: Text('Home')
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
+        // body: Text('Home')
+      ),
     );
   }
 }
