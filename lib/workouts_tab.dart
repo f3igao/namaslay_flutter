@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'flow_container.dart';
-import 'flows.dart';
 
 class WorkoutsTab extends StatelessWidget {
   @override
