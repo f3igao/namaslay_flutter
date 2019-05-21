@@ -22,7 +22,15 @@ class _HomeTabState extends State<HomeTab> {
         backgroundColor: Colors.white,
         elevation: 0,
       ),
-      // body: Text('Home')
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.all(10.0),
+            // child: ProductControl(_addProducts),
+          ),
+          // Expanded(child: Products(_products))
+        ],
+      ),
     );
     // );
   }
