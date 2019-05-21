@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'flow_container.dart';
+import 'flows.dart';
+
 class WorkoutsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -59,17 +62,12 @@ class ChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Card(
       color: Colors.grey,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(choice.title, style: textStyle),
-          ],
-        ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[FlowContainer()],
       ),
     );
   }
