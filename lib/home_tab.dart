@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _HomeTabState();
+  }
+}
+
+class _HomeTabState extends State<HomeTab> {
+  List<String> _flows = [];
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Home',
-            style: TextStyle(color: Colors.black87),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          elevation: 0,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Home',
+          style: TextStyle(color: Colors.black87),
         ),
-        // body: Text('Home')
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
+      // body: Text('Home')
     );
+    // );
   }
 }

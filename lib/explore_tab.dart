@@ -3,37 +3,34 @@ import 'package:flutter/material.dart';
 class ExploreTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-        length: choices.length,
-        child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              "Explore",
-              style: TextStyle(color: Colors.black87),
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.white,
-            elevation: 0,
-            bottom: TabBar(
-              isScrollable: true,
-              indicatorColor: Colors.blueAccent,
-              tabs: choices.map((Choice choice) {
-                return Tab(text: choice.title);
-              }).toList(),
-              labelColor: Colors.black87,
-              unselectedLabelColor: Colors.black26,
-            ),
+    return DefaultTabController(
+      length: choices.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            "Explore",
+            style: TextStyle(color: Colors.black87),
           ),
-          body: TabBarView(
-            children: choices.map((Choice choice) {
-              return Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ChoiceCard(choice: choice),
-              );
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          bottom: TabBar(
+            isScrollable: true,
+            indicatorColor: Colors.blueAccent,
+            tabs: choices.map((Choice choice) {
+              return Tab(text: choice.title);
             }).toList(),
+            labelColor: Colors.black87,
+            unselectedLabelColor: Colors.black26,
           ),
+        ),
+        body: TabBarView(
+          children: choices.map((Choice choice) {
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: ChoiceCard(choice: choice),
+            );
+          }).toList(),
         ),
       ),
     );
