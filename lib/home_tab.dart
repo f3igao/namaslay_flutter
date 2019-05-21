@@ -4,16 +4,16 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'Home',
-            style: TextStyle(color: Colors.black87),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.white,
-          elevation: 0,
+      appBar: AppBar(
+        title: const Text(
+          'Home',
+          style: TextStyle(color: Colors.black87),
         ),
-        // body: Text('Home')
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      // body: Text('Home')
     );
   }
 }

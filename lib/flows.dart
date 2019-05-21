@@ -7,17 +7,16 @@ class Flows extends StatelessWidget {
   Widget _buildFlowCard(BuildContext context, int index) {
     final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Card(
-      child: Column(
-        children: <Widget>[
-          Container(
-            child: Center(child: Text(flows[index], style: textStyle)),
-            height: 150,
-          )
-        ],
-      ),
-      color: Colors.amber,
-      margin: EdgeInsets.all(15)
-    );
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Center(child: Text(flows[index], style: textStyle)),
+              height: 150,
+            )
+          ],
+        ),
+        color: Colors.amber,
+        margin: EdgeInsets.all(15));
   }
 
   @override
