@@ -28,10 +28,11 @@ class WorkoutsTab extends StatelessWidget {
         ),
         body: TabBarView(
           children: choices.map((Choice choice) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ChoiceCard(choice: choice),
-            );
+            // return Padding(
+            //   padding: const EdgeInsets.all(16.0),
+            //   child: ChoiceCard(choice: choice),
+            // );
+            return ChoiceCard(choice: choice);
           }).toList(),
         ),
       ),
@@ -63,7 +64,7 @@ class ChoiceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.grey,
+      // color: Colors.grey,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,

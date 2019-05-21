@@ -11,11 +11,12 @@ class Flows extends StatelessWidget {
         children: <Widget>[
           Container(
             child: Center(child: Text(flows[index], style: textStyle)),
-            height: 120,
+            height: 150,
           )
         ],
       ),
       color: Colors.amber,
+      margin: EdgeInsets.all(15)
     );
   }
 
