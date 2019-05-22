@@ -11,8 +11,7 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // color: Colors.grey,
+    return Container(
       child: Column(              
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
