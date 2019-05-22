@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'workouts_tab.dart';
-import 'home_tab.dart';
-import 'explore_tab.dart';
+import 'pages/workouts.dart';
+import 'pages/home.dart';
+import 'pages/explore.dart';
 
 class Namaslay extends StatelessWidget {
   @override
@@ -26,9 +26,9 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    HomeTab(),
-    WorkoutsTab(),
-    ExploreTab(),
+    Home(),
+    Workouts(),
+    Explore(),
   ];
 
   void _onItemTapped(int index) {

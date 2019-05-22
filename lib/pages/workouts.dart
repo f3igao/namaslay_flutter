@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'filters.dart';
-import 'main_view.dart';
+import '../filters.dart';
+import '../main_view.dart';
 
-class WorkoutsTab extends StatelessWidget {
+class Workouts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
