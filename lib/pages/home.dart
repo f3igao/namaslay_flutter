@@ -52,16 +52,16 @@ class HomeRow extends StatelessWidget {
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: <Widget>[
-            MockRow(),
-            MockRow(),
-            MockRow(),
-            MockRow(),
+            MockCard(),
+            MockCard(),
+            MockCard(),
+            MockCard(),
           ],
         ));
   }
 }
 
-class MockRow extends StatelessWidget {
+class MockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -69,5 +69,8 @@ class MockRow extends StatelessWidget {
         width: 150,
         color: Colors.amber,
         margin: EdgeInsets.all(15));
+
+
+
   }
 }
