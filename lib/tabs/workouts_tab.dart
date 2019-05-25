@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-
 import '../filters.dart';
-import '../main_view.dart';
+import '../workouts/workouts_view.dart';
 
-class Workouts extends StatelessWidget {
+class WorkoutsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -33,7 +32,7 @@ class Workouts extends StatelessWidget {
             //   padding: const EdgeInsets.all(16.0),
             //   child: MainView(filter: filter),
             // );
-            return MainView(filter: filter);
+            return WorkoutsView(filter: filter);
           }).toList(),
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Explore extends StatelessWidget {
+class PostureClinic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -8,7 +8,7 @@ class Explore extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Explore",
+            "Posture Clinic",
             style: TextStyle(color: Colors.black87),
           ),
           centerTitle: true,

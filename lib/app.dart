@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'pages/workouts.dart';
-import 'pages/home.dart';
-import 'pages/explore.dart';
+import 'package:namaslay_flutter/tabs/home_tab.dart';
+import 'package:namaslay_flutter/tabs/posture_clinic.dart';
+import 'package:namaslay_flutter/tabs/workouts_tab.dart';
 
 class Namaslay extends StatelessWidget {
   @override
@@ -26,9 +26,9 @@ class _HomePageState extends State<HomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    Home(),
-    Workouts(),
-    Explore(),
+    HomeTab(),
+    WorkoutsTab(),
+    PostureClinic(),
   ];
 
   void _onItemTapped(int index) {
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
-            title: Text('Explore'),
+            title: Text('Posture Clinic'),
           ),
         ],
         currentIndex: _selectedIndex,

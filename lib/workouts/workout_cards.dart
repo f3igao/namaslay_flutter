@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class Flows extends StatelessWidget {
-  final List<String> flows;
-  Flows([this.flows = const []]);
+class WorkoutCards extends StatelessWidget {
+  final List<String> workouts;
+  WorkoutCards([this.workouts = const []]);
 
-  Widget _buildFlowCard(BuildContext context, int index) {
+  Widget _buildWorkoutCard(BuildContext context, int index) {
     final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Column(
       children: <Widget>[
         Container(
-            child: Center(child: Text(flows[index], style: textStyle)),
+            child: Center(child: Text(workouts[index], style: textStyle)),
             height: 150,
             color: Colors.amber,
             margin: EdgeInsets.all(15))
@@ -20,8 +20,8 @@ class Flows extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: _buildFlowCard,
-      itemCount: flows.length,
+      itemBuilder: _buildWorkoutCard,
+      itemCount: workouts.length,
     );
   }
 }
