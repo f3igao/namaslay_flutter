@@ -46,6 +46,18 @@ List<String> flows = [
 class HomeRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Text('test'),
+        MockCard(),
+      ],
+    );
+  }
+}
+
+class MockCards extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
         height: 150.0,
@@ -69,8 +81,5 @@ class MockCard extends StatelessWidget {
         width: 150,
         color: Colors.amber,
         margin: EdgeInsets.all(15));
-
-
-
   }
 }

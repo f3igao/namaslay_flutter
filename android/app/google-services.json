@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1067954540953",
+    "firebase_url": "https://namaslay-backend.firebaseio.com",
+    "project_id": "namaslay-backend",
+    "storage_bucket": "namaslay-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1067954540953:android:08ac6b34f4602056",
+        "android_client_info": {
+          "package_name": "com.namaslay.flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1067954540953-b3fsbin9itst9h458f9p2u4mmabkqp9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa9R5AtFKhkq-S4Xqo0pTcAAwGCVzR0Rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1067954540953-b3fsbin9itst9h458f9p2u4mmabkqp9e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1067954540953-cadcgs2utklght41adi1rk3pf3lqldge.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ios.1286467821"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
