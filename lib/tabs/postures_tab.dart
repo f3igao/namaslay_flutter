@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PostureClinic extends StatelessWidget {
+class PosturesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

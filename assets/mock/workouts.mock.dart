@@ -13,3 +13,10 @@ List<String> mockWorkouts = [
   'Root Down',
   'Playtime'
 ];
+
+List<String> mockThemes = [
+  'Featured Workouts',
+  'Crowd Favorites',
+  'Heart Openers',
+  'Hips Openers',
+];

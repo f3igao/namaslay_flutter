@@ -19,8 +19,8 @@ List<String> _mockWorkouts = [
   'Playtime'
 ];
 
-class WorkoutsView extends StatelessWidget {
-  const WorkoutsView({Key key, this.filter}) : super(key: key);
+class WorkoutsContainer extends StatelessWidget {
+  const WorkoutsContainer({Key key, this.filter}) : super(key: key);
 
   final Filter filter;
 

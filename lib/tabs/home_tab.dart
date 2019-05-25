@@ -42,39 +42,25 @@ class HomeTab extends StatelessWidget {
             itemCount: mockThemes.length,
           ))
         ],
-        // children: <Widget>[
-        //   HomeRow('1'),
-        //   HomeRow('2'),
-        //   HomeRow('3'),
-        //   HomeRow('4'),
-        //   HomeRow('5'),
-        // ],
-        // children: <Widget>[... flows.map((flow)=> HomeRow(flow)])
       ),
     );
   }
 }
 
-// Widget _buildWorkoutsRow(BuildContext context, int index) {
-//   return Column(
-//     children: <Widget>[
-//       Text(mockThemes[index],
-//           style: TextStyle(fontSize: 15, fontWeight: FontWeight.w300, color: Colors.black87)),
-//       ListView.builder(
-//           itemBuilder: _buildWorkoutTile, itemCount: mockWorkouts.length)
-//     ],
-//   );
-// }
-
 Widget _buildHomeRow(BuildContext context, int index) {
   return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Text(mockThemes[index],
-          style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w400,
-              color: Colors.black87)),
-      Row(children: [
+      Padding(
+          padding: const EdgeInsets.only(left: 18.0),
+          child: Text(mockThemes[index],
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black87))),
+      Padding(
+        padding: const EdgeInsets.only(left: 8.0),
+        child: Row(children: [
         Expanded(
             child: SizedBox(
                 height: 150.0,
@@ -83,7 +69,7 @@ Widget _buildHomeRow(BuildContext context, int index) {
                   itemCount: mockWorkouts.length,
                   scrollDirection: Axis.horizontal,
                 )))
-      ])
+      ])),
     ],
   );
 }
@@ -93,51 +79,5 @@ Widget _buildWorkoutTile(BuildContext context, int index) {
       child: Center(child: Text(mockWorkouts[index])),
       width: 150,
       color: Colors.amber,
-      margin: EdgeInsets.all(15));
+      margin: EdgeInsets.all(10));
 }
-
-// class HomeRow extends StatelessWidget {
-//   final String workoutTheme;
-//   HomeRow(this.workoutTheme);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(flo
-//       children: <Widget>[
-//         Text(workoutTheme,
-//             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-//         WorkoutsRow(),
-//       ],
-//     );
-//   }
-// }
-
-// class WorkoutsRow extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//         height: 150.0,
-//         // child: ListView(
-//         //   scrollDirection: Axis.horizontal,
-//         //   children: <Widget>[
-//         //     WorkoutTile(mockWorkouts[0]),
-//         //     WorkoutTile(mockWorkouts[1]),
-//         //     WorkoutTile(mockWorkouts[2]),
-//         //     WorkoutTile(mockWorkouts[3]),
-//         //   ],
-//         // ));
-//         child: _buildWorkoutsRow(context, index);
-//   }
-// }
-
-// class WorkoutTile extends StatelessWidget {
-//   final String flowName;
-//   WorkoutTile(this.flowName);
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//         child: Center(child: Text(this.flowName)),
-//         width: 150,
-//         color: Colors.amber,
-//         margin: EdgeInsets.all(15));
-//   }
-// }

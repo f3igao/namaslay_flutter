@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../filters.dart';
-import '../workouts/workouts_view.dart';
+import '../workouts/workouts_container.dart';
 
 class WorkoutsTab extends StatelessWidget {
   @override
@@ -32,7 +32,7 @@ class WorkoutsTab extends StatelessWidget {
             //   padding: const EdgeInsets.all(16.0),
             //   child: MainView(filter: filter),
             // );
-            return WorkoutsView(filter: filter);
+            return WorkoutsContainer(filter: filter);
           }).toList(),
         ),
       ),

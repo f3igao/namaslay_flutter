@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/tabs/home_tab.dart';
-import 'package:namaslay_flutter/tabs/posture_clinic.dart';
+import 'package:namaslay_flutter/tabs/postures_tab.dart';
 import 'package:namaslay_flutter/tabs/workouts_tab.dart';
 
 class Namaslay extends StatelessWidget {
@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeTab(),
     WorkoutsTab(),
-    PostureClinic(),
+    PosturesTab(),
   ];
 
   void _onItemTapped(int index) {
