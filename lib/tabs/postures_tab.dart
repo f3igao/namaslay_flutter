@@ -69,7 +69,6 @@ class PosturesContainer extends StatelessWidget {
   final Filter filter;
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Container(
       margin: EdgeInsets.all(8.0),
       color: Colors.white,
@@ -77,7 +76,7 @@ class PosturesContainer extends StatelessWidget {
         children: <Widget>[
           Expanded(
               child: ListView.builder(
-            itemBuilder: _buildPosturesRow,
+            itemBuilder: _buildBody,
             itemCount: mockPostures.length,
           ))
         ],
@@ -86,31 +85,48 @@ class PosturesContainer extends StatelessWidget {
   }
 }
 
-Widget _buildPosturesRow(BuildContext context, int index) {
-  final TextStyle textStyle = Theme.of(context).textTheme.display1;
-  return Row(children: [
-    Expanded(
-        child: Container(
-      child: Center(child: Text('test', style: textStyle)),
-      // child: Center(child: Text('test')),
+Widget _buildBody(BuildContext context, int index) {
+ return StreamBuilder<QuerySnapshot>(
+   stream: Firestore.instance.collection('poses').snapshots(),
+   builder: (context, snapshot) {
+     if (!snapshot.hasData) return LinearProgressIndicator();
+     return _buildPosturesRow(context, snapshot.data.documents);
+   },
+ );
+}
+
+Widget _buildPosturesRow(BuildContext context, List<DocumentSnapshot> poses) {
+  return Row(
+    children: poses.map((pose) => _buildPostureTile(context, pose)).toList(),
+    // children: [
+    // Expanded(
+    //     child: _buildPostureTile(context, index)),
+    // Expanded(
+    //   child: Container(
+    //     child: Center(child: Text('test')),
+    //     // child: Center(child: Text('test')),
+    //     height: 170.0,
+    //     margin: EdgeInsets.all(8.0),
+    //     decoration: new BoxDecoration(
+    //       color: Colors.amber,
+    //       borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+    //     ),
+    //   ),
+    // )
+  // ]);
+  );
+}
+
+Widget _buildPostureTile(BuildContext context, DocumentSnapshot pose) {
+// final record = Record.fromSnapshot(pose);
+final TextStyle textStyle = Theme.of(context).textTheme.display1;
+  return Container(
+      child: Center(child: Text(pose.data['name'], style: textStyle)),
       height: 170.0,
       margin: EdgeInsets.all(8.0),
       decoration: new BoxDecoration(
         color: Colors.amber,
         borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
       ),
-    )),
-    Expanded(
-      child: Container(
-        child: Center(child: Text('test', style: textStyle)),
-        // child: Center(child: Text('test')),
-        height: 170.0,
-        margin: EdgeInsets.all(8.0),
-        decoration: new BoxDecoration(
-          color: Colors.amber,
-          borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
-        ),
-      ),
-    )
-  ]);
+    );
 }
