@@ -25,25 +25,27 @@ class HomeTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Home',
-          style: TextStyle(color: Colors.black87),
+        appBar: AppBar(
+          title: const Text(
+            'Home',
+            style: TextStyle(color: Colors.black87),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-              child: ListView.builder(
-            itemBuilder: _buildHomeRow,
-            itemCount: mockThemes.length,
-          ))
-        ],
-      ),
-    );
+        body: Container(
+          color: Colors.white,
+          child: Column(
+            children: <Widget>[
+              Expanded(
+                  child: ListView.builder(
+                itemBuilder: _buildHomeRow,
+                itemCount: mockThemes.length,
+              ))
+            ],
+          ),
+        ));
   }
 }
 
@@ -59,17 +61,17 @@ Widget _buildHomeRow(BuildContext context, int index) {
                   fontWeight: FontWeight.w400,
                   color: Colors.black87))),
       Padding(
-        padding: const EdgeInsets.only(left: 8.0),
-        child: Row(children: [
-        Expanded(
-            child: SizedBox(
-                height: 150.0,
-                child: ListView.builder(
-                  itemBuilder: _buildWorkoutTile,
-                  itemCount: mockWorkouts.length,
-                  scrollDirection: Axis.horizontal,
-                )))
-      ])),
+          padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+          child: Row(children: [
+            Expanded(
+                child: SizedBox(
+                    height: 150.0,
+                    child: ListView.builder(
+                      itemBuilder: _buildWorkoutTile,
+                      itemCount: mockWorkouts.length,
+                      scrollDirection: Axis.horizontal,
+                    )))
+          ])),
     ],
   );
 }
@@ -77,7 +79,10 @@ Widget _buildHomeRow(BuildContext context, int index) {
 Widget _buildWorkoutTile(BuildContext context, int index) {
   return Container(
       child: Center(child: Text(mockWorkouts[index])),
-      width: 150,
-      color: Colors.amber,
+      width: 200.0,
+      decoration: new BoxDecoration(
+        color: Colors.amber,
+        borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+      ),
       margin: EdgeInsets.all(10));
 }

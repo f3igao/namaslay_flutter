@@ -9,10 +9,14 @@ class WorkoutCards extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-            child: Center(child: Text(workouts[index], style: textStyle)),
-            height: 150,
+          child: Center(child: Text(workouts[index], style: textStyle)),
+          height: 150,
+          margin: EdgeInsets.only(bottom: 24.0),
+          decoration: new BoxDecoration(
             color: Colors.amber,
-            margin: EdgeInsets.all(15))
+            borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+          ),
+        )
       ],
     );
   }
