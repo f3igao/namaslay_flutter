@@ -71,7 +71,7 @@ class PosturesContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.display1;
     return Container(
-      margin: EdgeInsets.only(left: 8.0, right: 8.0),
+      margin: EdgeInsets.all(8.0),
       color: Colors.white,
       child: Column(
         children: <Widget>[
