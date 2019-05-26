@@ -10,7 +10,7 @@ class WorkoutCards extends StatelessWidget {
       children: <Widget>[
         Container(
           child: Center(child: Text(workouts[index], style: textStyle)),
-          height: 150,
+          height: 170.0,
           margin: EdgeInsets.only(bottom: 24.0),
           decoration: new BoxDecoration(
             color: Colors.amber,

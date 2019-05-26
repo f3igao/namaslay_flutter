@@ -28,10 +28,6 @@ class WorkoutsTab extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: filters.map((Filter filter) {
-            // return Padding(
-            //   padding: const EdgeInsets.all(16.0),
-            //   child: MainView(filter: filter),
-            // );
             return WorkoutsContainer(filter: filter);
           }).toList(),
         ),

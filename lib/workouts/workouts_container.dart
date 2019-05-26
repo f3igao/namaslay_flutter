@@ -27,7 +27,7 @@ class WorkoutsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(18.0),
+      padding: const EdgeInsets.all(16.0),
       color: Colors.white,
       child: Column(              
         mainAxisSize: MainAxisSize.min,

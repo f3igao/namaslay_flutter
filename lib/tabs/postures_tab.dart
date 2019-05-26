@@ -1,10 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
+List<String> mockPostures = [
+  "Big Toe Pose",
+  "Boat Pose",
+  "Bound Angle Pose",
+  "Bow Pose",
+  "Bridge Pose",
+  "Camel Pose",
+  "Cat Pose",
+  "Cow Pose",
+  "Crane Pose",
+];
 
 class PosturesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: choices.length,
+      length: filters.length,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -17,19 +30,17 @@ class PosturesTab extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.blueAccent,
-            tabs: choices.map((Choice choice) {
-              return Tab(text: choice.title);
+            tabs: filters.map((Filter filter) {
+              return Tab(text: filter.title);
             }).toList(),
             labelColor: Colors.black87,
             unselectedLabelColor: Colors.black26,
           ),
         ),
         body: TabBarView(
-          children: choices.map((Choice choice) {
-            return Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: ChoiceCard(choice: choice),
-            );
+          physics: NeverScrollableScrollPhysics(),
+          children: filters.map((Filter filter) {
+            return PosturesContainer(filter: filter);
           }).toList(),
         ),
       ),
@@ -37,49 +48,69 @@ class PosturesTab extends StatelessWidget {
   }
 }
 
-class Choice {
-  const Choice({this.title});
+class Filter {
+  const Filter({this.title});
   final String title;
 }
 
-const List<Choice> choices = const <Choice>[
-  const Choice(title: 'All'),
-  const Choice(title: 'Recommended'),
-  const Choice(title: 'Lower Back'),
-  const Choice(title: 'Arms'),
-  const Choice(title: 'Legs'),
-  const Choice(title: 'Core'),
-  const Choice(title: 'Shoulders'),
-  const Choice(title: 'Neck'),
+const List<Filter> filters = const <Filter>[
+  const Filter(title: 'All'),
+  const Filter(title: 'Recommended'),
+  const Filter(title: 'Lower Back'),
+  const Filter(title: 'Arms'),
+  const Filter(title: 'Legs'),
+  const Filter(title: 'Core'),
+  const Filter(title: 'Shoulders'),
+  const Filter(title: 'Neck'),
 ];
 
-class ChoiceCard extends StatelessWidget {
-  const ChoiceCard({Key key, this.choice}) : super(key: key);
-
-  final Choice choice;
-
+class PosturesContainer extends StatelessWidget {
+  const PosturesContainer({Key key, this.filter}) : super(key: key);
+  final Filter filter;
   @override
   Widget build(BuildContext context) {
     final TextStyle textStyle = Theme.of(context).textTheme.display1;
-    return Card(
-      color: Colors.grey,
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Text(choice.title, style: textStyle),
-            RaisedButton(
-              child: const Text('Test Firebase'),
-              elevation: 4.0,
-              splashColor: Colors.amber,
-              onPressed: () {
-                // Perform some action
-              },
-            ),
-          ],
-        ),
+    return Container(
+      margin: EdgeInsets.only(left: 8.0, right: 8.0),
+      color: Colors.white,
+      child: Column(
+        children: <Widget>[
+          Expanded(
+              child: ListView.builder(
+            itemBuilder: _buildPosturesRow,
+            itemCount: mockPostures.length,
+          ))
+        ],
       ),
     );
   }
+}
+
+Widget _buildPosturesRow(BuildContext context, int index) {
+  final TextStyle textStyle = Theme.of(context).textTheme.display1;
+  return Row(children: [
+    Expanded(
+        child: Container(
+      child: Center(child: Text('test', style: textStyle)),
+      // child: Center(child: Text('test')),
+      height: 170.0,
+      margin: EdgeInsets.all(8.0),
+      decoration: new BoxDecoration(
+        color: Colors.amber,
+        borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+      ),
+    )),
+    Expanded(
+      child: Container(
+        child: Center(child: Text('test', style: textStyle)),
+        // child: Center(child: Text('test')),
+        height: 170.0,
+        margin: EdgeInsets.all(8.0),
+        decoration: new BoxDecoration(
+          color: Colors.amber,
+          borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+        ),
+      ),
+    )
+  ]);
 }
