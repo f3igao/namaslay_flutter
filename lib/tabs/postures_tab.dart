@@ -69,6 +69,14 @@ class ChoiceCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(choice.title, style: textStyle),
+            RaisedButton(
+              child: const Text('Test Firebase'),
+              elevation: 4.0,
+              splashColor: Colors.amber,
+              onPressed: () {
+                // Perform some action
+              },
+            ),
           ],
         ),
       ),
