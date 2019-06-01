@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../filters.dart';
-import '../workouts/workouts_list.dart';
+import '../shared/workouts_list.dart';
 
 class WorkoutsPage extends StatelessWidget {
   @override

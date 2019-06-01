@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-List<String> mockPostures = [
+List<String> _mockPostures = [
   "Big Toe Pose",
   "Boat Pose",
   "Bound Angle Pose",
@@ -75,9 +75,9 @@ class PosturesContainer extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Expanded(
-              child: ListView.builder(
+            child: ListView.builder(
             itemBuilder: _buildBody,
-            itemCount: mockPostures.length,
+            itemCount: _mockPostures.length,
           ))
         ],
       ),
