@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../filters.dart';
-import '../workouts/workouts_container.dart';
+import '../workouts/workouts_list.dart';
 
-class WorkoutsTab extends StatelessWidget {
+class WorkoutsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -28,7 +28,7 @@ class WorkoutsTab extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: filters.map((Filter filter) {
-            return WorkoutsContainer(filter: filter);
+            return WorkoutsList(filter: filter);
           }).toList(),
         ),
       ),

@@ -21,7 +21,7 @@ List<String> mockThemes = [
   'Hips Openers',
 ];
 
-class HomeTab extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

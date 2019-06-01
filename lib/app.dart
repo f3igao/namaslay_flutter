@@ -1,35 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/tabs/home_tab.dart';
-import 'package:namaslay_flutter/tabs/postures_tab.dart';
-import 'package:namaslay_flutter/tabs/workouts_tab.dart';
+import 'package:namaslay_flutter/pages/home_page.dart';
+import 'package:namaslay_flutter/pages/postures_page.dart';
+import 'package:namaslay_flutter/pages/workouts_page.dart';
 
-class Namaslay extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      // debugShowMaterialGrid: true,
-      debugShowCheckedModeBanner: false,
-      title: 'Namaslay',
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+class AppHome extends StatefulWidget {
+  AppHome({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _AppHomeState createState() => _AppHomeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AppHomeState extends State<AppHome> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static List<Widget> _widgetOptions = <Widget>[
-    HomeTab(),
-    WorkoutsTab(),
-    PosturesTab(),
+    HomePage(),
+    WorkoutsPage(),
+    PosturesPage(),
   ];
 
   void _onItemTapped(int index) {

@@ -13,7 +13,7 @@ List<String> mockPostures = [
   "Crane Pose",
 ];
 
-class PosturesTab extends StatelessWidget {
+class PosturesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
