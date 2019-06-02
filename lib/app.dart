@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/pages/home_page.dart';
 import 'package:namaslay_flutter/pages/postures_page.dart';
+import 'package:namaslay_flutter/pages/user_page.dart';
 import 'package:namaslay_flutter/pages/workouts_page.dart';
 
 class AppHome extends StatefulWidget {
@@ -12,15 +13,14 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
+  static List<Widget> _tabOptions = <Widget>[
     HomePage(),
     WorkoutsPage(),
     PosturesPage(),
+    UserPage(),
   ];
 
-  void _onItemTapped(int index) {
+  void _onTabTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -34,9 +34,11 @@ class _AppHomeState extends State<AppHome> {
       // backgroundColor: Colors.transparent,
       // ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _tabOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        // showSelectedLabels: false,
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -50,10 +52,14 @@ class _AppHomeState extends State<AppHome> {
             icon: Icon(Icons.explore),
             title: Text('Posture Clinic'),
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Account'),
+          ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.blueAccent,
-        onTap: _onItemTapped,
+        onTap: _onTabTapped,
       ),
     );
   }
