@@ -1,5 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/shared/postures_list.dart';
+import '../filters.dart';
 
 List<String> mockPostures = [
   "Big Toe Pose",
@@ -40,7 +41,8 @@ class PosturesPage extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: filters.map((Filter filter) {
-            return PosturesContainer(filter: filter);
+            // return PosturesContainer(filter: filter);
+            return PosturesList(filter: filter);
           }).toList(),
         ),
       ),
@@ -48,21 +50,21 @@ class PosturesPage extends StatelessWidget {
   }
 }
 
-class Filter {
-  const Filter({this.title});
-  final String title;
-}
+// class Filter {
+//   const Filter({this.title});
+//   final String title;
+// }
 
-const List<Filter> filters = const <Filter>[
-  const Filter(title: 'All'),
-  const Filter(title: 'Recommended'),
-  const Filter(title: 'Lower Back'),
-  const Filter(title: 'Arms'),
-  const Filter(title: 'Legs'),
-  const Filter(title: 'Core'),
-  const Filter(title: 'Shoulders'),
-  const Filter(title: 'Neck'),
-];
+// const List<Filter> filters = const <Filter>[
+//   const Filter(title: 'All'),
+//   const Filter(title: 'Recommended'),
+//   const Filter(title: 'Lower Back'),
+//   const Filter(title: 'Arms'),
+//   const Filter(title: 'Legs'),
+//   const Filter(title: 'Core'),
+//   const Filter(title: 'Shoulders'),
+//   const Filter(title: 'Neck'),
+// ];
 
 class PosturesContainer extends StatelessWidget {
   const PosturesContainer({Key key, this.filter}) : super(key: key);
@@ -85,7 +87,6 @@ class PosturesContainer extends StatelessWidget {
                 (BuildContext context, int index) {
                   return Container(
                       child: Center(child: Text('test')),
-                      // child: Center(child: Text('test')),
                       height: 170.0,
                       margin: EdgeInsets.all(8.0),
                       decoration: new BoxDecoration(
@@ -98,7 +99,8 @@ class PosturesContainer extends StatelessWidget {
               ),
             ),
           ],
-        ));
+        )
+        );
   }
 }
 

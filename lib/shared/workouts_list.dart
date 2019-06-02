@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../filters.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../filters.dart';
 
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);
@@ -12,12 +12,12 @@ class WorkoutsList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       color: Colors.white,
-      child: _fetchData(context),
+      child: _fetchWorkouts(context),
     );
   }
 }
 
-Widget _fetchData(BuildContext context) {
+Widget _fetchWorkouts(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('workouts').snapshots(),
     builder: (context, snapshot) {

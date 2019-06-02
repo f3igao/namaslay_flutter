@@ -2,3 +2,4 @@
 1. move filters to shared folder
 2. figure out flutter architecture (core/shared/feature?)
 3. deal with data fetch lag
+4. double check posture ratio (childAspectRatio: 1.1)

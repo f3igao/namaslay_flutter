@@ -98,5 +98,5 @@ Widget _buildWorkoutTile(BuildContext context, int index) {
         color: Colors.amber,
         borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
       ),
-      margin: EdgeInsets.all(10));
+      margin: EdgeInsets.all(10.0));
 }
