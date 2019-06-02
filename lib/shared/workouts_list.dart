@@ -12,24 +12,29 @@ class WorkoutsList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       color: Colors.white,
-      child: _fetchWorkouts(context),
+      child: _fetchWorkouts(context, filter),
     );
   }
 }
 
-Widget _fetchWorkouts(BuildContext context) {
+Widget _fetchWorkouts(BuildContext context, Filter filter) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('workouts').snapshots(),
     builder: (context, snapshot) {
       if (!snapshot.hasData) return Container();
       // LinearProgressIndicator();
-      return _buildWorkoutsList(context, snapshot.data.documents);
+      return _buildWorkoutsList(context, snapshot.data.documents, filter);
     },
   );
 }
 
 Widget _buildWorkoutsList(
-    BuildContext context, List<DocumentSnapshot> workouts) {
+    BuildContext context, List<DocumentSnapshot> workouts, Filter filter) {
+      filterWorkouts(tags) {
+        if (filter.title == 'All') return true;
+        return tags.contains(filter.title.toLowerCase());
+      }
+
   return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,7 +42,7 @@ Widget _buildWorkoutsList(
         Expanded(
             child: ListView(
                 children: workouts
-                    .map((workout) => _buildWorkoutCard(context, workout))
+                    .map((workout) => filterWorkouts(workout.data['tags']) ? _buildWorkoutCard(context, workout) : Container())
                     .toList()))
       ]);
 }
