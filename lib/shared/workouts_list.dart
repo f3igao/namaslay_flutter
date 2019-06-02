@@ -21,7 +21,8 @@ Widget _fetchData(BuildContext context) {
   return StreamBuilder<QuerySnapshot>(
     stream: Firestore.instance.collection('workouts').snapshots(),
     builder: (context, snapshot) {
-      if (!snapshot.hasData) return LinearProgressIndicator();
+      if (!snapshot.hasData) return Container();
+      // LinearProgressIndicator();
       return _buildWorkoutsList(context, snapshot.data.documents);
     },
   );
