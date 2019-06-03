@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import '../filters.dart';
 
 class UserPage extends StatelessWidget {
   @override
