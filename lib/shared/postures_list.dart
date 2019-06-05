@@ -41,13 +41,16 @@ Widget _buildPosturesList(
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
+            final postureName = postures[index].data['name'];
             return InkWell(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => PosturePage(postures[index].data['name'])));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PosturePage(postureName)));
                 },
                 child: Container(
-                    child: Center(child: Text(postures[index].data['name'])),
+                    child: Center(child: Text(postureName)),
                     decoration: new BoxDecoration(
                         color: Colors.amber,
                         borderRadius: new BorderRadius.circular(8.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:namaslay_flutter/pages/workout_page.dart';
 import '../filters.dart';
 
 class WorkoutsList extends StatelessWidget {
@@ -51,18 +52,24 @@ Widget _buildWorkoutsList(
 
 Widget _buildWorkoutCard(BuildContext context, DocumentSnapshot workout) {
   final TextStyle textStyle = Theme.of(context).textTheme.display1;
-  return Container(
-    child: Center(child: Text(workout.data['name'], style: textStyle)),
-    height: 170.0,
-    margin: EdgeInsets.only(bottom: 24.0),
-    decoration: new BoxDecoration(
-        color: Colors.amber,
-        borderRadius: new BorderRadius.circular(8.0),
-        boxShadow: <BoxShadow>[
-          new BoxShadow(
-              color: Colors.black12,
-              blurRadius: 10.0,
-              offset: new Offset(2.0, 6.0))
-        ]),
-  );
+  final workoutName = workout.data['name'];
+  return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => WorkoutPage(workoutName)));
+      },
+      child: Container(
+        child: Center(child: Text(workoutName, style: textStyle)),
+        height: 170.0,
+        margin: EdgeInsets.only(bottom: 24.0),
+        decoration: new BoxDecoration(
+            color: Colors.amber,
+            borderRadius: new BorderRadius.circular(8.0),
+            boxShadow: <BoxShadow>[
+              new BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10.0,
+                  offset: new Offset(2.0, 6.0))
+            ]),
+      ));
 }
