@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/pages/home_page.dart';
 import 'package:namaslay_flutter/pages/postures_page.dart';
-import 'package:namaslay_flutter/pages/user_page.dart';
+import 'package:namaslay_flutter/pages/profile_page.dart';
 import 'package:namaslay_flutter/pages/workouts_page.dart';
 
 class AppHome extends StatefulWidget {
@@ -17,7 +17,7 @@ class _AppHomeState extends State<AppHome> {
     HomePage(),
     WorkoutsPage(),
     PosturesPage(),
-    UserPage(),
+    ProfilePage(),
   ];
 
   void _onTabTapped(int index) {
@@ -54,7 +54,7 @@ class _AppHomeState extends State<AppHome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Account'),
+            title: Text('Me'),
           ),
         ],
         currentIndex: _selectedIndex,

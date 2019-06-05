@@ -30,10 +30,10 @@ Widget _fetchWorkouts(BuildContext context, Filter filter) {
 
 Widget _buildWorkoutsList(
     BuildContext context, List<DocumentSnapshot> workouts, Filter filter) {
-      filterWorkouts(tags) {
-        if (filter.title == 'All') return true;
-        return tags.contains(filter.title.toLowerCase());
-      }
+  filterWorkouts(tags) {
+    if (filter.title == 'All') return true;
+    return tags.contains(filter.title.toLowerCase());
+  }
 
   return Column(
       mainAxisSize: MainAxisSize.min,
@@ -42,7 +42,9 @@ Widget _buildWorkoutsList(
         Expanded(
             child: ListView(
                 children: workouts
-                    .map((workout) => filterWorkouts(workout.data['tags']) ? _buildWorkoutCard(context, workout) : Container())
+                    .map((workout) => filterWorkouts(workout.data['tags'])
+                        ? _buildWorkoutCard(context, workout)
+                        : Container())
                     .toList()))
       ]);
 }
@@ -54,8 +56,13 @@ Widget _buildWorkoutCard(BuildContext context, DocumentSnapshot workout) {
     height: 170.0,
     margin: EdgeInsets.only(bottom: 24.0),
     decoration: new BoxDecoration(
-      color: Colors.amber,
-      borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
-    ),
+        color: Colors.amber,
+        borderRadius: new BorderRadius.circular(8.0),
+        boxShadow: <BoxShadow>[
+          new BoxShadow(
+              color: Colors.black12,
+              blurRadius: 10.0,
+              offset: new Offset(2.0, 6.0))
+        ]),
   );
 }

@@ -41,48 +41,10 @@ class PosturesPage extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: filters.map((Filter filter) {
-            // return PosturesContainer(filter: filter);
             return PosturesList(filter: filter);
           }).toList(),
         ),
       ),
     );
-  }
-}
-
-class PosturesContainer extends StatelessWidget {
-  const PosturesContainer({Key key, this.filter}) : super(key: key);
-  final Filter filter;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.all(8.0),
-        color: Colors.white,
-        child: CustomScrollView(
-          slivers: <Widget>[
-            SliverGrid(
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200.0,
-                mainAxisSpacing: 10.0,
-                crossAxisSpacing: 10.0,
-                childAspectRatio: 1.0,
-              ),
-              delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
-                  return Container(
-                      child: Center(child: Text('test')),
-                      height: 170.0,
-                      margin: EdgeInsets.all(8.0),
-                      decoration: new BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius:
-                            new BorderRadius.all(new Radius.circular(16.0)),
-                      ));
-                },
-                childCount: 20,
-              ),
-            ),
-          ],
-        ));
   }
 }

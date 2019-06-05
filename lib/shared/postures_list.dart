@@ -44,7 +44,15 @@ Widget _buildPosturesList(
                 child: Center(child: Text(postures[index].data['name'])),
                 decoration: new BoxDecoration(
                   color: Colors.amber,
-                  borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+                  borderRadius: new BorderRadius.circular(8.0),
+                  boxShadow: <BoxShadow>[
+                    new BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10.0,
+                      offset: new Offset(2.0, 6.0)
+                    )
+                  ]
+
                 ));
           },
           childCount: postures.length,

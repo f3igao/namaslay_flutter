@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-class UserPage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +14,6 @@ class UserPage extends StatelessWidget {
           backgroundColor: Colors.white,
           elevation: 0,
         ),
-        body: Container(child: Text('user info')));
+        body: Container(child: Text('profile page')));
   }
 }
