@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:namaslay_flutter/pages/posture_page.dart';
 import '../filters.dart';
 
 class PosturesList extends StatelessWidget {
@@ -40,20 +41,22 @@ Widget _buildPosturesList(
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            return Container(
-                child: Center(child: Text(postures[index].data['name'])),
-                decoration: new BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: new BorderRadius.circular(8.0),
-                  boxShadow: <BoxShadow>[
-                    new BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10.0,
-                      offset: new Offset(2.0, 6.0)
-                    )
-                  ]
-
-                ));
+            return InkWell(
+                onTap: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => PosturePage(postures[index].data['name'])));
+                },
+                child: Container(
+                    child: Center(child: Text(postures[index].data['name'])),
+                    decoration: new BoxDecoration(
+                        color: Colors.amber,
+                        borderRadius: new BorderRadius.circular(8.0),
+                        boxShadow: <BoxShadow>[
+                          new BoxShadow(
+                              color: Colors.black12,
+                              blurRadius: 10.0,
+                              offset: new Offset(2.0, 6.0))
+                        ])));
           },
           childCount: postures.length,
         ),
