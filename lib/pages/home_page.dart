@@ -89,9 +89,9 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
   return Container(
       child: Center(child: Text(workout.data['name'])),
       width: 250.0,
-      decoration: new BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.amber,
-        borderRadius: new BorderRadius.all(new Radius.circular(16.0)),
+        borderRadius: BorderRadius.all(Radius.circular(16.0)),
       ),
       margin: EdgeInsets.all(10.0));
 }

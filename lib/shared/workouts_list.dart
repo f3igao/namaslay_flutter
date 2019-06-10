@@ -62,14 +62,14 @@ Widget _buildWorkoutCard(BuildContext context, DocumentSnapshot workout) {
         child: Center(child: Text(workoutName, style: textStyle)),
         height: 170.0,
         margin: EdgeInsets.only(bottom: 24.0),
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
             color: Colors.amber,
-            borderRadius: new BorderRadius.circular(8.0),
+            borderRadius: BorderRadius.circular(8.0),
             boxShadow: <BoxShadow>[
-              new BoxShadow(
+              BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10.0,
-                  offset: new Offset(2.0, 6.0))
+                  offset: Offset(2.0, 6.0))
             ]),
       ));
 }
