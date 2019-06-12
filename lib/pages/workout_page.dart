@@ -8,6 +8,12 @@ class WorkoutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        icon: Icon(Icons.play_arrow),
+        label: Text("Play"),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: Container(
           child: CustomScrollView(slivers: <Widget>[
         SliverPersistentHeader(
@@ -20,7 +26,7 @@ class WorkoutPage extends StatelessWidget {
         ),
         SliverGrid(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 2,
             childAspectRatio: 2.5,
           ),
           delegate: SliverChildListDelegate(
@@ -28,19 +34,19 @@ class WorkoutPage extends StatelessWidget {
               Container(
                   child: Center(child: Text('60MIN')),
                   margin: EdgeInsets.only(top: 10.0)),
-              Container(
-                child: IconButton(
-                  icon: Icon(Icons.play_arrow),
-                  onPressed: () {
-                    // TODO: add play sequence functionality
-                  },
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                ),
-                margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-              ),
+              // Container(
+              //   child: IconButton(
+              //     icon: Icon(Icons.play_arrow),
+              //     onPressed: () {
+              //       // TODO: add play sequence functionality
+              //     },
+              //   ),
+              //   decoration: BoxDecoration(
+              //     color: Colors.amber,
+              //     borderRadius: BorderRadius.all(Radius.circular(20.0)),
+              //   ),
+              //   margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
+              // ),
               Container(
                   child: Center(child: Text('BEGINNER')),
                   margin: EdgeInsets.only(top: 10.0)),
