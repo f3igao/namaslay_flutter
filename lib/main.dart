@@ -8,6 +8,7 @@ class Namaslay extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // debugShowMaterialGrid: true,
+      // showSemanticsDebugger: true,
       debugShowCheckedModeBanner: false,
       title: 'Namaslay',
       home: AppHome(),
