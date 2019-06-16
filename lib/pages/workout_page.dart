@@ -1,9 +1,10 @@
+
 import 'package:flutter/material.dart';
 import '../shared/hero_header.dart';
 
 class WorkoutPage extends StatelessWidget {
-  final String workoutName;
-  WorkoutPage(this.workoutName);
+  final Map<String, dynamic> workoutData;
+  WorkoutPage(this.workoutData);
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +16,22 @@ class WorkoutPage extends StatelessWidget {
             delegate: HeroHeader(
               minExtent: 250.0,
               maxExtent: 250.0,
-              workoutName: workoutName,
+              workoutName: workoutData['name'],
             ),
           ),
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 2.5,
+              childAspectRatio: 4,
             ),
             delegate: SliverChildListDelegate(
               [
                 Container(
-                    child: Center(child: Text('60MIN')),
-                    margin: EdgeInsets.only(top: 10.0)),
+                    child: Center(child: Text(workoutData['length'].toString() + ' MIN')),
+                    margin: EdgeInsets.only(top: 15.0, right: 60.0)),
                 Container(
                     child: Center(child: Text('BEGINNER')),
-                    margin: EdgeInsets.only(top: 10.0)),
+                    margin: EdgeInsets.only(top: 15.0, left: 60.0)),
               ],
             ),
           ),
@@ -55,14 +56,14 @@ class WorkoutPage extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
-                  child: Center(child: Text('POSTURE 123')),
+                  child: Center(child: Text(workoutData['sequence']['1_Integration'][index])),
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     border: Border.all(width: 1.0, color: Colors.white),
                   ),
                 );
               },
-              childCount: 30,
+              childCount: workoutData['sequence']['1_Integration'].length,
             ),
           )
         ]),

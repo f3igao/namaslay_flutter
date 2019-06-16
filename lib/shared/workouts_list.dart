@@ -52,14 +52,15 @@ Widget _buildWorkoutsList(
 
 Widget _buildWorkoutCard(BuildContext context, DocumentSnapshot workout) {
   final TextStyle textStyle = Theme.of(context).textTheme.display1;
-  final workoutName = workout.data['name'];
+  Map<String, dynamic> workoutData = workout.data;
+
   return InkWell(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => WorkoutPage(workoutName)));
+            MaterialPageRoute(builder: (context) => WorkoutPage(workoutData)));
       },
       child: Container(
-        child: Center(child: Text(workoutName, style: textStyle)),
+        child: Center(child: Text(workoutData['name'], style: textStyle)),
         height: 170.0,
         margin: EdgeInsets.only(bottom: 24.0),
         decoration: BoxDecoration(
