@@ -8,6 +8,8 @@ class WorkoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Map sequenceRaw = workoutData['sequence'];
+    List<dynamic> sequence = _configureSequence(sequenceRaw);
     return Scaffold(
       body: Stack(children: [
         CustomScrollView(slivers: <Widget>[
@@ -57,16 +59,14 @@ class WorkoutPage extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
-                  child: Center(
-                      child: getPostureName(
-                          workoutData['sequence']['1_Integration'][index])),
+                  child: Center(child: getPostureName(sequence[index])),
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     border: Border.all(width: 1.0, color: Colors.white),
                   ),
                 );
               },
-              childCount: workoutData['sequence']['1_Integration'].length,
+              childCount: sequence.length,
             ),
           )
         ]),
@@ -92,4 +92,16 @@ Widget getPostureName(String id) {
   var target = postures.firstWhere((posture) => posture['id'] == id,
       orElse: () => print('Error, posture not found.'));
   return Text(target['name']);
+}
+
+List<dynamic> _configureSequence(data) {
+  List<dynamic> sequence = [];
+  List<dynamic> sections = data.keys.toList();
+  sections.sort();
+  sections.forEach((section) {
+    data[section].forEach((posture) {
+      sequence.add(posture);
+    });
+  });
+  return sequence;
 }
