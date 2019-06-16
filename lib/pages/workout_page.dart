@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/data/postures_data.dart';
 import '../shared/hero_header.dart';
 
 class WorkoutPage extends StatelessWidget {
@@ -8,25 +8,6 @@ class WorkoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List postures = [];
-    // final stream = Firestore.instance.collection('poses').snapshots();
-    // stream.forEach((snapshots) => {
-    //       snapshots.documents.forEach((snapshot) => {
-    //         var posture = {
-    //           name: snapshot['name'],
-              
-    //         }
-    //       })
-    //     });
-
-    // getPostureName(id) {
-    //   print(id);
-    //   var targetPosture =
-    //       postures.firstWhere((posture) => posture['id'] == id).toList();
-    //   print(targetPosture);
-    //   return 'test';
-    // }
-
     return Scaffold(
       body: Stack(children: [
         CustomScrollView(slivers: <Widget>[
@@ -77,8 +58,8 @@ class WorkoutPage extends StatelessWidget {
               (BuildContext context, int index) {
                 return Container(
                   child: Center(
-                      child: Text(getPostureName(
-                          workoutData['sequence']['1_Integration'][index]))),
+                      child: getPostureName(
+                          workoutData['sequence']['1_Integration'][index])),
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     border: Border.all(width: 1.0, color: Colors.white),
@@ -105,4 +86,10 @@ class WorkoutPage extends StatelessWidget {
       ]),
     );
   }
+}
+
+Widget getPostureName(String id) {
+  var target = postures.firstWhere((posture) => posture['id'] == id,
+      orElse: () => print('Error, posture not found.'));
+  return Text(target['name']);
 }
