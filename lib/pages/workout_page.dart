@@ -59,7 +59,7 @@ class WorkoutPage extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
-                  child: Center(child: getPostureName(sequence[index])),
+                  child: Center(child: postureName(sequence[index])),
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     border: Border.all(width: 1.0, color: Colors.white),
@@ -88,7 +88,7 @@ class WorkoutPage extends StatelessWidget {
   }
 }
 
-Widget getPostureName(String id) {
+Widget postureName(String id) {
   var target = postures.firstWhere((posture) => posture['id'] == id,
       orElse: () => print('Error, posture not found.'));
   return Text(target['name']);
@@ -99,9 +99,7 @@ List<dynamic> _configureSequence(data) {
   List<dynamic> sections = data.keys.toList();
   sections.sort();
   sections.forEach((section) {
-    data[section].forEach((posture) {
-      sequence.add(posture);
-    });
+    sequence.addAll(data[section]);
   });
   return sequence;
 }

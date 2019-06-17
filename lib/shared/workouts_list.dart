@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:namaslay_flutter/data/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
 import '../filters.dart';
 
@@ -13,24 +13,12 @@ class WorkoutsList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       color: Colors.white,
-      child: _fetchWorkouts(context, filter),
+      child: workoutsList(context, filter),
     );
   }
 }
 
-Widget _fetchWorkouts(BuildContext context, Filter filter) {
-  return StreamBuilder<QuerySnapshot>(
-    stream: Firestore.instance.collection('workouts').snapshots(),
-    builder: (context, snapshot) {
-      if (!snapshot.hasData) return Container();
-      // LinearProgressIndicator();
-      return _buildWorkoutsList(context, snapshot.data.documents, filter);
-    },
-  );
-}
-
-Widget _buildWorkoutsList(
-    BuildContext context, List<DocumentSnapshot> workouts, Filter filter) {
+Widget workoutsList(BuildContext context, Filter filter) {
   filterWorkouts(tags) {
     if (filter.title == 'All') return true;
     return tags.contains(filter.title.toLowerCase());
@@ -43,16 +31,16 @@ Widget _buildWorkoutsList(
         Expanded(
             child: ListView(
                 children: workouts
-                    .map((workout) => filterWorkouts(workout.data['tags'])
-                        ? _buildWorkoutCard(context, workout)
+                    .map((workout) => filterWorkouts(workout['tags'])
+                        ? workoutCard(context, workout)
                         : Container())
                     .toList()))
       ]);
 }
 
-Widget _buildWorkoutCard(BuildContext context, DocumentSnapshot workout) {
+Widget workoutCard(BuildContext context, Map workout) {
   final TextStyle textStyle = Theme.of(context).textTheme.display1;
-  Map<String, dynamic> workoutData = workout.data;
+  Map<String, dynamic> workoutData = workout;
 
   return InkWell(
       onTap: () {
