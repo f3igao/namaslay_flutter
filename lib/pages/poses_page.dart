@@ -1,20 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/shared/postures_list.dart';
+import 'package:namaslay_flutter/shared/poses_list.dart';
 import '../filters.dart';
 
-List<String> mockPostures = [
-  "Big Toe Pose",
-  "Boat Pose",
-  "Bound Angle Pose",
-  "Bow Pose",
-  "Bridge Pose",
-  "Camel Pose",
-  "Cat Pose",
-  "Cow Pose",
-  "Crane Pose",
-];
-
-class PosturesPage extends StatelessWidget {
+class PosesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -22,7 +10,7 @@ class PosturesPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Posture Clinic",
+            "Pose Clinic",
             style: TextStyle(color: Colors.black87),
           ),
           centerTitle: true,
@@ -41,7 +29,7 @@ class PosturesPage extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: filters.map((Filter filter) {
-            return PosturesList(filter: filter);
+            return PosesList(filter: filter);
           }).toList(),
         ),
       ),

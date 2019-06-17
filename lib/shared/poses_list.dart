@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:namaslay_flutter/pages/posture_page.dart';
+import 'package:namaslay_flutter/data/poses_data.dart';
+import 'package:namaslay_flutter/pages/pose_page.dart';
 import '../filters.dart';
 
-class PosturesList extends StatelessWidget {
-  const PosturesList({Key key, this.filter}) : super(key: key);
+class PosesList extends StatelessWidget {
+  const PosesList({Key key, this.filter}) : super(key: key);
 
   final Filter filter;
 
@@ -13,23 +13,11 @@ class PosturesList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       color: Colors.white,
-      child: _fetchPostures(context),
+      child: posesList(context),
     );
   }
 }
-
-Widget _fetchPostures(BuildContext context) {
-  return StreamBuilder<QuerySnapshot>(
-    stream: Firestore.instance.collection('poses').snapshots(),
-    builder: (context, snapshot) {
-      if (!snapshot.hasData) return Container();
-      return _buildPosturesList(context, snapshot.data.documents);
-    },
-  );
-}
-
-Widget _buildPosturesList(
-    BuildContext context, List<DocumentSnapshot> postures) {
+Widget posesList(BuildContext context) {
   return CustomScrollView(
     slivers: <Widget>[
       SliverGrid(
@@ -41,16 +29,16 @@ Widget _buildPosturesList(
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            final postureName = postures[index].data['name'];
+            final poseName = poses[index]['name'];
             return InkWell(
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PosturePage(postureName)));
+                          builder: (context) => PosePage(poseName)));
                 },
                 child: Container(
-                    child: Center(child: Text(postureName)),
+                    child: Center(child: Text(poseName)),
                     decoration: BoxDecoration(
                         color: Colors.amber,
                         borderRadius: BorderRadius.circular(8.0),
@@ -61,7 +49,7 @@ Widget _buildPosturesList(
                               offset: Offset(2.0, 6.0))
                         ])));
           },
-          childCount: postures.length,
+          childCount: poses.length,
         ),
       ),
     ],

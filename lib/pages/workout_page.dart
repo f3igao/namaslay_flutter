@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/data/postures_data.dart';
+import 'package:namaslay_flutter/data/poses_data.dart';
 import '../shared/hero_header.dart';
 
 class WorkoutPage extends StatelessWidget {
@@ -59,7 +59,7 @@ class WorkoutPage extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
-                  child: Center(child: postureName(sequence[index])),
+                  child: Center(child: poseName(sequence[index])),
                   decoration: BoxDecoration(
                     color: Colors.black12,
                     border: Border.all(width: 1.0, color: Colors.white),
@@ -88,9 +88,9 @@ class WorkoutPage extends StatelessWidget {
   }
 }
 
-Widget postureName(String id) {
-  var target = postures.firstWhere((posture) => posture['id'] == id,
-      orElse: () => print('Error, posture not found.'));
+Widget poseName(String id) {
+  var target = poses.firstWhere((pose) => pose['id'] == id,
+      orElse: () => print('Error, pose not found.'));
   return Text(target['name']);
 }
 

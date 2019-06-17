@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class PosturePage extends StatelessWidget {
-  final String postureName;
-  PosturePage(this.postureName);
+class PosePage extends StatelessWidget {
+  final String poseName;
+  PosePage(this.poseName);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(postureName),
+        title: Text(poseName),
       ),
       body: Container(),
     );

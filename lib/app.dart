@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/pages/home_page.dart';
-import 'package:namaslay_flutter/pages/postures_page.dart';
+import 'package:namaslay_flutter/pages/poses_page.dart';
 import 'package:namaslay_flutter/pages/profile_page.dart';
 import 'package:namaslay_flutter/pages/workouts_page.dart';
 
@@ -16,7 +16,7 @@ class _AppHomeState extends State<AppHome> {
   static List<Widget> _tabOptions = <Widget>[
     HomePage(),
     WorkoutsPage(),
-    PosturesPage(),
+    PosesPage(),
     ProfilePage(),
   ];
 
@@ -50,7 +50,7 @@ class _AppHomeState extends State<AppHome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
-            title: Text('Posture Clinic'),
+            title: Text('Pose Clinic'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
