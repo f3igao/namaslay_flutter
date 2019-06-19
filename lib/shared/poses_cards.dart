@@ -3,8 +3,8 @@ import 'package:namaslay_flutter/data/poses_data.dart';
 import 'package:namaslay_flutter/pages/pose_page.dart';
 import '../filters.dart';
 
-class PosesList extends StatelessWidget {
-  const PosesList({Key key, this.filter}) : super(key: key);
+class PosesCards extends StatelessWidget {
+  const PosesCards({Key key, this.filter}) : super(key: key);
 
   final Filter filter;
 
@@ -13,11 +13,11 @@ class PosesList extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       color: Colors.white,
-      child: posesList(context),
+      child: posesCards(context),
     );
   }
 }
-Widget posesList(BuildContext context) {
+Widget posesCards(BuildContext context) {
   return CustomScrollView(
     slivers: <Widget>[
       SliverGrid(
