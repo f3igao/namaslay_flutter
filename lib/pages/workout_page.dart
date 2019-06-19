@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/data/poses_data.dart';
+import 'package:namaslay_flutter/shared/poses_list.dart';
 import '../shared/hero_header.dart';
 
 class WorkoutPage extends StatelessWidget {
@@ -51,24 +51,7 @@ class WorkoutPage extends StatelessWidget {
               )
             ],
           )),
-          SliverGrid(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 1,
-              childAspectRatio: 5.5,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Container(
-                  child: Center(child: poseName(sequence[index])),
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    border: Border.all(width: 1.0, color: Colors.white),
-                  ),
-                );
-              },
-              childCount: sequence.length,
-            ),
-          )
+          posesList(context, sequence),
         ]),
         Positioned(
             child: FloatingActionButton.extended(
@@ -86,12 +69,6 @@ class WorkoutPage extends StatelessWidget {
       ]),
     );
   }
-}
-
-Widget poseName(String id) {
-  var target = poses.firstWhere((pose) => pose['id'] == id,
-      orElse: () => print('Error, pose not found.'));
-  return Text(target['name']);
 }
 
 List<dynamic> _configureSequence(data) {
