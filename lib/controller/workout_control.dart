@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class WorkoutControl extends StatelessWidget {
   final Function playWorkout;
-  final String text;
+  String text = 'PLAY';
+  IconData icon = Icons.play_arrow;
 
-  WorkoutControl({this.playWorkout, this.text});
+  WorkoutControl({this.playWorkout});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +13,10 @@ class WorkoutControl extends StatelessWidget {
         child: FloatingActionButton.extended(
           onPressed: () {
             playWorkout();
+            text = 'PAUSE';
+            icon = Icons.pause;
           },
-          icon: text == 'PLAY' ? Icon(Icons.play_arrow) : Icon(Icons.pause),
+          icon: Icon(icon),
           label: Text(
             text,
             style: TextStyle(fontSize: 20.0),

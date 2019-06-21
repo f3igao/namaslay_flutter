@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/controller/workout_controller.dart';
+import 'package:namaslay_flutter/controller/workout_control.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
 import '../shared/hero_header.dart';
 
@@ -15,12 +15,10 @@ class WorkoutPage extends StatefulWidget {
 
 class _WorkoutPageState extends State<WorkoutPage> {
   bool isPlaying = false;
-  String buttonText = 'PLAY';
 
   void _playWorkout() {
     setState(() {
       isPlaying = !isPlaying;
-      buttonText = isPlaying ? 'PAUSE' : 'PLAY';
     });
   }
 
@@ -72,7 +70,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
           )),
           posesList(context, sequence),
         ]),
-        WorkoutControl(playWorkout: _playWorkout, text: buttonText)
+        WorkoutControl(playWorkout: _playWorkout)
       ]),
     );
   }
