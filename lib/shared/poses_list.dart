@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/data/poses_data.dart';
+import 'package:namaslay_flutter/model/poses_data.dart';
 
 Widget posesList(BuildContext context, List<dynamic> sequence) {
   return SliverGrid(
@@ -27,7 +27,7 @@ Widget poseBar(String id) {
       orElse: () => print('Error, pose not found.'));
   return FlatButton(
       onPressed: () {
-        /*...*/
+        print('pressed ' + target['name']);
       },
       child: Text(target['name']));
 }

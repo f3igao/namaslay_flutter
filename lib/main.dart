@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'app.dart';
-import 'data/poses_data.dart';
-import 'data/workouts_data.dart';
+import 'model/poses_data.dart';
+import 'model/workouts_data.dart';
 
 void main() => runApp(Namaslay());
 

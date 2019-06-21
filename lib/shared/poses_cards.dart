@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/data/poses_data.dart';
+import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/pages/pose_page.dart';
 import '../filters.dart';
 

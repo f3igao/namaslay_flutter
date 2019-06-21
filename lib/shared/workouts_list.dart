@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/data/workouts_data.dart';
+import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
 import '../filters.dart';
 
