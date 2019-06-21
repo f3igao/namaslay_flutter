@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/controller/workout_controller.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
 import '../shared/hero_header.dart';
 
-class WorkoutPage extends StatelessWidget {
+class WorkoutPage extends StatefulWidget {
   final Map<String, dynamic> workoutData;
-  WorkoutPage(this.workoutData);
+  WorkoutPage({this.workoutData});
+
+  @override
+  State<StatefulWidget> createState() {
+    return _WorkoutPageState();
+  }
+}
+
+class _WorkoutPageState extends State<WorkoutPage> {
+  bool isPlaying = false;
+  String buttonText = 'PLAY';
+
+  void _playWorkout() {
+    setState(() {
+      isPlaying = !isPlaying;
+      buttonText = isPlaying ? 'PAUSE' : 'PLAY';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    Map sequenceRaw = workoutData['sequence'];
+    Map sequenceRaw = widget.workoutData['sequence'];
     List<dynamic> sequence = _configureSequence(sequenceRaw);
     return Scaffold(
       body: Stack(children: [
@@ -18,7 +36,7 @@ class WorkoutPage extends StatelessWidget {
             delegate: HeroHeader(
               minExtent: 250.0,
               maxExtent: 250.0,
-              workoutName: workoutData['name'],
+              workoutName: widget.workoutData['name'],
             ),
           ),
           SliverGrid(
@@ -30,7 +48,8 @@ class WorkoutPage extends StatelessWidget {
               [
                 Container(
                     child: Center(
-                        child: Text(workoutData['length'].toString() + ' MIN')),
+                        child: Text(
+                            widget.workoutData['length'].toString() + ' MIN')),
                     margin: EdgeInsets.only(top: 15.0, right: 60.0)),
                 Container(
                     child: Center(child: Text('BEGINNER')),
@@ -53,19 +72,7 @@ class WorkoutPage extends StatelessWidget {
           )),
           posesList(context, sequence),
         ]),
-        Positioned(
-            child: FloatingActionButton.extended(
-              onPressed: () {},
-              icon: Icon(Icons.play_arrow),
-              label: Text(
-                "PLAY",
-                style: TextStyle(fontSize: 20.0),
-              ),
-            ),
-            top: 220.0,
-            left: 130.0,
-            width: 150.0,
-            height: 60.0)
+        WorkoutControl(playWorkout: _playWorkout, text: buttonText)
       ]),
     );
   }

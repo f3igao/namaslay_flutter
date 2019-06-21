@@ -35,7 +35,7 @@ Widget posesCards(BuildContext context) {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PosePage(poseName)));
+                          builder: (context) => PosePage(poseName: poseName)));
                 },
                 child: Container(
                     child: Center(child: Text(poseName)),

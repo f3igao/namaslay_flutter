@@ -45,7 +45,7 @@ Widget workoutCard(BuildContext context, Map workout) {
   return InkWell(
       onTap: () {
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => WorkoutPage(workoutData)));
+            MaterialPageRoute(builder: (context) => WorkoutPage(workoutData: workoutData)));
       },
       child: Container(
         child: Center(child: Text(workoutData['name'], style: textStyle)),
