@@ -68,9 +68,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
               )
             ],
           )),
-          posesList(context, sequence),
+          PosesList(sequence: sequence),
         ]),
-        WorkoutControl(playWorkout: _playWorkout)
+        WorkoutControl(playWorkout: _playWorkout, isPlaying: isPlaying)
       ]),
     );
   }
