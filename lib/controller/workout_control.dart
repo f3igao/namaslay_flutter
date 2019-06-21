@@ -10,6 +10,8 @@ class WorkoutControl extends StatelessWidget {
   Widget build(BuildContext context) {
     String text = isPlaying ? 'PAUSE' : 'PLAY';
     IconData icon = isPlaying ? Icons.pause : Icons.play_arrow;
+    Color color = isPlaying ? Colors.blue[200] : Colors.blue;
+
     return Positioned(
         child: FloatingActionButton.extended(
           onPressed: () {
@@ -20,6 +22,7 @@ class WorkoutControl extends StatelessWidget {
             text,
             style: TextStyle(fontSize: 20.0),
           ),
+          backgroundColor: color,
         ),
         top: 220.0,
         left: 130.0,
@@ -27,3 +30,7 @@ class WorkoutControl extends StatelessWidget {
         height: 60.0);
   }
 }
+        // top: 255.0,
+        // left: 130.0,
+        // width: 150.0,
+        // height: 50.0);
