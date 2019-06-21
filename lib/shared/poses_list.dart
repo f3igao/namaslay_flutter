@@ -39,6 +39,7 @@ class _PosesListState extends State<PosesList> {
         orElse: () => print('Error, pose not found.'));
     return FlatButton(
         onPressed: () {
+          // activatePose
           print('pressed ' + targetPose['name']);
         },
         child: Text(targetPose['name']));
