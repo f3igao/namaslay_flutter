@@ -1,12 +1,22 @@
+import 'package:flutter/material.dart';
 
-// import 'package:flutter/material.dart';
+class PoseBar extends StatefulWidget {
+  final Map<dynamic, dynamic> pose;
+  PoseBar({this.pose});
 
-// Widget poseBar(String id) {
-//   var targetPose = poses.firstWhere((pose) => pose['id'] == id,
-//       orElse: () => print('Error, pose not found.'));
-//   return FlatButton(
-//       onPressed: () {
-//         print('pressed ' + targetPose['name']);
-//       },
-//       child: Text(targetPose['name']));
-// }
+  @override
+  State<StatefulWidget> createState() {
+    return _PoseBarState();
+  }
+}
+
+class _PoseBarState extends State<PoseBar> {
+  @override
+  Widget build(BuildContext context) {
+    return FlatButton(
+        onPressed: () {
+          print('pressed ' + widget.pose['name']);
+        },
+        child: Text(widget.pose['name']));
+  }
+}
