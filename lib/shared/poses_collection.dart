@@ -17,6 +17,7 @@ class PosesCollection extends StatelessWidget {
     );
   }
 }
+
 Widget posesCollection(BuildContext context) {
   return CustomScrollView(
     slivers: <Widget>[
@@ -37,17 +38,27 @@ Widget posesCollection(BuildContext context) {
                       MaterialPageRoute(
                           builder: (context) => PosePage(poseName: poseName)));
                 },
-                child: Container(
-                    child: Center(child: Text(poseName)),
-                    decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(8.0),
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              color: Colors.black12,
-                              blurRadius: 10.0,
-                              offset: Offset(2.0, 6.0))
-                        ])));
+                child: Stack(children: [
+                  Container(
+                      child: Image.network(
+                        'https://www.pocketyoga.com/assets/images/poses/downward_dog.png',
+                        fit: BoxFit.cover,
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(8.0),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 10.0,
+                                offset: Offset(2.0, 6.0))
+                          ])),
+                  Positioned(
+                    child: Text(poseName),
+                    left: 5.0,
+                    top: 5.0,
+                  )
+                ]));
           },
           childCount: poses.length,
         ),

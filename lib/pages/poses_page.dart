@@ -10,7 +10,7 @@ class PosesPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Pose Clinic",
+            "Posture Clinic",
             style: TextStyle(color: Colors.black87),
           ),
           centerTitle: true,
