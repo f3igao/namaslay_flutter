@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:namaslay_flutter/controller/workout_control.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
 import '../shared/workout_header.dart';
 

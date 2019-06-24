@@ -56,6 +56,19 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                 Navigator.pop(context);
               },
             ))),
+        FractionalTranslation(
+            translation: Offset(0, 0.5),
+            child: Container(
+                width: 200.0,
+                height: 200.0,
+                child: RawMaterialButton(
+                  // fillColor: Colors.amber,
+                  // padding: EdgeInsets.all(10.0),
+                  shape: RoundedRectangleBorder(),
+                  // elevation: 5.0,
+                  child: Text('PLAyY'),
+                  onPressed: () {},
+                ))),
       ],
     );
   }
