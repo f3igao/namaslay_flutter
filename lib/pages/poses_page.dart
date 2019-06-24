@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/shared/poses_cards.dart';
+import 'package:namaslay_flutter/shared/poses_collection.dart';
 import '../filters.dart';
 
 class PosesPage extends StatelessWidget {
@@ -29,7 +29,7 @@ class PosesPage extends StatelessWidget {
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
           children: filters.map((Filter filter) {
-            return PosesCards(filter: filter);
+            return PosesCollection(filter: filter);
           }).toList(),
         ),
       ),
