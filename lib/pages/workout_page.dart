@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/controller/workout_control.dart';
+// import 'package:namaslay_flutter/controller/workout_control.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
-import '../shared/hero_header.dart';
+import '../shared/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {
   final Map<String, dynamic> workoutData;
@@ -14,14 +14,6 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
-  bool isPlaying = false;
-
-  void _playWorkout() {
-    setState(() {
-      isPlaying = !isPlaying;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     Map sequenceRaw = widget.workoutData['sequence'];
@@ -31,8 +23,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
         CustomScrollView(slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,
-            delegate: HeroHeader(
-              minExtent: 250.0,
+            delegate: WorkoutHeader(
+              minExtent: 100.0,
               maxExtent: 250.0,
               workoutName: widget.workoutData['name'],
             ),
@@ -70,7 +62,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
           )),
           PosesList(sequence: sequence),
         ]),
-        WorkoutControl(playWorkout: _playWorkout, isPlaying: isPlaying)
+        // WorkoutControl(playWorkout: _playWorkout, isPlaying: isPlaying)
       ]),
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
-import 'package:namaslay_flutter/shared/pose_item.dart';
 
 class PosesList extends StatefulWidget {
   final List<dynamic> sequence;
@@ -13,15 +12,6 @@ class PosesList extends StatefulWidget {
 }
 
 class _PosesListState extends State<PosesList> {
-  Map<dynamic, dynamic> currentPose;
-
-  void _activatePose(int index) {
-    setState(() {
-      currentPose = _getPose(index);
-      print('current pose is: ' + currentPose['name']);
-    });
-  }
-
   Map<dynamic, dynamic> _getPose(int index) {
     return poses.firstWhere((pose) => pose['id'] == widget.sequence[index],
         orElse: () => print('Error, pose not found.'));
@@ -36,12 +26,11 @@ class _PosesListState extends State<PosesList> {
       ),
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
+          Map<dynamic, dynamic> pose = _getPose(index);
           return Container(
-            child: PoseItem(
-                pose: _getPose(index),
-                activatePose: _activatePose,
-                currentPoseId: currentPose['id'],
-                index: index),
+            child: FlatButton(onPressed: () {
+              // TODO: open pose page
+            }, child: Text(pose['name'])),
             decoration: BoxDecoration(
               color: Colors.black12,
               border: Border.all(width: 1.0, color: Colors.white),
