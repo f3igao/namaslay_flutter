@@ -41,7 +41,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
                             widget.workoutData['length'].toString() + ' MIN')),
                     margin: EdgeInsets.only(top: 15.0, right: 60.0)),
                 Container(
-                    child: Center(child: Text('BEGINNER')),
+                    child: Center(child: Text(widget.workoutData['level'].toUpperCase())),
                     margin: EdgeInsets.only(top: 15.0, left: 60.0)),
               ],
             ),
@@ -52,7 +52,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
               Container(
                 child: Center(
                     child: Text(
-                  'Lorem ipsum dolor sit amet, ne quo wisi labore civibus, ex sanctus copiosae qui, cu nec melius tacimates salutandi. Nec oratio possim id, ut dicunt nominavi per. At ius blandit tacimates reprehendunt, quo dictas appetere pertinax ut, et vero aperiam perpetua mea. Cu pro qualisque evertitur, in usu nihil fierent. Est te novum fastidii lucilius, legendos praesent contentiones ad cum. Facete suavitate ut sea, sit te autem mollis sensibus, sea te quis deseruisse. Eos no epicurei incorrupte. Sed verear deserunt id, te affert dicunt mea, cu summo aliquando vix. Vitae vocent vivendum eam eu. Est ne graece debitis, sea et sententiae interpretaris. Modus everti inermis duo in, nec no dictas delicata dissentiunt. Ne usu mutat oratio explicari, altera insolens temporibus id nam.',
+                  widget.workoutData['description'],
                   textAlign: TextAlign.justify,
                 )),
                 padding: EdgeInsets.all(15.0),

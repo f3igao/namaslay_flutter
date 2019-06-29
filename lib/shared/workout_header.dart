@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:namaslay_flutter/shared/workout_modal.dart';
 
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   final String workoutName;
@@ -25,23 +26,17 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
             style: TextStyle(fontSize: 36.0, color: Colors.white),
           ),
         ),
-        GestureDetector(
-          onTap: () {
-            print('tap');
-          },
-          // darkens image to make title more apparent
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Colors.transparent,
-                  Colors.black54,
-                ],
-                stops: [0.5, 1.0],
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                tileMode: TileMode.repeated,
-              ),
+        Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.transparent,
+                Colors.black54,
+              ],
+              stops: [0.5, 1.0],
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              tileMode: TileMode.repeated,
             ),
           ),
         ),
@@ -66,9 +61,14 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                 width: 150.0,
                 height: 60.0,
                 child: FloatingActionButton.extended(
-                  onPressed: () {
-                    print('play');
-                  },
+                  onPressed: () => {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              // return Column(children: <Widget>[Text('test')],);
+                              return Container(child: Text('hiiii'), height: 800.0);
+                            })
+                      },
                   icon: Icon(Icons.play_arrow),
                   label: Text('PLAY', style: TextStyle(fontSize: 20.0)),
                   backgroundColor: Colors.blue,
@@ -84,4 +84,6 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
 
   @override
   FloatingHeaderSnapConfiguration get snapConfiguration => null;
+
+  void _showWorkoutModal() {}
 }
