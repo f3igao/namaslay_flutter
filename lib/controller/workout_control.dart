@@ -30,7 +30,3 @@ class WorkoutControl extends StatelessWidget {
         height: 60.0);
   }
 }
-        // top: 255.0,
-        // left: 130.0,
-        // width: 150.0,
-        // height: 50.0);

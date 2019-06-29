@@ -23,7 +23,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
           SliverPersistentHeader(
             pinned: true,
             delegate: WorkoutHeader(
-              minExtent: 100.0,
+              minExtent: 130.0,
               maxExtent: 250.0,
               workoutName: widget.workoutData['name'],
             ),
