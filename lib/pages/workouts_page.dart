@@ -18,6 +18,7 @@ class WorkoutsPage extends StatelessWidget {
           elevation: 0,
           bottom: TabBar(
             isScrollable: true,
+            indicatorColor: Colors.purple,
             tabs: filters.map((Filter filter) {
               return Tab(text: filter.title);
             }).toList(),

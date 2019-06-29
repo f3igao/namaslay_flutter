@@ -18,7 +18,7 @@ class PosesPage extends StatelessWidget {
           elevation: 0,
           bottom: TabBar(
             isScrollable: true,
-            indicatorColor: Colors.blueAccent,
+            indicatorColor: Colors.purple,
             tabs: filters.map((Filter filter) {
               return Tab(text: filter.title);
             }).toList(),

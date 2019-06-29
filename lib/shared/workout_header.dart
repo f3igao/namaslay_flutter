@@ -4,10 +4,12 @@ import 'package:namaslay_flutter/shared/workout_dialog.dart';
 
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   final String workoutName;
+  final String workoutImageUrl;
   double maxExtent;
   double minExtent;
 
-  WorkoutHeader({this.minExtent, this.maxExtent, this.workoutName});
+  WorkoutHeader(
+      {this.minExtent, this.maxExtent, this.workoutName, this.workoutImageUrl});
 
   @override
   Widget build(
@@ -30,10 +32,14 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset(
-          'assets/images/eneko-urunuela-646064-unsplash.jpg',
+        Image.network(workoutImageUrl,
           fit: BoxFit.cover,
+          alignment: Alignment(0, -0.6),
         ),
+        // Image.asset(
+        //   'assets/images/eneko-urunuela-646064-unsplash.jpg',
+        //   fit: BoxFit.cover,
+        // ),
         // workout title
         Center(
           child: Text(
@@ -88,7 +94,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                       },
                   icon: Icon(Icons.play_arrow),
                   label: Text('PLAY', style: TextStyle(fontSize: 20.0)),
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Colors.purple,
                 ),
               )),
         ),

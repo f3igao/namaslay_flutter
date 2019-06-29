@@ -29,10 +29,6 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      // title: const Text('Namaslay'),
-      // backgroundColor: Colors.transparent,
-      // ),
       body: Center(
         child: _tabOptions.elementAt(_selectedIndex),
       ),
@@ -58,7 +54,7 @@ class _AppHomeState extends State<AppHome> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: Colors.purple,
         onTap: _onTabTapped,
       ),
     );

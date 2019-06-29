@@ -27,9 +27,10 @@ class _WorkoutPageState extends State<WorkoutPage> {
           SliverPersistentHeader(
             pinned: true,
             delegate: WorkoutHeader(
-              minExtent: 130.0,
-              maxExtent: 250.0,
+              minExtent: (MediaQuery.of(context).size.height) / 5,
+              maxExtent: (MediaQuery.of(context).size.height) / 2,
               workoutName: widget.workoutData['name'],
+              workoutImageUrl: widget.workoutData['imageUrl'],
             ),
           ),
           SliverGrid(
@@ -65,7 +66,6 @@ class _WorkoutPageState extends State<WorkoutPage> {
           )),
           PosesList(sequence: sequence),
         ]),
-        // WorkoutControl(playWorkout: _playWorkout, isPlaying: isPlaying)
       ]),
     );
   }
