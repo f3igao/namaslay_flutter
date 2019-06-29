@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:namaslay_flutter/shared/workout_modal.dart';
+import 'package:namaslay_flutter/shared/workout_dialog.dart';
 
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   final String workoutName;
@@ -12,6 +12,21 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
+    void _openWorkoutDialog() {
+      // Navigator.of(context).push(PageRouteBuilder(
+      //     opaque: true,
+      //     pageBuilder: (BuildContext context, _, __) {
+      //       return WorkoutDialog();
+      //     }));
+
+      Navigator.of(context).push(MaterialPageRoute<Null>(
+          builder: (BuildContext context) {
+            // return new WorkoutDialog();
+            return WorkoutDialog();
+          },
+          fullscreenDialog: true));
+    }
+
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -62,12 +77,14 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                 height: 60.0,
                 child: FloatingActionButton.extended(
                   onPressed: () => {
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              // return Column(children: <Widget>[Text('test')],);
-                              return Container(child: Text('hiiii'), height: 800.0);
-                            })
+                        // showModalBottomSheet(
+                        //     context: context,
+                        //     builder: (context) {
+                        //       // return Column(children: <Widget>[Text('test')],);
+                        //       return Container(child: Text('hiiii'), height: 800.0);
+                        //     })
+                        print('play'),
+                        _openWorkoutDialog(),
                       },
                   icon: Icon(Icons.play_arrow),
                   label: Text('PLAY', style: TextStyle(fontSize: 20.0)),
@@ -84,6 +101,4 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
 
   @override
   FloatingHeaderSnapConfiguration get snapConfiguration => null;
-
-  void _showWorkoutModal() {}
 }

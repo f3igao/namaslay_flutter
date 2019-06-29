@@ -17,6 +17,10 @@ class _WorkoutPageState extends State<WorkoutPage> {
   Widget build(BuildContext context) {
     Map sequenceRaw = widget.workoutData['sequence'];
     List<dynamic> sequence = _configureSequence(sequenceRaw);
+
+    Function _getWorkoutTitle = () => widget.workoutData['level'].toUpperCase();
+    Function _getWorkoutTime = () => (sequence.length * 5 / 60).toString();
+
     return Scaffold(
       body: Stack(children: [
         CustomScrollView(slivers: <Widget>[
@@ -38,10 +42,10 @@ class _WorkoutPageState extends State<WorkoutPage> {
                 Container(
                     child: Center(
                         child: Text(
-                            widget.workoutData['length'].toString() + ' MIN')),
+                            _getWorkoutTime() + ' MIN')),
                     margin: EdgeInsets.only(top: 15.0, right: 60.0)),
                 Container(
-                    child: Center(child: Text(widget.workoutData['level'].toUpperCase())),
+                    child: Center(child: Text(_getWorkoutTitle())),
                     margin: EdgeInsets.only(top: 15.0, left: 60.0)),
               ],
             ),
