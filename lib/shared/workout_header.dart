@@ -75,12 +75,12 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
         //       workoutName,
         //       style: TextStyle(fontSize: 36.0, color: Colors.white),
         //     ),
-            // decoration: BoxDecoration(
-            //   color: Colors.black54,
-            //   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            // ),
-          //   padding: EdgeInsets.all(10.0),
-          // ),
+        // decoration: BoxDecoration(
+        //   color: Colors.black54,
+        //   borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        // ),
+        //   padding: EdgeInsets.all(10.0),
+        // ),
         // go back
         Positioned(
             left: 0.0,

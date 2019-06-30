@@ -46,14 +46,14 @@ Widget _buildHomeRow(BuildContext context, int index) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
-      Padding(
-          padding: const EdgeInsets.only(left: 16.0),
-          child: Text(mockThemes[index],
+      Container(
+        margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+          child: Text(mockThemes[index].toUpperCase(),
               style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black87))),
-      Padding(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.purple))),
+      Container(
           padding: const EdgeInsets.only(left: 6.0, bottom: 8.0),
           child: _fetchWorkouts(context)),
     ],
@@ -118,14 +118,14 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
           child: Text(
             workout.data['name'],
             style: TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.w600,
                 color: Colors.black54),
           )),
       Container(
           child: Text(
             '6 min',
-            style: TextStyle(color: Colors.black45, fontSize: 12),
+            style: TextStyle(color: Colors.black45, fontSize: 14),
           ))
     ],
   );

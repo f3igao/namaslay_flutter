@@ -39,16 +39,22 @@ Widget workoutsList(BuildContext context, Filter filter) {
 }
 
 Widget workoutCard(BuildContext context, Map workout) {
-  final TextStyle textStyle = Theme.of(context).textTheme.display1;
   Map<String, dynamic> workoutData = workout;
 
   return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => WorkoutPage(workoutData: workoutData)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => WorkoutPage(workoutData: workoutData)));
       },
       child: Container(
-        child: Center(child: Text(workoutData['name'], style: textStyle)),
+        // child: Center(child: Text(workoutData['name'], style: textStyle)),
+        child: Image.network(
+          workoutData['imageUrl'],
+          fit: BoxFit.cover,
+          alignment: Alignment(0, -0.5),
+        ),
         height: 170.0,
         margin: EdgeInsets.only(bottom: 24.0),
         decoration: BoxDecoration(
