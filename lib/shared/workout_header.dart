@@ -56,31 +56,18 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
           ),
         ),
         // workout title
-        Center(
-          child: Container(
+        Container(
+            alignment: Alignment.center,
             child: Text(
               workoutName,
               style: TextStyle(fontSize: 36.0, color: Colors.white),
             ),
-            decoration: BoxDecoration(
-              color: Colors.black54,
-              borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            ),
-            padding: EdgeInsets.all(15.0),
-          ),
+        decoration: BoxDecoration(
+          color: Colors.black54,
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
-        // Container(
-        //     alignment: Alignment(0, -0.75),
-        //     child: Text(
-        //       workoutName,
-        //       style: TextStyle(fontSize: 36.0, color: Colors.white),
-        //     ),
-        // decoration: BoxDecoration(
-        //   color: Colors.black54,
-        //   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        // ),
-        //   padding: EdgeInsets.all(10.0),
-        // ),
+          padding: EdgeInsets.all(10.0),
+        ),
         // go back
         Positioned(
             left: 0.0,

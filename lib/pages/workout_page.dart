@@ -28,7 +28,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             pinned: true,
             delegate: WorkoutHeader(
               minExtent: (MediaQuery.of(context).size.height) / 5,
-              maxExtent: (MediaQuery.of(context).size.height) * 2 / 3,
+              maxExtent: (MediaQuery.of(context).size.height) / 2,
               workoutName: widget.workoutData['name'],
               workoutImageUrl: widget.workoutData['imageUrl'],
             ),
