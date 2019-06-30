@@ -102,7 +102,7 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
               fit: BoxFit.cover,
               alignment: Alignment(0, -0.5),
             ),
-            height: 100.0,
+            height: 125.0,
             width: _tileWidth,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
@@ -112,17 +112,21 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
                       blurRadius: 10.0,
                       offset: Offset(2.0, 6.0))
                 ]),
-            margin: EdgeInsets.symmetric(horizontal: 10.0)),
+            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0)),
       ),
-      Text(
-        workout.data['name'],
-        style: TextStyle(
-            fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black54),
-      ),
-      Text(
-        '6 min',
-        style: TextStyle(color: Colors.black45, fontSize: 12),
-      ),
+      Container(
+          child: Text(
+            workout.data['name'],
+            style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Colors.black54),
+          )),
+      Container(
+          child: Text(
+            '6 min',
+            style: TextStyle(color: Colors.black45, fontSize: 12),
+          ))
     ],
   );
 }
