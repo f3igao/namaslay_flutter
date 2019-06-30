@@ -32,7 +32,8 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.network(workoutImageUrl,
+        Image.network(
+          workoutImageUrl,
           fit: BoxFit.cover,
           alignment: Alignment(0, -0.6),
         ),
@@ -40,25 +41,25 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
         //   'assets/images/eneko-urunuela-646064-unsplash.jpg',
         //   fit: BoxFit.cover,
         // ),
-        // workout title
-        Center(
-          child: Text(
-            workoutName,
-            style: TextStyle(fontSize: 36.0, color: Colors.white),
-          ),
-        ),
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
                 Colors.transparent,
-                Colors.black54,
+                Colors.black87,
               ],
               stops: [0.5, 1.0],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
               tileMode: TileMode.repeated,
             ),
+          ),
+        ),
+        // workout title
+        Center(
+          child: Text(
+            workoutName,
+            style: TextStyle(fontSize: 36.0, color: Colors.white),
           ),
         ),
         // go back

@@ -31,15 +31,13 @@ class HomeContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Column(
-        children: <Widget>[
-          Expanded(
-              child: ListView.builder(
-            itemBuilder: _buildHomeRow,
-            itemCount: mockThemes.length,
-          ))
-        ],
-      ),
+      child: Column(children: <Widget>[
+        Expanded(
+            child: ListView.builder(
+          itemBuilder: _buildHomeRow,
+          itemCount: mockThemes.length,
+        ))
+      ]),
     );
   }
 }
@@ -77,7 +75,7 @@ Widget _buildWorkoutsRow(
   return Row(children: [
     Expanded(
         child: SizedBox(
-            height: 150.0,
+            height: 170.0,
             child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: workouts
@@ -87,59 +85,44 @@ Widget _buildWorkoutsRow(
 }
 
 Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
-  return InkWell(
-    onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => WorkoutPage(workoutData: workout.data)));
-    },
-    child: Stack(
-      children: [
-        Container(
-        child: Image.network(workout.data['imageUrl'],
-          fit: BoxFit.cover,
-          alignment: Alignment(0, -0.6),
-        ),
-        width: 225.0,
-        decoration: BoxDecoration(
-            color: Colors.amber,
-            borderRadius: BorderRadius.all(Radius.circular(16.0)),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10.0,
-                  offset: Offset(2.0, 6.0))
-            ]),
-        margin: EdgeInsets.all(10.0)),
-        Container(child: Text(workout.data['name']),
-        // margin: EdgeInsets.only(left: 10.0),
-        alignment: Alignment.bottomCenter,
-        ),
-      ],
-    )
-    
-    
-    
-    
-    
-    
-    // Container(
-    //     // child: Center(child: Text(workout.data['name'])),
-    //     child: Image.network(workout.data['imageUrl'],
-    //       fit: BoxFit.cover,
-    //       alignment: Alignment(0, -0.6),
-    //     ),
-    //     width: 250.0,
-    //     decoration: BoxDecoration(
-    //         color: Colors.amber,
-    //         borderRadius: BorderRadius.all(Radius.circular(16.0)),
-    //         boxShadow: <BoxShadow>[
-    //           BoxShadow(
-    //               color: Colors.black12,
-    //               blurRadius: 10.0,
-    //               offset: Offset(2.0, 6.0))
-    //         ]),
-    //     margin: EdgeInsets.all(10.0)),
+  final double _tileWidth = 250.0;
+  return Column(
+    children: <Widget>[
+      InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) =>
+                      WorkoutPage(workoutData: workout.data)));
+        },
+        child: Container(
+            child: Image.network(
+              workout.data['imageUrl'],
+              fit: BoxFit.cover,
+              alignment: Alignment(0, -0.5),
+            ),
+            height: 100.0,
+            width: _tileWidth,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10.0,
+                      offset: Offset(2.0, 6.0))
+                ]),
+            margin: EdgeInsets.symmetric(horizontal: 10.0)),
+      ),
+      Text(
+        workout.data['name'],
+        style: TextStyle(
+            fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black54),
+      ),
+      Text(
+        '6 min',
+        style: TextStyle(color: Colors.black45, fontSize: 12),
+      ),
+    ],
   );
 }

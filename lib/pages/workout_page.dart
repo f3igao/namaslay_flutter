@@ -19,7 +19,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     List<dynamic> sequence = _configureSequence(sequenceRaw);
 
     Function _getWorkoutTitle = () => widget.workoutData['level'].toUpperCase();
-    Function _getWorkoutTime = () => (sequence.length * 5 / 60).toString();
+    Function _getWorkoutTime = () => (sequence.length * 10 / 60).toString();
 
     return Scaffold(
       body: Stack(children: [
@@ -28,7 +28,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             pinned: true,
             delegate: WorkoutHeader(
               minExtent: (MediaQuery.of(context).size.height) / 5,
-              maxExtent: (MediaQuery.of(context).size.height) / 2,
+              maxExtent: (MediaQuery.of(context).size.height) * 2 / 3,
               workoutName: widget.workoutData['name'],
               workoutImageUrl: widget.workoutData['imageUrl'],
             ),
@@ -41,9 +41,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             delegate: SliverChildListDelegate(
               [
                 Container(
-                    child: Center(
-                        child: Text(
-                            _getWorkoutTime() + ' MIN')),
+                    child: Center(child: Text(_getWorkoutTime() + ' MIN')),
                     margin: EdgeInsets.only(top: 15.0, right: 60.0)),
                 Container(
                     child: Center(child: Text(_getWorkoutTitle())),
