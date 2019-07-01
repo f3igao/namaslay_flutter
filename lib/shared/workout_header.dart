@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:namaslay_flutter/shared/workout_dialog.dart';
 
+import '../custom_bottom_sheet.dart';
+
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   final String workoutName;
   final String workoutImageUrl;
@@ -15,18 +17,19 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     void _openWorkoutDialog() {
-      // Navigator.of(context).push(PageRouteBuilder(
-      //     opaque: true,
-      //     pageBuilder: (BuildContext context, _, __) {
-      //       return WorkoutDialog();
-      //     }));
-
       Navigator.of(context).push(MaterialPageRoute<Null>(
           builder: (BuildContext context) {
-            // return new WorkoutDialog();
             return WorkoutDialog();
           },
           fullscreenDialog: true));
+    }
+
+    void _openWorkoutSheet() {
+      showModalBottomSheetApp(
+          context: context,
+          builder: (builder) {
+            return WorkoutDialog();
+          });
     }
 
     return Stack(
@@ -37,10 +40,6 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
           fit: BoxFit.cover,
           alignment: Alignment(0, -0.6),
         ),
-        // Image.asset(
-        //   'assets/images/eneko-urunuela-646064-unsplash.jpg',
-        //   fit: BoxFit.cover,
-        // ),
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -57,14 +56,14 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
         ),
         // workout title
         Container(
-            alignment: Alignment.center,
-            child: Text(
-              workoutName,
-              style: TextStyle(fontSize: 36.0, color: Colors.white),
-            ),
-        decoration: BoxDecoration(
-          color: Colors.black54,
-        ),
+          alignment: Alignment.center,
+          child: Text(
+            workoutName,
+            style: TextStyle(fontSize: 36.0, color: Colors.white),
+          ),
+          decoration: BoxDecoration(
+            color: Colors.black54,
+          ),
           padding: EdgeInsets.all(10.0),
         ),
         // go back
@@ -94,9 +93,9 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                         //     builder: (context) {
                         //       // return Column(children: <Widget>[Text('test')],);
                         //       return Container(child: Text('hiiii'), height: 800.0);
-                        //     })
-                        print('play'),
+                        //     }),
                         _openWorkoutDialog(),
+                        // _openWorkoutSheet(),
                       },
                   icon: Icon(Icons.play_arrow),
                   label: Text('PLAY', style: TextStyle(fontSize: 20.0)),
