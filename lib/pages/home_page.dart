@@ -47,7 +47,7 @@ Widget _buildHomeRow(BuildContext context, int index) {
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+          margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
           child: Text(mockThemes[index].toUpperCase(),
               style: TextStyle(
                   fontSize: 12,
@@ -97,10 +97,13 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
                       WorkoutPage(workoutData: workout.data)));
         },
         child: Container(
-            child: Image.network(
-              workout.data['imageUrl'],
-              fit: BoxFit.cover,
-              alignment: Alignment(0, -0.5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Image.network(
+                workout.data['imageUrl'],
+                fit: BoxFit.cover,
+                alignment: Alignment(0, -0.5),
+              ),
             ),
             height: 125.0,
             width: _tileWidth,
@@ -116,17 +119,15 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
       ),
       Container(
           child: Text(
-            workout.data['name'],
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black54),
-          )),
+        workout.data['name'],
+        style: TextStyle(
+            fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
+      )),
       Container(
           child: Text(
-            '6 min',
-            style: TextStyle(color: Colors.black45, fontSize: 14),
-          ))
+        '6 min',
+        style: TextStyle(color: Colors.black45, fontSize: 14),
+      ))
     ],
   );
 }

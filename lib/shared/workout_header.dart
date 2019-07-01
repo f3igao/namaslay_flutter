@@ -64,7 +64,6 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
             ),
         decoration: BoxDecoration(
           color: Colors.black54,
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
         ),
           padding: EdgeInsets.all(10.0),
         ),

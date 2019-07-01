@@ -40,9 +40,12 @@ Widget posesCollection(BuildContext context) {
                 },
                 child: Stack(children: [
                   Container(
-                      child: Image.network(
-                        'https://www.pocketyoga.com/assets/images/poses/downward_dog.png',
-                        fit: BoxFit.cover,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          'https://www.pocketyoga.com/assets/images/poses/downward_dog.png',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       decoration: BoxDecoration(
                           color: Colors.amber,
