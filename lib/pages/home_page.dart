@@ -117,17 +117,15 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
                 ]),
             margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0)),
       ),
-      Container(
-          child: Text(
+      Text(
         workout.data['name'],
         style: TextStyle(
             fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
-      )),
-      Container(
-          child: Text(
+      ),
+      Text(
         '6 min',
         style: TextStyle(color: Colors.black45, fontSize: 14),
-      ))
+      )
     ],
   );
 }

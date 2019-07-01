@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
+import 'package:namaslay_flutter/pages/pose_page.dart';
 
 class PosesList extends StatefulWidget {
   final List<dynamic> sequence;
@@ -28,9 +29,15 @@ class _PosesListState extends State<PosesList> {
         (BuildContext context, int index) {
           Map<dynamic, dynamic> pose = _getPose(index);
           return Container(
-            child: FlatButton(onPressed: () {
-              // TODO: open pose page
-            }, child: Text(pose['name'])),
+            child: FlatButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PosePage(poseName: pose['name'])));
+                },
+                child: Text(pose['name'])),
             decoration: BoxDecoration(
               color: Colors.black12,
               border: Border.all(width: 1.0, color: Colors.white),

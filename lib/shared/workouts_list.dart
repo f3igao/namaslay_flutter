@@ -48,25 +48,46 @@ Widget workoutCard(BuildContext context, Map workout) {
             MaterialPageRoute(
                 builder: (context) => WorkoutPage(workoutData: workoutData)));
       },
-      child: Container(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
-            workoutData['imageUrl'],
-            fit: BoxFit.cover,
-            alignment: Alignment(0, -0.5),
+      // child: Card(
+      child: Column(
+        children: <Widget>[
+          AspectRatio(
+            aspectRatio: 2 / 1,
+            child: Container(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  workoutData['imageUrl'],
+                  fit: BoxFit.cover,
+                  alignment: Alignment(0, -0.5),
+                ),
+              ),
+              margin: EdgeInsets.only(bottom: 10.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 10.0,
+                        offset: Offset(2.0, 6.0))
+                  ]),
+            ),
           ),
-        ),
-        height: 170.0,
-        margin: EdgeInsets.only(bottom: 24.0),
-        decoration: BoxDecoration(
-            color: Colors.amber,
-            borderRadius: BorderRadius.circular(8.0),
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                  color: Colors.black12,
-                  blurRadius: 10.0,
-                  offset: Offset(2.0, 6.0))
-            ]),
+          Text(
+            workoutData['name'],
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: Colors.black54),
+          ),
+          Container(
+            child: Text(
+              '6 min',
+              style: TextStyle(color: Colors.black45, fontSize: 14),
+            ),
+            margin: EdgeInsets.only(bottom: 10.0),
+          )
+        ],
+        // ),
       ));
 }
