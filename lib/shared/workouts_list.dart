@@ -76,14 +76,14 @@ Widget workoutCard(BuildContext context, Map workout) {
           Text(
             workoutData['name'],
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.w600,
                 color: Colors.black54),
           ),
           Container(
             child: Text(
               '6 min',
-              style: TextStyle(color: Colors.black45, fontSize: 14),
+              style: TextStyle(color: Colors.black45, fontSize: 16),
             ),
             margin: EdgeInsets.only(bottom: 10.0),
           )

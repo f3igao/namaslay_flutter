@@ -12,7 +12,7 @@ class WorkoutDialogState extends State<WorkoutDialog> {
         body: Stack(
       fit: StackFit.expand,
       children: [
-        // go back
+        // cancel icon
         Positioned(
             left: 0.0,
             top: 0.0,
@@ -23,6 +23,11 @@ class WorkoutDialogState extends State<WorkoutDialog> {
                 Navigator.pop(context);
               },
             ))),
+
+        // progress bar
+        // image
+        // timer
+        // name
       ],
     )
         // appBar: AppBar(

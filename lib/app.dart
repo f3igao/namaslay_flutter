@@ -48,10 +48,10 @@ class _AppHomeState extends State<AppHome> {
             icon: Icon(Icons.explore),
             title: Text('Pose Clinic'),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            title: Text('Me'),
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.person),
+          //   title: Text('Me'),
+          // ),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.purple,
