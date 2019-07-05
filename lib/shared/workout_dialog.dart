@@ -17,7 +17,6 @@ class WorkoutDialogState extends State<WorkoutDialog> {
       // fit: StackFit.expand,
       children: [
         Positioned(
-          top: 1.0,
             child: Column(
           children: <Widget>[
             Container(
