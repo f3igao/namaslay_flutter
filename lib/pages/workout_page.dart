@@ -7,9 +7,7 @@ class WorkoutPage extends StatefulWidget {
   WorkoutPage({this.workoutData});
 
   @override
-  State<StatefulWidget> createState() {
-    return _WorkoutPageState();
-  }
+  State<StatefulWidget> createState() => _WorkoutPageState();
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
@@ -29,8 +27,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
             delegate: WorkoutHeader(
               minExtent: (MediaQuery.of(context).size.height) / 5,
               maxExtent: (MediaQuery.of(context).size.height) / 2,
-              workoutName: widget.workoutData['name'],
-              workoutImageUrl: widget.workoutData['imageUrl'],
+              workout: widget.workoutData,
             ),
           ),
           SliverGrid(

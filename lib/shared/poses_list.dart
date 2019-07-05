@@ -7,9 +7,7 @@ class PosesList extends StatefulWidget {
   PosesList({this.sequence});
 
   @override
-  State<StatefulWidget> createState() {
-    return _PosesListState();
-  }
+  State<StatefulWidget> createState() => _PosesListState();
 }
 
 class _PosesListState extends State<PosesList> {

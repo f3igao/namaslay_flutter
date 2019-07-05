@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:namaslay_flutter/shared/workout_dialog.dart';
 
-import '../custom_bottom_sheet.dart';
-
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
-  final String workoutName;
-  final String workoutImageUrl;
   double maxExtent;
   double minExtent;
+  final Map<dynamic, dynamic> workout;
 
   WorkoutHeader(
-      {this.minExtent, this.maxExtent, this.workoutName, this.workoutImageUrl});
+      {this.minExtent, this.maxExtent, this.workout});
 
   @override
   Widget build(
@@ -19,24 +16,16 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     void _openWorkoutDialog() {
       Navigator.of(context).push(MaterialPageRoute<Null>(
           builder: (BuildContext context) {
-            return WorkoutDialog();
+            return WorkoutDialog(workout: workout);
           },
           fullscreenDialog: true));
-    }
-
-    void _openWorkoutSheet() {
-      showModalBottomSheetApp(
-          context: context,
-          builder: (builder) {
-            return WorkoutDialog();
-          });
     }
 
     return Stack(
       fit: StackFit.expand,
       children: [
         Image.network(
-          workoutImageUrl,
+          workout['imageUrl'],
           fit: BoxFit.cover,
           alignment: Alignment(0, -0.6),
         ),
@@ -58,7 +47,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
         Container(
           alignment: Alignment.center,
           child: Text(
-            workoutName,
+            workout['name'],
             style: TextStyle(fontSize: 36.0, color: Colors.white),
           ),
           decoration: BoxDecoration(
@@ -88,14 +77,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                 height: 60.0,
                 child: FloatingActionButton.extended(
                   onPressed: () => {
-                        // showModalBottomSheet(
-                        //     context: context,
-                        //     builder: (context) {
-                        //       // return Column(children: <Widget>[Text('test')],);
-                        //       return Container(child: Text('hiiii'), height: 800.0);
-                        //     }),
                         _openWorkoutDialog(),
-                        // _openWorkoutSheet(),
                       },
                   icon: Icon(Icons.play_arrow),
                   label: Text('PLAY', style: TextStyle(fontSize: 20.0)),

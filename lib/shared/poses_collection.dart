@@ -43,7 +43,7 @@ Widget posesCollection(BuildContext context) {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
                         child: Image.network(
-                          'https://www.pocketyoga.com/assets/images/poses/downward_dog.png',
+                          poses[index]['imageUrl'],
                           fit: BoxFit.cover,
                         ),
                       ),
