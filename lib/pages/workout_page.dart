@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
-import 'package:namaslay_flutter/shared/workout_dialog.dart';
+import 'package:namaslay_flutter/pages/workout_dialog.dart';
 import '../shared/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {

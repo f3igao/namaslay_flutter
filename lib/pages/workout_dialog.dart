@@ -1,57 +1,45 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
 
-class WorkoutDialog extends StatefulWidget {
+class WorkoutDialog extends StatelessWidget {
   final List<dynamic> sequence;
   WorkoutDialog({this.sequence});
 
-  @override
-  WorkoutDialogState createState() => WorkoutDialogState();
-}
-
-class WorkoutDialogState extends State<WorkoutDialog> {
   int currentIndex = 0;
   int poseCount = 0;
   List<dynamic> workoutPoses = [];
-
-  void _buildWorkoutPoses() {
-    widget.sequence.forEach((poseId) {
-      workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
-    });
-    poseCount = widget.sequence.length;
-  }
 
   // void _calculateProgress() {
   //   progress = currentIndex / poseCount;
   //   print(progress);
   // }
 
-  void _startWorkout() {
-    Timer.periodic(Duration(seconds: 2), (timer) {
-      if (currentIndex >= poseCount) {
-        timer.cancel();
-      } else {
-        // setState(() {
-          currentIndex += 1;
-          print(currentIndex);
-          // _calculateProgress();
-        // });
-      }
+  void _getWorkoutPoses() {
+    sequence.forEach((poseId) {
+      workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
     });
+    poseCount = sequence.length;
   }
 
-  
+  // void _startWorkout() {
+  //   Timer.periodic(Duration(seconds: 2), (timer) {
+  //     if (currentIndex >= poseCount) {
+  //       timer.cancel();
+  //     } else {
+  //       // setState(() {
+  //       currentIndex += 1;
+  //       print(currentIndex);
+  //       // _calculateProgress();
+  //       // });
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
-    _buildWorkoutPoses();
-    // count down 3 2 1
-    // start workout
+    _getWorkoutPoses();
 
-    _startWorkout();
-    
     return Scaffold(
         body: Stack(
       children: [
@@ -111,3 +99,46 @@ class WorkoutDialogState extends State<WorkoutDialog> {
     ));
   }
 }
+
+// class WorkoutDialogState extends State<WorkoutDialog> {
+//   int currentIndex = 0;
+//   int poseCount = 0;
+//   List<dynamic> workoutPoses = [];
+
+//   void _buildWorkoutPoses() {
+//     widget.sequence.forEach((poseId) {
+//       workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
+//     });
+//     poseCount = widget.sequence.length;
+//   }
+
+//   // void _calculateProgress() {
+//   //   progress = currentIndex / poseCount;
+//   //   print(progress);
+//   // }
+
+//   void _startWorkout() {
+//     Timer.periodic(Duration(seconds: 2), (timer) {
+//       if (currentIndex >= poseCount) {
+//         timer.cancel();
+//       } else {
+//         // setState(() {
+//         currentIndex += 1;
+//         print(currentIndex);
+//         // _calculateProgress();
+//         // });
+//       }
+//     });
+//   }
+
+//   // @override
+//   // Widget build(BuildContext context) {
+//   //   _buildWorkoutPoses();
+//   //   // count down 3 2 1
+//   //   // start workout
+
+//   //   _startWorkout();
+
+//   //   return
+//   // }
+// }
