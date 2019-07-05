@@ -1,31 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:namaslay_flutter/shared/workout_dialog.dart';
 
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   double maxExtent;
   double minExtent;
-  final Map<dynamic, dynamic> workout;
+  final String workoutName;
+  final String workoutImageUrl;
+  final Function openWorkoutDialog;
 
   WorkoutHeader(
-      {this.minExtent, this.maxExtent, this.workout});
+      {this.minExtent, this.maxExtent, this.workoutName, this.workoutImageUrl, this.openWorkoutDialog});
 
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    void _openWorkoutDialog() {
-      Navigator.of(context).push(MaterialPageRoute<Null>(
-          builder: (BuildContext context) {
-            return WorkoutDialog(workout: workout);
-          },
-          fullscreenDialog: true));
-    }
-
     return Stack(
       fit: StackFit.expand,
       children: [
         Image.network(
-          workout['imageUrl'],
+          workoutImageUrl,
           fit: BoxFit.cover,
           alignment: Alignment(0, -0.6),
         ),
@@ -47,7 +40,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
         Container(
           alignment: Alignment.center,
           child: Text(
-            workout['name'],
+            workoutName,
             style: TextStyle(fontSize: 36.0, color: Colors.white),
           ),
           decoration: BoxDecoration(
@@ -77,7 +70,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                 height: 60.0,
                 child: FloatingActionButton.extended(
                   onPressed: () => {
-                        _openWorkoutDialog(),
+                        openWorkoutDialog(),
                       },
                   icon: Icon(Icons.play_arrow),
                   label: Text('PLAY', style: TextStyle(fontSize: 20.0)),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
+import 'package:namaslay_flutter/shared/workout_dialog.dart';
 import '../shared/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {
@@ -19,6 +20,12 @@ class _WorkoutPageState extends State<WorkoutPage> {
     Function _getWorkoutTitle = () => widget.workoutData['level'].toUpperCase();
     Function _getWorkoutTime = () => (sequence.length * 10 / 60).toString();
 
+    void _openWorkoutDialog() {
+      Navigator.of(context).push(MaterialPageRoute<Null>(
+          builder: (BuildContext context) => WorkoutDialog(sequence: sequence),
+          fullscreenDialog: true));
+    }
+
     return Scaffold(
       body: Stack(children: [
         CustomScrollView(slivers: <Widget>[
@@ -27,7 +34,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
             delegate: WorkoutHeader(
               minExtent: (MediaQuery.of(context).size.height) / 5,
               maxExtent: (MediaQuery.of(context).size.height) / 2,
-              workout: widget.workoutData,
+              workoutName: widget.workoutData['name'],
+              workoutImageUrl: widget.workoutData['imageUrl'],
+              openWorkoutDialog: _openWorkoutDialog,
             ),
           ),
           SliverGrid(
