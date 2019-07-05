@@ -16,35 +16,36 @@ class WorkoutDialogState extends State<WorkoutDialog> {
         body: Stack(
       // fit: StackFit.expand,
       children: [
-        Positioned(
-            child: Column(
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              margin: EdgeInsets.all(10.0),
+              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
               child: WorkoutProgressIndicator(),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                poses[0]['imageUrl'],
-              ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20.0),
+              color: Colors.amber,
+              height: (MediaQuery.of(context).size.height) / 2,
+              // child: ClipRRect(
+              //   borderRadius: BorderRadius.circular(8.0),
+              //   child: Image.network(
+              //     poses[0]['imageUrl'],
+              //   ),
+              // ),
             ),
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10.0),
+              margin: EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
                 poses[0]['name'],
                 style: TextStyle(
-                    fontSize: 24,
+                    fontSize: 36,
                     fontWeight: FontWeight.w600,
                     color: Colors.black54),
               ),
             ),
-            // Container(
-            //   margin: EdgeInsets.all(10.0),
-            //   child: WorkoutProgressIndicator(),
-            // )
           ],
-        )),
+        ),
         // cancel icon
         Positioned(
             left: 0.0,
