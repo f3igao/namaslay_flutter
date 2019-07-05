@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
 
@@ -10,19 +12,48 @@ class WorkoutDialog extends StatefulWidget {
 }
 
 class WorkoutDialogState extends State<WorkoutDialog> {
-  double progress = 0.0;
-  int index = 0;
+  int currentIndex = 0;
+  int poseCount = 0;
+  List<dynamic> workoutPoses = [];
 
-    Map<dynamic, dynamic> _getPose() {
-    return poses.firstWhere((pose) => pose['id'] == widget.sequence[index],
-        orElse: () => print('Error, pose not found.'));
+  void _buildWorkoutPoses() {
+    widget.sequence.forEach((poseId) {
+      workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
+    });
+    poseCount = widget.sequence.length;
   }
+
+  // void _calculateProgress() {
+  //   progress = currentIndex / poseCount;
+  //   print(progress);
+  // }
+
+  void _startWorkout() {
+    Timer.periodic(Duration(seconds: 2), (timer) {
+      if (currentIndex >= poseCount) {
+        timer.cancel();
+      } else {
+        // setState(() {
+          currentIndex += 1;
+          print(currentIndex);
+          // _calculateProgress();
+        // });
+      }
+    });
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
+    _buildWorkoutPoses();
+    // count down 3 2 1
+    // start workout
+
+    _startWorkout();
+    
     return Scaffold(
         body: Stack(
-      // fit: StackFit.expand,
       children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -31,34 +62,32 @@ class WorkoutDialogState extends State<WorkoutDialog> {
               margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
               // child: WorkoutProgressIndicator(),
               child: LinearProgressIndicator(
-                value: progress,
+                value: currentIndex / poseCount,
               ),
             ),
-            FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                print('+ progress');
-                setState(() {
-                  progress += 0.2;
-                  index += 1;
-                });
-              },
-            ),
+            // FloatingActionButton(
+            //   child: Icon(Icons.add),
+            //   onPressed: () {
+            //     setState(() {
+            //       currentIndex += 1;
+            //       _calculateProgress();
+            //     });
+            //   },
+            // ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 20.0),
-              // color: Colors.amber,
               height: (MediaQuery.of(context).size.height) / 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  _getPose()['imageUrl'],
-                ),
+                // child: Image.network(
+                //   workoutPoses[currentIndex]['imageUrl'],
+                // ),
               ),
             ),
             Container(
               margin: EdgeInsets.symmetric(vertical: 20.0),
               child: Text(
-                _getPose()['name'],
+                workoutPoses[currentIndex]['name'],
                 style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.w600,
@@ -82,45 +111,3 @@ class WorkoutDialogState extends State<WorkoutDialog> {
     ));
   }
 }
-
-// class WorkoutProgressIndicator extends StatefulWidget {
-//   @override
-//   _WorkoutProgressIndicatorState createState() =>
-//       _WorkoutProgressIndicatorState();
-// }
-
-// class _WorkoutProgressIndicatorState extends State<WorkoutProgressIndicator>
-//     with SingleTickerProviderStateMixin {
-//   AnimationController controller;
-//   Animation<double> animation;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     controller = AnimationController(
-//         duration: const Duration(milliseconds: 2000), vsync: this);
-//     animation = Tween(begin: 0.0, end: 1.0).animate(controller);
-//     // ..addListener(() {
-//     //   setState(() {
-//     //     // the state that has changed here is the animation object’s value
-//     //   });
-//     // });
-//     controller.repeat();
-//   }
-
-//   @override
-//   void dispose() {
-//     controller.stop();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Center(
-//         child: Container(
-//       child: LinearProgressIndicator(
-//         value: animation.value,
-//       ),
-//     ));
-//   }
-// }
