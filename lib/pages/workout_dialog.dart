@@ -1,13 +1,13 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
+import 'package:namaslay_flutter/shared/workout_display.dart';
 
 class WorkoutDialog extends StatelessWidget {
   final List<dynamic> sequence;
   WorkoutDialog({this.sequence});
 
-  int currentIndex = 0;
-  int poseCount = 0;
+  // int currentIndex = 0;
+  // int poseCount = 0;
   List<dynamic> workoutPoses = [];
 
   // void _calculateProgress() {
@@ -19,7 +19,7 @@ class WorkoutDialog extends StatelessWidget {
     sequence.forEach((poseId) {
       workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
     });
-    poseCount = sequence.length;
+    print(workoutPoses);
   }
 
   // void _startWorkout() {
@@ -43,47 +43,7 @@ class WorkoutDialog extends StatelessWidget {
     return Scaffold(
         body: Stack(
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-              // child: WorkoutProgressIndicator(),
-              child: LinearProgressIndicator(
-                value: currentIndex / poseCount,
-              ),
-            ),
-            // FloatingActionButton(
-            //   child: Icon(Icons.add),
-            //   onPressed: () {
-            //     setState(() {
-            //       currentIndex += 1;
-            //       _calculateProgress();
-            //     });
-            //   },
-            // ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              height: (MediaQuery.of(context).size.height) / 2,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                // child: Image.network(
-                //   workoutPoses[currentIndex]['imageUrl'],
-                // ),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              child: Text(
-                workoutPoses[currentIndex]['name'],
-                style: TextStyle(
-                    fontSize: 36,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black54),
-              ),
-            ),
-          ],
-        ),
+        WorkoutDisplay(workoutPoses: workoutPoses),
         // cancel icon
         Positioned(
             left: 0.0,
