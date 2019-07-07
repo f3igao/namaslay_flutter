@@ -41,7 +41,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
   Timer _startWorkoutTimer() {
     isPlaying = true;
     return Timer.periodic(Duration(seconds: 1), (timer) {
-      if (currentIndex >= poseCount - 1) {
+      if (currentIndex == poseCount - 1) {
         timer.cancel();
         setState(() {
           currentIndex += 1;

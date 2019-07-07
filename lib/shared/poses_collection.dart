@@ -31,25 +31,28 @@ Widget posesCollection(BuildContext context) {
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            final poseName = poses[index]['name'];
+            // final poseName = poses[index]['name'];
+            final pose = poses[index];
             return InkWell(
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => PosePage(poseName: poseName)));
+                          builder: (context) => PosePage(pose: pose)));
                 },
                 child: Stack(children: [
                   Container(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8.0),
-                        child: FadeInImage.memoryNetwork(
-                            placeholder: kTransparentImage,
-                            image: poses[index]['imageUrl'],
-                            fit: BoxFit.cover),
+                        child: Hero(
+                          tag: "$pose['id']",
+                          child: FadeInImage.memoryNetwork(
+                              placeholder: kTransparentImage,
+                              image: pose['imageUrl'],
+                              fit: BoxFit.cover),
+                        ),
                       ),
                       decoration: BoxDecoration(
-                          color: Colors.amber,
                           borderRadius: BorderRadius.circular(8.0),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
@@ -58,7 +61,7 @@ Widget posesCollection(BuildContext context) {
                                 offset: Offset(2.0, 6.0))
                           ])),
                   Positioned(
-                    child: Text(poseName),
+                    child: Text(pose['name']),
                     left: 5.0,
                     top: 5.0,
                   )

@@ -32,8 +32,7 @@ class _PosesListState extends State<PosesList> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              PosePage(poseName: pose['name'])));
+                          builder: (context) => PosePage(pose: pose)));
                 },
                 child: Text(pose['name'],
                     style: TextStyle(
