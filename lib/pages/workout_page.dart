@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/shared/poses_list.dart';
 import 'package:namaslay_flutter/pages/workout_dialog.dart';
 import '../shared/workout_header.dart';
@@ -12,19 +13,47 @@ class WorkoutPage extends StatefulWidget {
 }
 
 class _WorkoutPageState extends State<WorkoutPage> {
+  List<dynamic> workoutPoses = [];
+  List<dynamic> sequence;
+
+  @override
+  void initState() {
+    Map sequenceRaw = widget.workoutData['sequence'];
+    sequence = _configureSequence(sequenceRaw);
+    _getWorkoutPoses(sequence);
+
+    super.initState();
+  }
+
+  List<dynamic> _configureSequence(data) {
+    List<dynamic> sequence = [];
+    List<dynamic> sections = data.keys.toList();
+    sections.sort();
+    sections.forEach((section) {
+      sequence.addAll(data[section]);
+    });
+    return sequence;
+  }
+
+  void _getWorkoutPoses(sequence) {
+    sequence.forEach((poseId) {
+      workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
+    });
+  }
+
+  void _openWorkoutDialog() {
+    Navigator.of(context).push(MaterialPageRoute<Null>(
+        builder: (BuildContext context) => WorkoutDialog(workoutPoses: workoutPoses),
+        fullscreenDialog: true));
+  }
+
   @override
   Widget build(BuildContext context) {
-    Map sequenceRaw = widget.workoutData['sequence'];
-    List<dynamic> sequence = _configureSequence(sequenceRaw);
+    // Map sequenceRaw = widget.workoutData['sequence'];
+    // List<dynamic> sequence = _configureSequence(sequenceRaw);
 
     Function _getWorkoutTitle = () => widget.workoutData['level'].toUpperCase();
     Function _getWorkoutTime = () => (sequence.length * 10 / 60).toString();
-
-    void _openWorkoutDialog() {
-      Navigator.of(context).push(MaterialPageRoute<Null>(
-          builder: (BuildContext context) => WorkoutDialog(sequence: sequence),
-          fullscreenDialog: true));
-    }
 
     return Scaffold(
       body: Stack(children: [
@@ -73,14 +102,4 @@ class _WorkoutPageState extends State<WorkoutPage> {
       ]),
     );
   }
-}
-
-List<dynamic> _configureSequence(data) {
-  List<dynamic> sequence = [];
-  List<dynamic> sections = data.keys.toList();
-  sections.sort();
-  sections.forEach((section) {
-    sequence.addAll(data[section]);
-  });
-  return sequence;
 }

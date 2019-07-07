@@ -35,7 +35,10 @@ class _PosesListState extends State<PosesList> {
                           builder: (context) =>
                               PosePage(poseName: pose['name'])));
                 },
-                child: Text(pose['name'])),
+                child: Text(pose['name'],
+                    style: TextStyle(
+                      fontSize: 16,
+                    ))),
             decoration: BoxDecoration(
               color: Colors.black12,
               border: Border.all(width: 1.0, color: Colors.white),

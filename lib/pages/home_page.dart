@@ -131,5 +131,3 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
     ],
   );
 }
-
-class CachedNetworkImage {}
