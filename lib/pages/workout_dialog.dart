@@ -104,66 +104,75 @@ class WorkoutDialogState extends State<WorkoutDialog>
     return Scaffold(
         body: Stack(
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-              child: LinearProgressIndicator(
-                value: currentIndex / poseCount,
-                backgroundColor: Colors.purpleAccent,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: <Widget>[
+        // Container(
+        //   margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+        //   child: LinearProgressIndicator(
+        //     value: currentIndex / poseCount,
+        //     backgroundColor: Colors.purpleAccent,
+        //     valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+        //   ),
+        // ),
+
+        // Container(
+        //   margin: EdgeInsets.symmetric(vertical: 20.0),
+        //   height: (MediaQuery.of(context).size.height) / 2,
+        //   child: ClipRRect(
+        //     borderRadius: BorderRadius.circular(8.0),
+        //     child: FadeInImage.memoryNetwork(
+        //       placeholder: kTransparentImage,
+        //       image: widget.workoutPoses[currentIndex]['imageUrl'],
+        //     ),
+        //   ),
+        // ),
+        // ],
+        // ),
+        AnimatedCrossFade(
+          firstChild: Countdown(
+            animation: StepTween(
+              begin: 4,
+              end: 0,
+            ).animate(_controller),
+          ),
+          secondChild: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                child: LinearProgressIndicator(
+                  value: currentIndex / poseCount,
+                  backgroundColor: Colors.purpleAccent,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+                ),
               ),
-            ),
-            AnimatedCrossFade(
-              firstChild: Countdown(
-                animation: StepTween(
-                  begin: 4,
-                  end: 0,
-                ).animate(_controller),
-              ),
-              secondChild: Column(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.0),
-                    height: (MediaQuery.of(context).size.height) / 2,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: widget.workoutPoses[currentIndex]['imageUrl'],
-                      ),
-                    ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+                height: (MediaQuery.of(context).size.height) / 2,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: widget.workoutPoses[currentIndex]['imageUrl'],
                   ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.0),
-                    child: Text(
-                      widget.workoutPoses[currentIndex]['name'],
-                      style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black54),
-                    ),
-                  ),
-                ],
+                ),
               ),
-              crossFadeState: isPlaying
-                  ? CrossFadeState.showSecond
-                  : CrossFadeState.showFirst,
-              duration: Duration(seconds: 1),
-            ),
-            // Container(
-            //   margin: EdgeInsets.symmetric(vertical: 20.0),
-            //   height: (MediaQuery.of(context).size.height) / 2,
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(8.0),
-            //     child: FadeInImage.memoryNetwork(
-            //       placeholder: kTransparentImage,
-            //       image: widget.workoutPoses[currentIndex]['imageUrl'],
-            //     ),
-            //   ),
-            // ),
-          ],
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+                child: Text(
+                  widget.workoutPoses[currentIndex]['name'],
+                  style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black54),
+                ),
+              ),
+            ],
+          ),
+          crossFadeState:
+              isPlaying ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          duration: Duration(seconds: 1),
         ),
         // cancel icon
         Positioned(
