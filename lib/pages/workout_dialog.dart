@@ -106,7 +106,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
           firstChild: Countdown(
             animation: StepTween(
               begin: 4,
-              end: 0,
+              end: 1,
             ).animate(_controller),
           ),
           secondChild: Column(
