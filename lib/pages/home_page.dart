@@ -56,6 +56,7 @@ Widget _buildHomeRow(BuildContext context, int index) {
                   color: Colors.purple))),
       Container(
           padding: const EdgeInsets.only(left: 6.0, bottom: 8.0),
+          height: (MediaQuery.of(context).size.height) / 10 * 3,
           child: _fetchWorkouts(context)),
     ],
   );
@@ -76,7 +77,6 @@ Widget _buildWorkoutsRow(
   return Row(children: [
     Expanded(
         child: SizedBox(
-            height: 170.0,
             child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: workouts
@@ -86,7 +86,18 @@ Widget _buildWorkoutsRow(
 }
 
 Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
-  final double _tileWidth = 250.0;
+  String _getWorkoutTime() {
+    List<dynamic> sequence = [];
+    List<dynamic> sections = workout.data['sequence'].keys.toList();
+    sections.forEach((section) {
+      sequence.addAll(workout.data['sequence'][section]);
+    });
+    int poseCount = sequence.length;
+    int minutes = (poseCount * 10 / 60).round();
+
+    return '$minutes min';
+  }
+
   return Column(
     children: <Widget>[
       InkWell(
@@ -107,8 +118,8 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
                 alignment: Alignment(0, -0.5),
               ),
             ),
-            height: 125.0,
-            width: _tileWidth,
+            height: (MediaQuery.of(context).size.height) / 5,
+            width: 250.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),
                 boxShadow: <BoxShadow>[
@@ -117,7 +128,7 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
                       blurRadius: 10.0,
                       offset: Offset(2.0, 6.0))
                 ]),
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0)),
+            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0)),
       ),
       Text(
         workout.data['name'],
@@ -125,7 +136,7 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
             fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
       ),
       Text(
-        '6 min',
+        _getWorkoutTime(),
         style: TextStyle(color: Colors.black45, fontSize: 14),
       )
     ],

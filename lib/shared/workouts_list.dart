@@ -42,6 +42,18 @@ Widget workoutsList(BuildContext context, Filter filter) {
 Widget workoutCard(BuildContext context, Map workout) {
   Map<String, dynamic> workoutData = workout;
 
+  String _getWorkoutTime() {
+    List<dynamic> sequence = [];
+    List<dynamic> sections = workoutData['sequence'].keys.toList();
+    sections.forEach((section) {
+      sequence.addAll(workoutData['sequence'][section]);
+    });
+    int poseCount = sequence.length;
+    int minutes = (poseCount * 10 / 60).round();
+
+    return '$minutes min';
+  }
+
   return InkWell(
       onTap: () {
         Navigator.push(
@@ -84,7 +96,7 @@ Widget workoutCard(BuildContext context, Map workout) {
           ),
           Container(
             child: Text(
-              '6 min',
+              _getWorkoutTime(),
               style: TextStyle(color: Colors.black45, fontSize: 16),
             ),
             margin: EdgeInsets.only(bottom: 10.0),

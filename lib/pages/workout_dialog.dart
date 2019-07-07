@@ -157,8 +157,8 @@ class WorkoutDialogState extends State<WorkoutDialog>
                 child: IconButton(
               icon: Icon(Icons.close, color: Colors.black54),
               onPressed: () {
-                _stopWorkout();
                 Navigator.pop(context);
+                _stopWorkout();
               },
             ))),
       ],
