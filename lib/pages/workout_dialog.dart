@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class WorkoutDialog extends StatefulWidget {
   final List<dynamic> workoutPoses;
@@ -18,7 +17,6 @@ class WorkoutDialogState extends State<WorkoutDialog> {
 
   @override
   void initState() {
-    // _startWorkout();
     poseCount = widget.workoutPoses.length;
     workoutTimer = _startWorkoutTimer();
     super.initState();
@@ -39,6 +37,7 @@ class WorkoutDialogState extends State<WorkoutDialog> {
 
   void _stopWorkout() {
     workoutTimer.cancel();
+    print('workout stopped');
   }
 
   @override
@@ -60,10 +59,10 @@ class WorkoutDialogState extends State<WorkoutDialog> {
               height: (MediaQuery.of(context).size.height) / 2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image(
-                    image: CachedNetworkImageProvider(
-                  widget.workoutPoses[currentIndex]['imageUrl'],
-                )),
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: widget.workoutPoses[currentIndex]['imageUrl'],
+                ),
               ),
             ),
             Container(
@@ -94,48 +93,3 @@ class WorkoutDialogState extends State<WorkoutDialog> {
     ));
   }
 }
-
-// class WorkoutDialog extends StatefulWidget {
-//   final List<dynamic> sequence;
-//   WorkoutDialog({this.sequence});
-
-//   @override
-//   WorkoutDialogState createState() => WorkoutDialogState();
-// }
-
-// class WorkoutDialogState extends State<WorkoutDialog> {
-//   List<dynamic> workoutPoses = [];
-
-//   @override
-//   void initState() {
-//     _getWorkoutPoses(widget.sequence);
-//     super.initState();
-//   }
-
-//   void _getWorkoutPoses(sequence) {
-//     sequence.forEach((poseId) {
-//       workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: Stack(
-//       children: [
-//         WorkoutDisplay(workoutPoses: workoutPoses),
-//         // cancel icon
-//         Positioned(
-//             left: 0.0,
-//             top: 0.0,
-//             child: SafeArea(
-//                 child: IconButton(
-//               icon: Icon(Icons.close, color: Colors.black54),
-//               onPressed: () {
-//                 Navigator.pop(context);
-//               },
-//             ))),
-//       ],
-//     ));
-//   }
-// }
