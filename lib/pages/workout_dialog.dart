@@ -16,6 +16,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
   AnimationController _controller;
   int poseCount;
   int currentIndex = 0;
+  double progress = 0.0;
   int time;
   Timer workoutTimer;
   bool isPlaying = false;
@@ -40,19 +41,19 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   Timer _startWorkoutTimer() {
     isPlaying = true;
-    return Timer.periodic(Duration(seconds: 1), (timer) {
-      if (currentIndex == poseCount - 1) {
+    return Timer.periodic(Duration(milliseconds: 100), (timer) {
+      if (currentIndex >= poseCount - 1) {
         timer.cancel();
         setState(() {
-          currentIndex += 1;
+          progress = 1.0;
         });
-        Timer(Duration(seconds: 2), () {
+        return Timer(Duration(seconds: 2), () {
           _completeWorkout();
         });
       } else {
         setState(() {
           currentIndex += 1;
-          print(currentIndex);
+          progress = currentIndex / poseCount;
         });
       }
     });
@@ -79,6 +80,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
                 setState(() {
                   isPlaying = false;
                   currentIndex = 0;
+                  progress = 0.0;
                   _controller.forward(from: 0.0);
                 });
                 Navigator.pop(context);
@@ -115,7 +117,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
                 child: LinearProgressIndicator(
-                  value: currentIndex / poseCount,
+                  value: progress,
                   backgroundColor: Colors.purpleAccent,
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
                 ),
