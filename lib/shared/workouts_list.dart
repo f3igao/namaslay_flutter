@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
@@ -56,8 +57,10 @@ Widget workoutCard(BuildContext context, Map workout) {
             child: Container(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: Image.network(
-                  workoutData['imageUrl'],
+                child: Image(
+                  image: CachedNetworkImageProvider(
+                    workoutData['imageUrl'],
+                  ),
                   fit: BoxFit.cover,
                   alignment: Alignment(0, -0.5),
                 ),

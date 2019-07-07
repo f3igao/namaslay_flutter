@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutDisplay extends StatefulWidget {
@@ -21,7 +22,7 @@ class WorkoutDisplayState extends State<WorkoutDisplay> {
 
   void _startWorkout(poses) {
     poseCount = poses.length;
-    Timer.periodic(Duration(seconds: 3), (timer) {
+    Timer.periodic(Duration(seconds: 2), (timer) {
       if (currentIndex >= poseCount) {
         timer.cancel();
       } else {
@@ -49,9 +50,10 @@ class WorkoutDisplayState extends State<WorkoutDisplay> {
           height: (MediaQuery.of(context).size.height) / 2,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
+            child: Image(
+                image: CachedNetworkImageProvider(
               widget.workoutPoses[currentIndex]['imageUrl'],
-            ),
+            )),
           ),
         ),
         Container(

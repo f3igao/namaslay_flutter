@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -9,7 +10,11 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
   final Function openWorkoutDialog;
 
   WorkoutHeader(
-      {this.minExtent, this.maxExtent, this.workoutName, this.workoutImageUrl, this.openWorkoutDialog});
+      {this.minExtent,
+      this.maxExtent,
+      this.workoutName,
+      this.workoutImageUrl,
+      this.openWorkoutDialog});
 
   @override
   Widget build(
@@ -17,8 +22,10 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.network(
-          workoutImageUrl,
+        Image(
+          image: CachedNetworkImageProvider(
+            workoutImageUrl,
+          ),
           fit: BoxFit.cover,
           alignment: Alignment(0, -0.6),
         ),
