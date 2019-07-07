@@ -22,10 +22,8 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   @override
   void initState() {
-    // poseCount = widget.workoutPoses.length;
-    poseCount = 3;
+    poseCount = widget.workoutPoses.length;
     time = (poseCount * 10 / 60).round();
-    // workoutTimer = _startWorkoutTimer();
     super.initState();
 
     _controller = AnimationController(
@@ -104,31 +102,6 @@ class WorkoutDialogState extends State<WorkoutDialog>
     return Scaffold(
         body: Stack(
       children: [
-        // Column(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: <Widget>[
-        // Container(
-        //   margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-        //   child: LinearProgressIndicator(
-        //     value: currentIndex / poseCount,
-        //     backgroundColor: Colors.purpleAccent,
-        //     valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-        //   ),
-        // ),
-
-        // Container(
-        //   margin: EdgeInsets.symmetric(vertical: 20.0),
-        //   height: (MediaQuery.of(context).size.height) / 2,
-        //   child: ClipRRect(
-        //     borderRadius: BorderRadius.circular(8.0),
-        //     child: FadeInImage.memoryNetwork(
-        //       placeholder: kTransparentImage,
-        //       image: widget.workoutPoses[currentIndex]['imageUrl'],
-        //     ),
-        //   ),
-        // ),
-        // ],
-        // ),
         AnimatedCrossFade(
           firstChild: Countdown(
             animation: StepTween(
