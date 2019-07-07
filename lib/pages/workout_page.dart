@@ -43,17 +43,20 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   void _openWorkoutDialog() {
     Navigator.of(context).push(MaterialPageRoute<Null>(
-        builder: (BuildContext context) => WorkoutDialog(workoutPoses: workoutPoses),
+        builder: (BuildContext context) =>
+            WorkoutDialog(workoutPoses: workoutPoses),
         fullscreenDialog: true));
   }
 
   @override
   Widget build(BuildContext context) {
-    // Map sequenceRaw = widget.workoutData['sequence'];
-    // List<dynamic> sequence = _configureSequence(sequenceRaw);
+    String _getWorkoutTitle() {
+      return widget.workoutData['level'].toUpperCase();
+    }
 
-    Function _getWorkoutTitle = () => widget.workoutData['level'].toUpperCase();
-    Function _getWorkoutTime = () => (sequence.length * 10 / 60).toString();
+    String _getWorkoutTime() {
+      return (sequence.length * 10 / 60).round().toString();
+    }
 
     return Scaffold(
       body: Stack(children: [

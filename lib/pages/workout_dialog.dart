@@ -13,19 +13,22 @@ class WorkoutDialog extends StatefulWidget {
 class WorkoutDialogState extends State<WorkoutDialog> {
   int poseCount;
   int currentIndex = 0;
+  int time;
   Timer workoutTimer;
 
   @override
   void initState() {
     poseCount = widget.workoutPoses.length;
+    time = (poseCount * 10 / 60).round();
     workoutTimer = _startWorkoutTimer();
     super.initState();
   }
 
   Timer _startWorkoutTimer() {
-    return Timer.periodic(Duration(seconds: 2), (timer) {
+    return Timer.periodic(Duration(seconds: 1), (timer) {
       if (currentIndex >= poseCount) {
         timer.cancel();
+        _completeWorkout();
       } else {
         setState(() {
           currentIndex += 1;
@@ -38,6 +41,39 @@ class WorkoutDialogState extends State<WorkoutDialog> {
   void _stopWorkout() {
     workoutTimer.cancel();
     print('workout stopped');
+  }
+
+  void _completeWorkout() {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Namaste"),
+          content: Text(
+              "You just completed a workout! Take a moment to thank yourself for dedicating the past $time minutes to your body and mind."),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("Do it again".toUpperCase()),
+              onPressed: () {
+                setState(() {
+                  currentIndex = 0;
+                });
+                Navigator.pop(context);
+                _startWorkoutTimer();
+              },
+            ),
+            FlatButton(
+              child: Text("Close".toUpperCase()),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
