@@ -46,7 +46,7 @@ class _AppHomeState extends State<AppHome> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore),
-            title: Text('Pose Clinic'),
+            title: Text('Posture Clinic'),
           ),
           // BottomNavigationBarItem(
           //   icon: Icon(Icons.person),

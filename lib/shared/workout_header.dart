@@ -26,8 +26,9 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
           placeholder: kTransparentImage,
           image: workoutImageUrl,
           fit: BoxFit.cover,
-          alignment: Alignment(0, -0.6),
+          alignment: Alignment(0, -0.5),
         ),
+        // dark overlay
         Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -75,11 +76,11 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                 width: 150.0,
                 height: 60.0,
                 child: FloatingActionButton.extended(
-                  onPressed: () => {
-                        openWorkoutDialog(),
-                      },
+                  onPressed: () {
+                    openWorkoutDialog();
+                  },
                   icon: Icon(Icons.play_arrow),
-                  label: Text('PLAY', style: TextStyle(fontSize: 20.0)),
+                  label: Text('play'.toUpperCase(), style: TextStyle(fontSize: 20.0)),
                   backgroundColor: Colors.purple,
                 ),
               )),
