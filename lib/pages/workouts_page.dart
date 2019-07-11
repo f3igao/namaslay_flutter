@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import '../filters.dart';
+import 'package:namaslay_flutter/model/workouts_data.dart';
 import '../shared/workouts_list.dart';
 
 class WorkoutsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: filters.length,
+      length: workoutFilters.length,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -19,7 +19,7 @@ class WorkoutsPage extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.purple,
-            tabs: filters.map((Filter filter) {
+            tabs: workoutFilters.map((Filter filter) {
               return Tab(text: filter.title);
             }).toList(),
             labelColor: Colors.black87,
@@ -28,7 +28,7 @@ class WorkoutsPage extends StatelessWidget {
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
-          children: filters.map((Filter filter) {
+          children: workoutFilters.map((Filter filter) {
             return WorkoutsList(filter: filter);
           }).toList(),
         ),

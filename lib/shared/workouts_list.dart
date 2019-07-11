@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
 import 'package:transparent_image/transparent_image.dart';
-import '../filters.dart';
 
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);
@@ -61,7 +60,6 @@ Widget workoutCard(BuildContext context, Map workout) {
             MaterialPageRoute(
                 builder: (context) => WorkoutPage(workoutData: workoutData)));
       },
-      // child: Card(
       child: Column(
         children: <Widget>[
           AspectRatio(
@@ -102,6 +100,5 @@ Widget workoutCard(BuildContext context, Map workout) {
             margin: EdgeInsets.only(bottom: 10.0),
           )
         ],
-        // ),
       ));
 }

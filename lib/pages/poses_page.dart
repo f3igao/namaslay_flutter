@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/shared/poses_collection.dart';
-import '../filters.dart';
 
 class PosesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: filters.length,
+      length: poseFilters.length,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -19,7 +19,7 @@ class PosesPage extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.purple,
-            tabs: filters.map((Filter filter) {
+            tabs: poseFilters.map((Filter filter) {
               return Tab(text: filter.title);
             }).toList(),
             labelColor: Colors.black87,
@@ -28,7 +28,7 @@ class PosesPage extends StatelessWidget {
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
-          children: filters.map((Filter filter) {
+          children: poseFilters.map((Filter filter) {
             return PosesCollection(filter: filter);
           }).toList(),
         ),

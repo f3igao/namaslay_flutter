@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/pages/pose_page.dart';
 import 'package:transparent_image/transparent_image.dart';
-import '../filters.dart';
 
 class PosesCollection extends StatelessWidget {
   const PosesCollection({Key key, this.filter}) : super(key: key);
@@ -14,12 +13,20 @@ class PosesCollection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16.0),
       color: Colors.white,
-      child: posesCollection(context),
+      child: posesCollection(context, filter),
     );
   }
 }
 
-Widget posesCollection(BuildContext context) {
+Widget posesCollection(BuildContext context, Filter filter) {
+  filterPoses(tags) {
+    if (filter.title == 'All') return true;
+    return tags.contains(filter.title.toLowerCase());
+  }
+
+  List<dynamic> filteredPoses =
+      poses.where((pose) => filterPoses(pose['tags'])).toList();
+
   return CustomScrollView(
     slivers: <Widget>[
       SliverGrid(
@@ -31,8 +38,7 @@ Widget posesCollection(BuildContext context) {
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            // final poseName = poses[index]['name'];
-            final pose = poses[index];
+            final pose = filteredPoses[index];
             return InkWell(
                 onTap: () {
                   Navigator.push(
@@ -67,7 +73,7 @@ Widget posesCollection(BuildContext context) {
                   )
                 ]));
           },
-          childCount: poses.length,
+          childCount: filteredPoses.length,
         ),
       ),
     ],
