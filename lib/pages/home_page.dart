@@ -4,10 +4,10 @@ import 'package:namaslay_flutter/pages/workout_page.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 List<String> mockThemes = [
-  'Featured Workouts',
-  'Recommended For You',
-  'Heart Openers',
-  'Hips Openers',
+  'featured workouts',
+  'recommended for you',
+  'on the go',
+  'hips openers',
 ];
 
 class HomePage extends StatelessWidget {
@@ -56,7 +56,7 @@ Widget _buildHomeRow(BuildContext context, int index) {
                   color: Colors.purple))),
       Container(
           padding: const EdgeInsets.only(left: 6.0, bottom: 8.0),
-          height: (MediaQuery.of(context).size.height) / 10 * 3,
+          height: (MediaQuery.of(context).size.height) / 3,
           child: _fetchWorkouts(context)),
     ],
   );
@@ -118,7 +118,7 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
                 alignment: Alignment(0, -0.5),
               ),
             ),
-            height: (MediaQuery.of(context).size.height) / 5,
+            height: (MediaQuery.of(context).size.height) * 0.23,
             width: 250.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),

@@ -63,7 +63,7 @@ Widget workoutCard(BuildContext context, Map workout) {
       child: Column(
         children: <Widget>[
           AspectRatio(
-            aspectRatio: 2 / 1,
+            aspectRatio: 8 / 5,
             child: Container(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
