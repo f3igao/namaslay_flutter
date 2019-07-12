@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:namaslay_flutter/shared/filter.dart';
 
 class Filter {
   const Filter({this.title});

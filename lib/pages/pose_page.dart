@@ -4,9 +4,9 @@ import 'package:transparent_image/transparent_image.dart';
 class PosePage extends StatelessWidget {
   final Map<dynamic, dynamic> pose;
   PosePage({this.pose});
-  String mockBenefit =
+  final String mockBenefit =
       'A challenging balance that incorporates hip opening, core and back strengthening, and hamstring lengthening';
-  String mockInstructions = '''
+  final String mockInstructions = '''
   1. Straighten your legs
   2. Lift up your arms
   3. Gaze forward
