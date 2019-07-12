@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -22,9 +23,16 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        FadeInImage.memoryNetwork(
-          placeholder: kTransparentImage,
-          image: workoutImageUrl,
+        // FadeInImage.memoryNetwork(
+        //   placeholder: kTransparentImage,
+        //   image: workoutImageUrl,
+        //   fit: BoxFit.cover,
+        //   alignment: Alignment(0, -0.5),
+        // ),
+        Image(
+          image: CachedNetworkImageProvider(
+            workoutImageUrl,
+          ),
           fit: BoxFit.cover,
           alignment: Alignment(0, -0.5),
         ),
@@ -80,7 +88,8 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
                     openWorkoutDialog();
                   },
                   icon: Icon(Icons.play_arrow),
-                  label: Text('play'.toUpperCase(), style: TextStyle(fontSize: 20.0)),
+                  label: Text('play'.toUpperCase(),
+                      style: TextStyle(fontSize: 20.0)),
                   backgroundColor: Colors.purple,
                 ),
               )),

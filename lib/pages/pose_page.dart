@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -27,11 +28,19 @@ class PosePage extends StatelessWidget {
                         child: Hero(
                           tag: "$pose['id']",
                           child: SizedBox(
-                              width: (MediaQuery.of(context).size.width),
-                              child: FadeInImage.memoryNetwork(
-                                placeholder: kTransparentImage,
-                                image: pose['imageUrl'],
-                              )),
+                            width: (MediaQuery.of(context).size.width),
+                            child: Image(
+                              image: CachedNetworkImageProvider(
+                                pose['imageUrl'],
+                              ), //   fit: BoxFit.cover,
+                              alignment: Alignment(0, -0.5),
+                              fit: BoxFit.cover,
+                            ),
+                            //     child: FadeInImage.memoryNetwork(
+                            //       placeholder: kTransparentImage,
+                            //       image: pose['imageUrl'],
+                            //     )
+                          ),
                         ),
                       ),
                       Container(
@@ -44,7 +53,9 @@ class PosePage extends StatelessWidget {
                       ),
                       Container(
                         margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
-                        child: Text(mockBenefit, style: TextStyle(fontSize: 16.0, color: Colors.black87)),
+                        child: Text(mockBenefit,
+                            style: TextStyle(
+                                fontSize: 16.0, color: Colors.black87)),
                       ),
                       Container(
                           margin: EdgeInsets.only(left: 16.0),
@@ -55,7 +66,9 @@ class PosePage extends StatelessWidget {
                                   color: Colors.purple))),
                       Container(
                           margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
-                          child: Text(mockInstructions, style: TextStyle(fontSize: 16.0, color: Colors.black87)))
+                          child: Text(mockInstructions,
+                              style: TextStyle(
+                                  fontSize: 16.0, color: Colors.black87)))
                     ],
                   ),
                 )

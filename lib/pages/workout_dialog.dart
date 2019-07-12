@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/shared/countdown.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -129,9 +130,14 @@ class WorkoutDialogState extends State<WorkoutDialog>
                     height: (MediaQuery.of(context).size.height) / 2,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: widget.workoutPoses[currentIndex]['imageUrl'],
+                      // child: FadeInImage.memoryNetwork(
+                      //   placeholder: kTransparentImage,
+                      //   image: widget.workoutPoses[currentIndex]['imageUrl'],
+                      // ),
+                      child: Image(
+                        image: CachedNetworkImageProvider(
+                          widget.workoutPoses[currentIndex]['imageUrl'],
+                        ),
                       ),
                     ),
                   ),
