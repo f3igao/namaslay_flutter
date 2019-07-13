@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:namaslay_flutter/shared/cached_image.dart';
@@ -23,7 +22,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        CachedImage(url: workoutImageUrl, showLoader: true, alignmentY: -0.5,),
+        CachedImage(url: workoutImageUrl, showLoader: true, alignY: -0.5,),
         // dark overlay
         Container(
           decoration: BoxDecoration(

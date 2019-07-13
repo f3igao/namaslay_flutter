@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 class CachedImage extends StatelessWidget {
   final String url;
   final bool showLoader;
-  final double alignmentX;
-  final double alignmentY;
-  CachedImage({this.url, this.showLoader = false, this.alignmentX = 0.0, this.alignmentY = 0.0});
+  final double alignX;
+  final double alignY;
+  CachedImage(
+      {this.url, this.showLoader = false, this.alignX = 0.0, this.alignY = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class CachedImage extends StatelessWidget {
             child: Icon(Icons.error, color: Colors.purple, size: 40.0),
           ),
       fit: BoxFit.cover,
-      alignment: Alignment(alignmentX, alignmentY),
+      alignment: (alignX == 0.0 && alignY == 0.0) ? Alignment.center : Alignment(alignX, alignY) 
     );
   }
 }

@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/shared/cached_image.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:namaslay_flutter/shared/pose_header.dart';
 
 class PosePage extends StatelessWidget {
   final Map<dynamic, dynamic> pose;
@@ -13,84 +12,71 @@ class PosePage extends StatelessWidget {
   2. Lift up your arms
   3. Gaze forward
   ''';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Stack(
-            fit: StackFit.expand,
-            children: <Widget>[
-              Column(children: [
-                Expanded(
-                  child: ListView(
-                    children: <Widget>[
-                      Container(
-                        child: Hero(
-                          tag: "$pose['id']",
-                          child: SizedBox(
-                            width: (MediaQuery.of(context).size.width),
-                            child: CachedImage(
-                                url: pose['imageUrl'], showLoader: true),
-                          ),
+        body: Stack(
+          children: <Widget>[
+            CustomScrollView(
+              slivers: <Widget>[
+                SliverPersistentHeader(
+                  pinned: true,
+                  delegate: PoseHeader(
+                    minExtent: (MediaQuery.of(context).size.height) / 6,
+                    maxExtent: (MediaQuery.of(context).size.height) / 5,
+                    poseName: pose['name'],
+                    poseSanskrit: pose['sanskrit'],
+                  ),
+                ),
+                SliverList(
+                    delegate: SliverChildListDelegate(
+                  [
+                    Container(
+                      child: Hero(
+                        tag: "$pose['id']",
+                        child: SizedBox(
+                          height: (MediaQuery.of(context).size.height) / 2,
+                          child: CachedImage(
+                              url: pose['imageUrl'], showLoader: true),
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.only(left: 16.0),
-                        child: Text('Benefit'.toUpperCase(),
+                      margin: EdgeInsets.only(bottom: 50.0),
+                    ),
+                    Container(
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                      child: Text('Benefit'.toUpperCase(),
+                          style: TextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.purple)),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
+                      child: Text(mockBenefit,
+                          style:
+                              TextStyle(fontSize: 16.0, color: Colors.black87)),
+                    ),
+                    Container(
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 4.0),
+                        child: Text('Instructions'.toUpperCase(),
                             style: TextStyle(
                                 fontSize: 14.0,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.purple)),
-                      ),
-                      Container(
+                                color: Colors.purple))),
+                    Container(
                         margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
-                        child: Text(mockBenefit,
+                        child: Text(mockInstructions,
                             style: TextStyle(
-                                fontSize: 16.0, color: Colors.black87)),
-                      ),
-                      Container(
-                          margin: EdgeInsets.only(left: 16.0),
-                          child: Text('Instructions'.toUpperCase(),
-                              style: TextStyle(
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.purple))),
-                      Container(
-                          margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
-                          child: Text(mockInstructions,
-                              style: TextStyle(
-                                  fontSize: 16.0, color: Colors.black87)))
-                    ],
-                  ),
-                )
-              ]),
-              Container(
-                  margin: EdgeInsets.only(top: 50.0),
-                  alignment: Alignment.topCenter,
-                  child: Column(
-                    children: <Widget>[
-                      Text(pose['name'],
-                          style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black54)),
-                      Text(pose['sanskrit'],
-                          style: TextStyle(color: Colors.purple))
-                    ],
-                  )),
-              // cancel icon
-              Positioned(
-                  left: 0.0,
-                  top: 0.0,
-                  child: IconButton(
-                    icon: Icon(Icons.arrow_back, color: Colors.black54),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  )),
-            ],
-          ),
+                                fontSize: 16.0, color: Colors.black87))),
+                  ],
+                )),
+              ],
+            ),
+          ],
         ));
   }
 }

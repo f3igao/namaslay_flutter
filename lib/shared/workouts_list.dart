@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
 import 'package:namaslay_flutter/shared/cached_image.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);
@@ -72,7 +70,7 @@ Widget workoutCard(BuildContext context, Map workout) {
                   child: CachedImage(
                     url: workoutData['imageUrl'],
                     showLoader: true,
-                    alignmentY: -0.5,
+                    alignY: -0.5,
                   )),
               margin: EdgeInsets.only(bottom: 10.0),
               decoration: BoxDecoration(

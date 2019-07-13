@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/pages/pose_page.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 import 'cached_image.dart';
 
@@ -52,12 +50,15 @@ Widget posesCollection(BuildContext context, Filter filter) {
                 child: Stack(children: [
                   Container(
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Hero(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Hero(
                             tag: "$pose['id']",
+                            // child: Image.network(pose['imageUrl'],
+                            //     fit: BoxFit.cover),)
+
                             child: CachedImage(
-                                url: pose['imageUrl'], showLoader: true)),
-                      ),
+                                url: pose['imageUrl'], showLoader: true),
+                          )),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
                           boxShadow: <BoxShadow>[
