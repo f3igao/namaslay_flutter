@@ -22,7 +22,11 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        CachedImage(url: workoutImageUrl, showLoader: true, alignY: -0.5,),
+        CachedImage(
+          url: workoutImageUrl,
+          showLoader: true,
+          alignY: -0.5,
+        ),
         // dark overlay
         Container(
           decoration: BoxDecoration(

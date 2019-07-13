@@ -1,12 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
 import 'package:namaslay_flutter/shared/cached_image.dart';
 
-List<String> mockThemes = [
+List<String> homepageSections = [
   'featured workouts',
   'recommended for you',
   'on the go',
+  'core strengtheners',
   'hips openers',
 ];
 
@@ -36,7 +37,7 @@ class HomeContainer extends StatelessWidget {
         Expanded(
             child: ListView.builder(
           itemBuilder: _buildHomeRow,
-          itemCount: mockThemes.length,
+          itemCount: homepageSections.length,
         ))
       ]),
     );
@@ -49,7 +50,7 @@ Widget _buildHomeRow(BuildContext context, int index) {
     children: <Widget>[
       Container(
           margin: EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
-          child: Text(mockThemes[index].toUpperCase(),
+          child: Text(homepageSections[index].toUpperCase(),
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -57,23 +58,12 @@ Widget _buildHomeRow(BuildContext context, int index) {
       Container(
           padding: const EdgeInsets.only(left: 6.0, bottom: 8.0),
           height: (MediaQuery.of(context).size.height) / 3,
-          child: _fetchWorkouts(context)),
+          child: _buildWorkoutsRow(context)),
     ],
   );
 }
 
-Widget _fetchWorkouts(BuildContext context) {
-  return StreamBuilder<QuerySnapshot>(
-    stream: Firestore.instance.collection('workouts').snapshots(),
-    builder: (context, snapshot) {
-      if (!snapshot.hasData) return Container();
-      return _buildWorkoutsRow(context, snapshot.data.documents);
-    },
-  );
-}
-
-Widget _buildWorkoutsRow(
-    BuildContext context, List<DocumentSnapshot> workouts) {
+Widget _buildWorkoutsRow(BuildContext context) {
   return Row(children: [
     Expanded(
         child: SizedBox(
@@ -85,12 +75,12 @@ Widget _buildWorkoutsRow(
   ]);
 }
 
-Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
+Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
   String _getWorkoutTime() {
     List<dynamic> sequence = [];
-    List<dynamic> sections = workout.data['sequence'].keys.toList();
+    List<dynamic> sections = workout['sequence'].keys.toList();
     sections.forEach((section) {
-      sequence.addAll(workout.data['sequence'][section]);
+      sequence.addAll(workout['sequence'][section]);
     });
     int poseCount = sequence.length;
     int minutes = (poseCount * 10 / 60).round();
@@ -105,13 +95,12 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) =>
-                      WorkoutPage(workoutData: workout.data)));
+                  builder: (context) => WorkoutPage(workoutData: workout)));
         },
         child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                child: CachedImage(url: workout.data['imageUrl'], showLoader: true)),
+                child: CachedImage(url: workout['imageUrl'], showLoader: true)),
             height: (MediaQuery.of(context).size.height) * 0.23,
             width: 250.0,
             decoration: BoxDecoration(
@@ -125,7 +114,7 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
             margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0)),
       ),
       Text(
-        workout.data['name'],
+        workout['name'],
         style: TextStyle(
             fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
       ),
