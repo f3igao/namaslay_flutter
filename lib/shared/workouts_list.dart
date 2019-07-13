@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
+import 'package:namaslay_flutter/shared/cached_image.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class WorkoutsList extends StatelessWidget {
@@ -67,20 +68,12 @@ Widget workoutCard(BuildContext context, Map workout) {
             aspectRatio: 8 / 5,
             child: Container(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                // child: FadeInImage.memoryNetwork(
-                //   placeholder: kTransparentImage,
-                //   image: workoutData['imageUrl'],
-                //   fit: BoxFit.cover,
-                //   alignment: Alignment(0, -0.5),
-                // ),
-                child: Image(
-                  image: CachedNetworkImageProvider(
-                      workoutData['imageUrl']), //   fit: BoxFit.cover,
-                  alignment: Alignment(0, -0.5),
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: CachedImage(
+                    url: workoutData['imageUrl'],
+                    showLoader: true,
+                    alignmentY: -0.5,
+                  )),
               margin: EdgeInsets.only(bottom: 10.0),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),

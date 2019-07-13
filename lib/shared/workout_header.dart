@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:transparent_image/transparent_image.dart';
+import 'package:namaslay_flutter/shared/cached_image.dart';
 
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   double maxExtent;
@@ -23,19 +23,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
     return Stack(
       fit: StackFit.expand,
       children: [
-        // FadeInImage.memoryNetwork(
-        //   placeholder: kTransparentImage,
-        //   image: workoutImageUrl,
-        //   fit: BoxFit.cover,
-        //   alignment: Alignment(0, -0.5),
-        // ),
-        Image(
-          image: CachedNetworkImageProvider(
-            workoutImageUrl,
-          ),
-          fit: BoxFit.cover,
-          alignment: Alignment(0, -0.5),
-        ),
+        CachedImage(url: workoutImageUrl, showLoader: true, alignmentY: -0.5,),
         // dark overlay
         Container(
           decoration: BoxDecoration(

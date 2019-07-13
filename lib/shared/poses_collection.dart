@@ -4,6 +4,8 @@ import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/pages/pose_page.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import 'cached_image.dart';
+
 class PosesCollection extends StatelessWidget {
   const PosesCollection({Key key, this.filter}) : super(key: key);
 
@@ -50,21 +52,12 @@ Widget posesCollection(BuildContext context, Filter filter) {
                 child: Stack(children: [
                   Container(
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Hero(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Hero(
                             tag: "$pose['id']",
-                            //   child: FadeInImage.memoryNetwork(
-                            //       placeholder: kTransparentImage,
-                            //       image: pose['imageUrl'],
-                            //       fit: BoxFit.cover),
-                            // ),
-                            child: Image(
-                              image: CachedNetworkImageProvider(
-                                pose['imageUrl'],
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          )),
+                            child: CachedImage(
+                                url: pose['imageUrl'], showLoader: true)),
+                      ),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
                           boxShadow: <BoxShadow>[

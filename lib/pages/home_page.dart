@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
-import 'package:transparent_image/transparent_image.dart';
-import 'package:cached_network_image/cached_network_image.dart';
+import 'package:namaslay_flutter/shared/cached_image.dart';
 
 List<String> mockThemes = [
   'featured workouts',
@@ -112,17 +111,7 @@ Widget _buildWorkoutTile(BuildContext context, DocumentSnapshot workout) {
         child: Container(
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
-                // child: FadeInImage.memoryNetwork(
-                //   placeholder: kTransparentImage,
-                //   image: workout.data['imageUrl'],
-                //   fit: BoxFit.cover,
-                //   alignment: Alignment(0, -0.5),
-                // ),
-                child: Image(
-                  image: CachedNetworkImageProvider(workout.data['imageUrl']),
-                  fit: BoxFit.cover,
-                  alignment: Alignment(0, -0.5),
-                )),
+                child: CachedImage(url: workout.data['imageUrl'], showLoader: true)),
             height: (MediaQuery.of(context).size.height) * 0.23,
             width: 250.0,
             decoration: BoxDecoration(

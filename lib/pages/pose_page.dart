@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/shared/cached_image.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PosePage extends StatelessWidget {
@@ -29,17 +30,8 @@ class PosePage extends StatelessWidget {
                           tag: "$pose['id']",
                           child: SizedBox(
                             width: (MediaQuery.of(context).size.width),
-                            child: Image(
-                              image: CachedNetworkImageProvider(
-                                pose['imageUrl'],
-                              ), //   fit: BoxFit.cover,
-                              alignment: Alignment(0, -0.5),
-                              fit: BoxFit.cover,
-                            ),
-                            //     child: FadeInImage.memoryNetwork(
-                            //       placeholder: kTransparentImage,
-                            //       image: pose['imageUrl'],
-                            //     )
+                            child: CachedImage(
+                                url: pose['imageUrl'], showLoader: true),
                           ),
                         ),
                       ),
