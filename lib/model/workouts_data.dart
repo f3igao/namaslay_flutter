@@ -7,7 +7,6 @@ class Filter {
 
 String buildTitle(string) => '${string[0].toUpperCase()}${string.substring(1)}';
 
-
 List<dynamic> workouts = [];
 List<Filter> workoutFilters = [
   const Filter(title: 'All'),

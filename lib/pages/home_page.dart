@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/controller/home_controller.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/pages/workout_page.dart';
 import 'package:namaslay_flutter/shared/cached_image.dart';
@@ -7,8 +8,7 @@ List<String> homepageSections = [
   'featured workouts',
   'recommended for you',
   'on the go',
-  'core strengtheners',
-  'hips openers',
+  'wind down',
 ];
 
 class HomePage extends StatelessWidget {
@@ -58,22 +58,41 @@ Widget _buildHomeRow(BuildContext context, int index) {
       Container(
           padding: const EdgeInsets.only(left: 6.0, bottom: 8.0),
           height: (MediaQuery.of(context).size.height) / 3,
-          child: _buildWorkoutsRow(context)),
+          child: _buildWorkoutsRow(context, homepageSections[index])),
     ],
   );
 }
 
-Widget _buildWorkoutsRow(BuildContext context) {
+Widget _buildWorkoutsRow(BuildContext context, section) {
+  List<dynamic> sectionWorkouts = [];
+
+  switch (section) {
+    case 'featured workouts':
+      sectionWorkouts.addAll(latestWorkouts());
+      break;
+    case 'recommended for you':
+      sectionWorkouts.addAll(recommendedWorkouts());
+      break;
+    case 'on the go':
+      sectionWorkouts.addAll(shortWorkouts());
+      break;
+    case 'wind down':
+      sectionWorkouts.addAll(taggedWorkouts('relax'));
+      break;
+  }
+
   return Row(children: [
     Expanded(
         child: SizedBox(
             child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: workouts
+                children: sectionWorkouts
                     .map((workout) => _buildWorkoutTile(context, workout))
                     .toList())))
   ]);
 }
+
+class _latestWorkouts {}
 
 Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
   String _getWorkoutTime() {
