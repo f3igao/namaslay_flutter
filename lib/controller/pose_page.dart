@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/shared/cached_image.dart';
-import 'package:namaslay_flutter/shared/pose_header.dart';
+import 'package:namaslay_flutter/view/cached_image.dart';
+import 'package:namaslay_flutter/view/pose_header.dart';
 
 class PosePage extends StatelessWidget {
   final Map<dynamic, dynamic> pose;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/pages/home_page.dart';
-import 'package:namaslay_flutter/pages/poses_page.dart';
-import 'package:namaslay_flutter/pages/profile_page.dart';
-import 'package:namaslay_flutter/pages/workouts_page.dart';
+import 'package:namaslay_flutter/controller/home_page.dart';
+import 'package:namaslay_flutter/controller/poses_page.dart';
+import 'package:namaslay_flutter/controller/profile_page.dart';
+import 'package:namaslay_flutter/controller/workouts_page.dart';
 
 class AppHome extends StatefulWidget {
   AppHome({Key key}) : super(key: key);

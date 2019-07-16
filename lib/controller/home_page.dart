@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/controller/home_controller.dart';
-import 'package:namaslay_flutter/model/workouts_data.dart';
-import 'package:namaslay_flutter/pages/workout_page.dart';
-import 'package:namaslay_flutter/shared/cached_image.dart';
+import 'package:namaslay_flutter/controller/home_page_functions.dart';
+import 'package:namaslay_flutter/controller/workout_page.dart';
+import 'package:namaslay_flutter/view/cached_image.dart';
 
 List<String> homepageSections = [
   'featured workouts',

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
-import 'package:namaslay_flutter/pages/pose_page.dart';
+import 'package:namaslay_flutter/controller/pose_page.dart';
 
 class PosesList extends StatefulWidget {
   final List<dynamic> sequence;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
-import 'package:namaslay_flutter/shared/poses_list.dart';
-import 'package:namaslay_flutter/pages/workout_dialog.dart';
-import '../shared/workout_header.dart';
+import 'package:namaslay_flutter/view/poses_list.dart';
+import 'package:namaslay_flutter/controller/workout_dialog.dart';
+import '../view/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {
   final Map<String, dynamic> workoutData;

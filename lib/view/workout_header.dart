@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:namaslay_flutter/shared/cached_image.dart';
+import 'package:namaslay_flutter/view/cached_image.dart';
 
 class WorkoutHeader implements SliverPersistentHeaderDelegate {
   double maxExtent;

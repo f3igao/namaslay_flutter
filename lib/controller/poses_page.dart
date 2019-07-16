@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/model/workouts_data.dart';
-import '../shared/workouts_list.dart';
+import 'package:namaslay_flutter/model/poses_data.dart';
+import 'package:namaslay_flutter/view/poses_collection.dart';
 
-class WorkoutsPage extends StatelessWidget {
+class PosesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: workoutFilters.length,
+      length: poseFilters.length,
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Workouts',
+            "Posture Clinic",
             style: TextStyle(color: Colors.black87),
           ),
           centerTitle: true,
@@ -19,7 +19,7 @@ class WorkoutsPage extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.purple,
-            tabs: workoutFilters.map((Filter filter) {
+            tabs: poseFilters.map((Filter filter) {
               return Tab(text: filter.title);
             }).toList(),
             labelColor: Colors.black87,
@@ -28,8 +28,8 @@ class WorkoutsPage extends StatelessWidget {
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
-          children: workoutFilters.map((Filter filter) {
-            return WorkoutsList(filter: filter);
+          children: poseFilters.map((Filter filter) {
+            return PosesCollection(filter: filter);
           }).toList(),
         ),
       ),

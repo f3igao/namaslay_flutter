@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/shared/cached_image.dart';
-import 'package:namaslay_flutter/shared/countdown.dart';
+import 'package:namaslay_flutter/view/cached_image.dart';
+import 'package:namaslay_flutter/view/countdown.dart';
 
 class WorkoutDialog extends StatefulWidget {
   final List<dynamic> workoutPoses;
