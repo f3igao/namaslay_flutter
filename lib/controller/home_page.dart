@@ -91,8 +91,6 @@ Widget _buildWorkoutsRow(BuildContext context, section) {
   ]);
 }
 
-class _latestWorkouts {}
-
 Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
   String _getWorkoutTime() {
     List<dynamic> sequence = [];

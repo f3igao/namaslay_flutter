@@ -51,9 +51,11 @@ class WorkoutDialogState extends State<WorkoutDialog>
           _completeWorkout();
         });
       } else {
-        setState(() {
-          currentIndex += 1;
-          progress = currentIndex / poseCount;
+        return Timer(Duration(seconds: 0), () {
+          setState(() {
+            currentIndex += 1;
+            progress = currentIndex / poseCount;
+          });
         });
       }
     });
