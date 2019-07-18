@@ -41,8 +41,8 @@ android {
         applicationId "xyz.namaslay.flutter"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        versionCode 3
+        versionName '0.3'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -57,9 +57,6 @@ android {
    buildTypes {
        release {
            signingConfig signingConfigs.release
-           minifyEnabled true
-           useProguard true
-           proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
        }
    }
 }
