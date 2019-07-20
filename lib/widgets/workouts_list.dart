@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
-import 'package:namaslay_flutter/controller/workout_page.dart';
-import 'package:namaslay_flutter/view/cached_image.dart';
+import 'package:namaslay_flutter/screens/workout_page.dart';
+import 'package:namaslay_flutter/widgets/cached_image.dart';
 
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
-import 'package:namaslay_flutter/view/poses_list.dart';
-import 'package:namaslay_flutter/controller/workout_dialog.dart';
-import '../view/workout_header.dart';
+import 'package:namaslay_flutter/widgets/poses_list.dart';
+import 'package:namaslay_flutter/screens/workout_dialog.dart';
+import '../widgets/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {
   final Map<String, dynamic> workoutData;
@@ -51,7 +51,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
   @override
   Widget build(BuildContext context) {
     String _getWorkoutTitle() {
-      return widget.workoutData['level'].toUpperCase();
+      return widget.workoutData['difficulty'].toUpperCase();
     }
 
     String _getWorkoutTime() {
