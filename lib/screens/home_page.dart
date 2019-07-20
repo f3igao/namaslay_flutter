@@ -117,7 +117,7 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
             child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: CachedImage(url: workout['imageUrl'], showLoader: true)),
-            height: (MediaQuery.of(context).size.height) * 0.23,
+            height: (MediaQuery.of(context).size.height) * 0.22,
             width: 250.0,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(16.0)),

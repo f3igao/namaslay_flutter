@@ -9,7 +9,7 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen> {
   Future startTime() async {
-    return Timer(Duration(seconds: 1), () {
+    return Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacementNamed('/home');
     });
   }
