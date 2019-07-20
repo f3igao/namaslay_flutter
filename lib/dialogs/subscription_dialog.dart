@@ -11,4 +11,16 @@ class SubscriptionDialog extends StatefulWidget {
 
 class SubscriptionDialogState extends State<SubscriptionDialog> {
   InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
+
+  @override
+  void initState() {
+//    _initialize();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+//    _subscription.cancel();
+    super.dispose();
+  }
 }
