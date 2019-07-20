@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/widgets/poses_list.dart';
-import 'package:namaslay_flutter/screens/workout_dialog.dart';
+import 'package:namaslay_flutter/dialogs/workout_dialog.dart';
 import '../widgets/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {
