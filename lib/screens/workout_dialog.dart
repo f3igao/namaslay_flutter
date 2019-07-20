@@ -47,9 +47,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
         setState(() {
           progress = 1.0;
         });
-        return Timer(Duration(seconds: 2), () {
-          _completeWorkout();
-        });
+        return Timer(Duration(seconds: 2), _completeWorkout);
       } else {
         return Timer(Duration(seconds: 0), () {
           setState(() {
