@@ -22,7 +22,7 @@ dependencies:
   cloud_firestore: ^0.8.2
   cached_network_image: ^1.0.0
   flutter_launcher_icons: ^0.7.2
-  in_app_purchase: ^0.2.0+6
+#  in_app_purchase: ^0.2.0+6
 
 # launcher icon
 flutter_icons:
