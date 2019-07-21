@@ -25,7 +25,7 @@ class SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
-        children: <Widget>[Image.asset('assets/icon/icon-purple.png')],
+        children: <Widget>[Image.asset('assets/icon/icon-small.png')],
       ),
     );
   }

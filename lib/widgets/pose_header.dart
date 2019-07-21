@@ -26,7 +26,7 @@ class PoseHeader implements SliverPersistentHeaderDelegate {
             children: <Widget>[
               Text(poseName,
                   style: TextStyle(
-                      fontSize: 36,
+                      fontSize: 32,
                       fontWeight: FontWeight.w600,
                       color: Colors.black54)),
               Text(poseSanskrit, style: TextStyle(color: Colors.purple))

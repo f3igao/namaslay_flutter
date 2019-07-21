@@ -12,7 +12,7 @@ class PosesCollection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),Ï
+      padding: const EdgeInsets.all(16.0),
       child: posesCollection(context, filter),
     );
   }

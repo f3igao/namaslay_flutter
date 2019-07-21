@@ -5,6 +5,7 @@ import 'package:namaslay_flutter/widgets/countdown.dart';
 
 class WorkoutDialog extends StatefulWidget {
   final List<dynamic> workoutPoses;
+
   WorkoutDialog({this.workoutPoses});
 
   @override
@@ -101,68 +102,66 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(Ï
+    return Scaffold(
         body: Stack(
-          children: [
-            AnimatedCrossFade(
-              firstChild: Countdown(
-                animation: StepTween(
-                  begin: 4,
-                  end: 1,
-                ).animate(_controller),
+      children: [
+        AnimatedCrossFade(
+          firstChild: Countdown(
+            animation: StepTween(
+              begin: 4,
+              end: 1,
+            ).animate(_controller),
+          ),
+          secondChild: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                child: LinearProgressIndicator(
+                  value: progress,
+                  backgroundColor: Colors.purpleAccent,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+                ),
               ),
-              secondChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    margin:
-                        EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                    child: LinearProgressIndicator(
-                      value: progress,
-                      backgroundColor: Colors.purpleAccent,
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.0),
-                    height: (MediaQuery.of(context).size.height) / 2,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: CachedImage(
-                          url: widget.workoutPoses[currentIndex]['imageUrl']),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 20.0),
-                    child: Text(
-                      widget.workoutPoses[currentIndex]['name'],
-                      style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black54),
-                    ),
-                  ),
-                ],
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+                height: (MediaQuery.of(context).size.height) / 2,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: CachedImage(
+                      url: widget.workoutPoses[currentIndex]['imageUrl']),
+                ),
               ),
-              crossFadeState: isPlaying
-                  ? CrossFadeState.showSecond
-                  : CrossFadeState.showFirst,
-              duration: Duration(seconds: 1),
-            ),
-            // cancel icon
-            Positioned(
-                left: 0.0,
-                top: 0.0,
-                child: SafeArea(
-                    child: IconButton(
-                  icon: Icon(Icons.close, color: Colors.black54),
-                  onPressed: () {
-                    Navigator.pop(context);
-                    _stopWorkout();
-                  },
-                ))),
-          ],
-        ));
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+                child: Text(
+                  widget.workoutPoses[currentIndex]['name'],
+                  style: TextStyle(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black54),
+                ),
+              ),
+            ],
+          ),
+          crossFadeState:
+              isPlaying ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+          duration: Duration(seconds: 1),
+        ),
+        // cancel icon
+        Positioned(
+            left: 0.0,
+            top: 0.0,
+            child: SafeArea(
+                child: IconButton(
+              icon: Icon(Icons.close, color: Colors.black54),
+              onPressed: () {
+                Navigator.pop(context);
+                _stopWorkout();
+              },
+            ))),
+      ],
+    ));
   }
 
   @override
