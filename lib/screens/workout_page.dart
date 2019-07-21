@@ -6,6 +6,7 @@ import '../widgets/workout_header.dart';
 
 class WorkoutPage extends StatefulWidget {
   final Map<String, dynamic> workoutData;
+
   WorkoutPage({this.workoutData});
 
   @override

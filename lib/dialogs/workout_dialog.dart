@@ -101,8 +101,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
+    return Scaffold(Ï
         body: Stack(
           children: [
             AnimatedCrossFade(

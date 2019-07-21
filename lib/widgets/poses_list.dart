@@ -4,6 +4,7 @@ import 'package:namaslay_flutter/screens/pose_page.dart';
 
 class PosesList extends StatefulWidget {
   final List<dynamic> sequence;
+
   PosesList({this.sequence});
 
   @override
@@ -38,10 +39,10 @@ class _PosesListState extends State<PosesList> {
                     style: TextStyle(
                       fontSize: 16,
                     ))),
-            decoration: BoxDecoration(
-              color: Colors.black12,
-              border: Border.all(width: 1.0, color: Colors.white),
-            ),
+//            decoration: BoxDecoration(
+//              color: Colors.black12,
+//              border: Border.all(width: 1.0, color: Colors.white),
+//            ),
           );
         },
         childCount: widget.sequence.length,

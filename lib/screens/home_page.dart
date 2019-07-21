@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             style: TextStyle(color: Colors.black87),
           ),
           centerTitle: true,
-          backgroundColor: Colors.white,
+          backgroundColor: ÏColors.white,
           elevation: 0,
         ),
         body: HomeContainer());
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
 class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Container(Ï
       color: Colors.white,
       child: Column(children: <Widget>[
         Expanded(
