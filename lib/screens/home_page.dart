@@ -32,7 +32,7 @@ class HomeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-//      color: Colors.white,
+      color: Colors.white,
       child: Column(children: <Widget>[
         Expanded(
             child: ListView.builder(
@@ -81,7 +81,7 @@ Widget _buildWorkoutsRow(BuildContext context, section) {
       break;
   }
 
-  return Row(children: [
+  return Row(children: <Widget>[
     Expanded(
         child: SizedBox(
             child: ListView(
@@ -114,30 +114,46 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
   return Column(
     children: <Widget>[
       InkWell(
-        onTap: () {
-          workout['isPremium']
-              ? _openSubscriptionDialog()
-              : Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => WorkoutPage(workoutData: workout)));
-        },
-        child: Container(
-            child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.0),
-                child: CachedImage(url: workout['imageUrl'], showLoader: true)),
-            height: (MediaQuery.of(context).size.height) * 0.22,
-            width: 250.0,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(16.0)),
-                boxShadow: <BoxShadow>[
-                  BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10.0,
-                      offset: Offset(2.0, 6.0))
-                ]),
-            margin: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0)),
-      ),
+          onTap: () {
+            workout['isPremium']
+                ? _openSubscriptionDialog()
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            WorkoutPage(workoutData: workout)));
+          },
+          child: Stack(
+            children: <Widget>[
+              Container(
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: CachedImage(
+                          url: workout['imageUrl'], showLoader: true)),
+                  height: (MediaQuery.of(context).size.height) * 0.22,
+                  width: 250.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(16.0)),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            offset: Offset(2.0, 6.0))
+                      ]),
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0)),
+              Positioned(
+                  right: 13.0,
+                  top: 13.0,
+                  child: workout['isPremium']
+                      ? Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                          size: 18.0,
+                        )
+                      : Container())
+            ],
+          )),
       Text(
         workout['name'],
         style: TextStyle(

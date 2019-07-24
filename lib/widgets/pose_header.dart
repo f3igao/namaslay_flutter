@@ -18,7 +18,7 @@ class PoseHeader implements SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return SafeArea(
-      child: Stack(fit: StackFit.expand, children: [
+      child: Stack(fit: StackFit.expand, children: <Widget>[
         Container(
           color: Colors.white,
           margin: EdgeInsets.only(top: 20.0),

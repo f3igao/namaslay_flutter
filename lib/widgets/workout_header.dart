@@ -21,7 +21,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Stack(
       fit: StackFit.expand,
-      children: [
+      children: <Widget>[
         CachedImage(
           url: workoutImageUrl,
           showLoader: true,

@@ -104,7 +104,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-      children: [
+      children: <Widget>[
         AnimatedCrossFade(
           firstChild: Countdown(
             animation: StepTween(

@@ -28,7 +28,7 @@ Widget workoutsList(BuildContext context, Filter filter) {
   return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+      children: <Widget>[
         Expanded(
             child: ListView(
                 children: workouts
@@ -56,8 +56,9 @@ Widget workoutCard(BuildContext context, Map workout) {
 
   void _openSubscriptionDialog() {
     Navigator.of(context).push(MaterialPageRoute<Null>(
-        builder: (BuildContext context) => SubscriptionDialog(),
-        fullscreenDialog: true));
+      builder: (BuildContext context) => SubscriptionDialog(),
+      // fullscreenDialog: true
+    ));
   }
 
   return InkWell(
@@ -72,26 +73,39 @@ Widget workoutCard(BuildContext context, Map workout) {
       },
       child: Column(
         children: <Widget>[
-          AspectRatio(
-            aspectRatio: 8 / 5,
-            child: Container(
-              child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: CachedImage(
-                    url: workoutData['imageUrl'],
-                    showLoader: true,
-                    alignY: -0.5,
-                  )),
-              margin: EdgeInsets.only(bottom: 10.0),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8.0),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 10.0,
-                        offset: Offset(2.0, 6.0))
-                  ]),
-            ),
+          Stack(
+            children: <Widget>[
+              AspectRatio(
+                aspectRatio: 8 / 5,
+                child: Container(
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: CachedImage(
+                        url: workoutData['imageUrl'],
+                        showLoader: true,
+                        alignY: -0.5,
+                      )),
+                  margin: EdgeInsets.only(bottom: 10.0),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 10.0,
+                            offset: Offset(2.0, 6.0))
+                      ]),
+                ),
+              ),
+              Positioned(
+                  right: 13.0,
+                  top: 13.0,
+                  child: workoutData['isPremium']
+                      ? Icon(
+                          Icons.lock,
+                          color: Colors.white,
+                        )
+                      : Container())
+            ],
           ),
           Text(
             workoutData['name'],

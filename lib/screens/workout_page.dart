@@ -60,7 +60,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
     }
 
     return Scaffold(
-      body: Stack(children: [
+      body: Stack(children: <Widget>[
         CustomScrollView(slivers: <Widget>[
           SliverPersistentHeader(
             pinned: true,

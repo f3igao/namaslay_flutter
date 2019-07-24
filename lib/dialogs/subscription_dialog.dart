@@ -35,7 +35,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-      children: [
+      children: <Widget> [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

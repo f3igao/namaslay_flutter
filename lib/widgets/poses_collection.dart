@@ -46,7 +46,7 @@ Widget posesCollection(BuildContext context, Filter filter) {
                       MaterialPageRoute(
                           builder: (context) => PosePage(pose: pose)));
                 },
-                child: Stack(children: [
+                child: Stack(children: <Widget>[
                   Container(
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
