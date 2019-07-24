@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
 import 'package:namaslay_flutter/util/db_helper.dart';
 import 'package:namaslay_flutter/screens/workout_page.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
@@ -104,14 +105,22 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
     return '$minutes min';
   }
 
+  void _openSubscriptionDialog() {
+    Navigator.of(context).push(MaterialPageRoute<Null>(
+        builder: (BuildContext context) => SubscriptionDialog(),
+        fullscreenDialog: true));
+  }
+
   return Column(
     children: <Widget>[
       InkWell(
         onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => WorkoutPage(workoutData: workout)));
+          workout['isPremium']
+              ? _openSubscriptionDialog()
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => WorkoutPage(workoutData: workout)));
         },
         child: Container(
             child: ClipRRect(

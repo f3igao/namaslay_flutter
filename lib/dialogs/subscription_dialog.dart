@@ -1,23 +1,67 @@
-// import 'package:flutter/material.dart';
-// import 'package:in_app_purchase/in_app_purchase.dart';
+import 'dart:async';
 
-// class SubscriptionDialog extends StatefulWidget {
-//   @override
-//   SubscriptionDialogState createState() => SubscriptionDialogState();
-// }
+import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
 
-// class SubscriptionDialogState extends State<SubscriptionDialog> {
-//   InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
+class SubscriptionDialog extends StatefulWidget {
+  @override
+  SubscriptionDialogState createState() => SubscriptionDialogState();
+}
 
-//   @override
-//   void initState() {
-// //    _initialize();
-//     super.initState();
-//   }
+class SubscriptionDialogState extends State<SubscriptionDialog> {
+  StreamSubscription<List<PurchaseDetails>> _subscription;
 
-//   @override
-//   void dispose() {
-// //    _subscription.cancel();
-//     super.dispose();
-//   }
-// }
+  @override
+  void initState() {
+    final Stream purchaseUpdates =
+        InAppPurchaseConnection.instance.purchaseUpdatedStream;
+    _subscription = purchaseUpdates.listen((purchases) {
+      _handlePurchaseUpdates(purchases);
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+
+  void _handlePurchaseUpdates(purchases) {
+    print('handling $purchases');
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Stack(
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                child: Text('PAYYYYY')),
+            Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                child: Text('PAYYYYY')),
+            Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                child: Text('PAYYYYY')),
+          ],
+        ),
+        // cancel icon
+        Positioned(
+            left: 0.0,
+            top: 0.0,
+            child: SafeArea(
+                child: IconButton(
+              icon: Icon(Icons.close, color: Colors.black54),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ))),
+      ],
+    ));
+  }
+}

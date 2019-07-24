@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/screens/workout_page.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
@@ -53,12 +54,21 @@ Widget workoutCard(BuildContext context, Map workout) {
     return '$minutes min';
   }
 
+  void _openSubscriptionDialog() {
+    Navigator.of(context).push(MaterialPageRoute<Null>(
+        builder: (BuildContext context) => SubscriptionDialog(),
+        fullscreenDialog: true));
+  }
+
   return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => WorkoutPage(workoutData: workoutData)));
+        workoutData['isPremium']
+            ? _openSubscriptionDialog()
+            : Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        WorkoutPage(workoutData: workoutData)));
       },
       child: Column(
         children: <Widget>[
