@@ -57,7 +57,7 @@ Widget _buildHomeRow(BuildContext context, int index) {
                   color: Colors.purple))),
       Container(
           padding: const EdgeInsets.only(left: 6.0, bottom: 8.0),
-          height: (MediaQuery.of(context).size.height) / 3,
+          height: (MediaQuery.of(context).size.height) * 0.33,
           child: _buildWorkoutsRow(context, homepageSections[index])),
     ],
   );
@@ -107,8 +107,7 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
 
   void _openSubscriptionDialog() {
     Navigator.of(context).push(MaterialPageRoute<Null>(
-        builder: (BuildContext context) => SubscriptionDialog(),
-        fullscreenDialog: true));
+        builder: (BuildContext context) => SubscriptionDialog()));
   }
 
   return Column(

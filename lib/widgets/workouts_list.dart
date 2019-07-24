@@ -57,7 +57,6 @@ Widget workoutCard(BuildContext context, Map workout) {
   void _openSubscriptionDialog() {
     Navigator.of(context).push(MaterialPageRoute<Null>(
       builder: (BuildContext context) => SubscriptionDialog(),
-      // fullscreenDialog: true
     ));
   }
 

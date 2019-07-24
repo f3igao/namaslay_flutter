@@ -45,8 +45,7 @@ class _WorkoutPageState extends State<WorkoutPage> {
   void _openWorkoutDialog() {
     Navigator.of(context).push(MaterialPageRoute<Null>(
         builder: (BuildContext context) =>
-            WorkoutDialog(workoutPoses: workoutPoses),
-        fullscreenDialog: true));
+            WorkoutDialog(workoutPoses: workoutPoses)));
   }
 
   @override
@@ -65,8 +64,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
           SliverPersistentHeader(
             pinned: true,
             delegate: WorkoutHeader(
-              minExtent: (MediaQuery.of(context).size.height) / 5,
-              maxExtent: (MediaQuery.of(context).size.height) / 2,
+              minExtent: (MediaQuery.of(context).size.height) * 0.20,
+              maxExtent: (MediaQuery.of(context).size.height) * 0.50,
               workoutName: widget.workoutData['name'],
               workoutImageUrl: widget.workoutData['imageUrl'],
               openWorkoutDialog: _openWorkoutDialog,

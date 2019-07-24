@@ -24,8 +24,8 @@ class PosePage extends StatelessWidget {
                 SliverPersistentHeader(
                   pinned: true,
                   delegate: PoseHeader(
-                    minExtent: (MediaQuery.of(context).size.height) / 6,
-                    maxExtent: (MediaQuery.of(context).size.height) / 5,
+                    minExtent: (MediaQuery.of(context).size.height) * 0.17,
+                    maxExtent: (MediaQuery.of(context).size.height) * 0.20,
                     poseName: pose['name'],
                     poseSanskrit: pose['sanskrit'],
                   ),
@@ -37,7 +37,7 @@ class PosePage extends StatelessWidget {
                       child: Hero(
                         tag: "$pose['id']",
                         child: SizedBox(
-                          height: (MediaQuery.of(context).size.height) / 2,
+                          height: (MediaQuery.of(context).size.height) * 0.50,
                           child: CachedImage(
                               url: pose['imageUrl'], showLoader: true),
                         ),

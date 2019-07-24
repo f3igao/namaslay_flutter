@@ -52,9 +52,6 @@ Widget posesCollection(BuildContext context, Filter filter) {
                           borderRadius: BorderRadius.circular(8.0),
                           child: Hero(
                             tag: "$pose['id']",
-                            // child: Image.network(pose['imageUrl'],
-                            //     fit: BoxFit.cover),)
-
                             child: CachedImage(
                                 url: pose['imageUrl'], showLoader: true),
                           )),

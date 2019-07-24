@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
@@ -31,24 +30,61 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     print('handling $purchases');
   }
 
+  void _handlePurchase(type) {
+    print(type);
+  }
+
+  double _getBtnWidth() => (MediaQuery.of(context).size.width) * 0.80;
+  double _getBtnHeight() => (MediaQuery.of(context).size.height) * 0.11;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-      children: <Widget> [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                child: Text('PAYYYYY')),
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                child: Text('PAYYYYY')),
-            Container(
-                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-                child: Text('PAYYYYY')),
-          ],
+      children: <Widget>[
+        SafeArea(
+          child: Text('unlock premium today'),
+        ),
+        Center(
+          child: Wrap(
+            runSpacing: 20,
+            children: <Widget>[
+              SizedBox(
+                width: _getBtnWidth(),
+                height: _getBtnHeight(),
+                child: RaisedButton(
+                    onPressed: () {
+                      _handlePurchase(('monthly'));
+                    },
+                    child: Text('monthly'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0))),
+              ),
+              SizedBox(
+                width: _getBtnWidth(),
+                height: _getBtnHeight(),
+                child: RaisedButton(
+                  onPressed: () {
+                    _handlePurchase(('semi-annual'));
+                  },
+                  child: Text('semi-annual'),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0)),
+                ),
+              ),
+              SizedBox(
+                  width: _getBtnWidth(),
+                  height: _getBtnHeight(),
+                  child: RaisedButton(
+                    onPressed: () {
+                      _handlePurchase(('annual'));
+                    },
+                    child: Text('annual'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                  )),
+            ],
+          ),
         ),
         // cancel icon
         Positioned(

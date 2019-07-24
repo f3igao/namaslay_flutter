@@ -68,7 +68,7 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
         // play button
         Positioned(
           bottom: 0.0,
-          left: (MediaQuery.of(context).size.width) / 2 - 75.0,
+          left: (MediaQuery.of(context).size.width) * 0.50 - 75.0,
           child: FractionalTranslation(
               translation: Offset(0, 0.5),
               child: Container(

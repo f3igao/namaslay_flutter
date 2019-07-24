@@ -125,7 +125,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
               ),
               Container(
                 margin: EdgeInsets.symmetric(vertical: 20.0),
-                height: (MediaQuery.of(context).size.height) / 2,
+                height: (MediaQuery.of(context).size.height) * 0.50,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: CachedImage(
