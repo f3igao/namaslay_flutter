@@ -3,6 +3,7 @@ import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
 import 'package:namaslay_flutter/screens/workout_page.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
+import 'package:namaslay_flutter/widgets/premium_lock.dart';
 
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);
@@ -96,13 +97,10 @@ Widget workoutCard(BuildContext context, Map workout) {
                 ),
               ),
               Positioned(
-                  right: 13.0,
-                  top: 13.0,
+                  right: 10.0,
+                  top: 10.0,
                   child: workoutData['isPremium']
-                      ? Icon(
-                          Icons.lock,
-                          color: Colors.white,
-                        )
+                      ? PremiumLock(20.0, 8.0)
                       : Container())
             ],
           ),

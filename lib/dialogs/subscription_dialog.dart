@@ -35,9 +35,6 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     print('handling $purchase');
   }
 
-  // double _getBtnWidth() => (MediaQuery.of(context).size.width) * 0.80;
-  // double _getBtnHeight() => (MediaQuery.of(context).size.height) * 0.10;
-
   @override
   Widget build(BuildContext context) {
     return Container(

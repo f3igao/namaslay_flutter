@@ -3,6 +3,7 @@ import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
 import 'package:namaslay_flutter/util/db_helper.dart';
 import 'package:namaslay_flutter/screens/workout_page.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
+import 'package:namaslay_flutter/widgets/premium_lock.dart';
 
 List<String> homepageSections = [
   'featured workouts',
@@ -142,15 +143,9 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
                   margin:
                       EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0)),
               Positioned(
-                  right: 13.0,
-                  top: 13.0,
-                  child: workout['isPremium']
-                      ? Icon(
-                          Icons.lock,
-                          color: Colors.white,
-                          size: 18.0,
-                        )
-                      : Container())
+                  right: 15.0,
+                  top: 15.0,
+                  child: workout['isPremium'] ? PremiumLock(18.0, 5.0) : Container())
             ],
           )),
       Text(
