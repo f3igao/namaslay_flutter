@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
 import 'package:namaslay_flutter/model/workouts_data.dart';
-import 'package:namaslay_flutter/screens/workout_page.dart';
-import 'package:namaslay_flutter/widgets/cached_image.dart';
-import 'package:namaslay_flutter/widgets/premium_lock.dart';
+import 'package:namaslay_flutter/widgets/workout_card.dart';
 
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);
@@ -38,86 +35,4 @@ Widget workoutsList(BuildContext context, Filter filter) {
                         : Container())
                     .toList()))
       ]);
-}
-
-Widget workoutCard(BuildContext context, Map workout) {
-  Map<String, dynamic> workoutData = workout;
-
-  String _getWorkoutTime() {
-    List<dynamic> sequence = [];
-    List<dynamic> sections = workoutData['sequence'].keys.toList();
-    sections.forEach((section) {
-      sequence.addAll(workoutData['sequence'][section]);
-    });
-    int poseCount = sequence.length;
-    int minutes = (poseCount * 10 / 60).round();
-
-    return '$minutes min';
-  }
-
-  void _openSubscriptionDialog() {
-    Navigator.of(context).push(MaterialPageRoute<Null>(
-      builder: (BuildContext context) => SubscriptionDialog(),
-    ));
-  }
-
-  return InkWell(
-      onTap: () {
-        workoutData['isPremium']
-            ? _openSubscriptionDialog()
-            : Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        WorkoutPage(workoutData: workoutData)));
-      },
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 8 / 5,
-                child: Container(
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: CachedImage(
-                        url: workoutData['imageUrl'],
-                        showLoader: true,
-                        alignY: -0.5,
-                      )),
-                  margin: EdgeInsets.only(bottom: 10.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      boxShadow: <BoxShadow>[
-                        BoxShadow(
-                            color: Colors.black12,
-                            blurRadius: 10.0,
-                            offset: Offset(2.0, 6.0))
-                      ]),
-                ),
-              ),
-              Positioned(
-                  right: 10.0,
-                  top: 10.0,
-                  child: workoutData['isPremium']
-                      ? PremiumLock(20.0, 8.0)
-                      : Container())
-            ],
-          ),
-          Text(
-            workoutData['name'],
-            style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: Colors.black54),
-          ),
-          Container(
-            child: Text(
-              _getWorkoutTime(),
-              style: TextStyle(color: Colors.black45, fontSize: 16),
-            ),
-            margin: EdgeInsets.only(bottom: 10.0),
-          )
-        ],
-      ));
 }

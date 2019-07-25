@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
-import 'package:namaslay_flutter/util/db_helper.dart';
+import 'package:namaslay_flutter/util/model_helpers.dart';
 import 'package:namaslay_flutter/screens/workout_page.dart';
+import 'package:namaslay_flutter/util/workout_helpers.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
 import 'package:namaslay_flutter/widgets/premium_lock.dart';
 
@@ -94,17 +95,6 @@ Widget _buildWorkoutsRow(BuildContext context, section) {
 }
 
 Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
-  String _getWorkoutTime() {
-    List<dynamic> sequence = [];
-    List<dynamic> sections = workout['sequence'].keys.toList();
-    sections.forEach((section) {
-      sequence.addAll(workout['sequence'][section]);
-    });
-    int poseCount = sequence.length;
-    int minutes = (poseCount * 10 / 60).round();
-
-    return '$minutes min';
-  }
 
   void _openSubscriptionDialog() {
     Navigator.of(context).push(MaterialPageRoute<Null>(
@@ -154,7 +144,7 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
             fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
       ),
       Text(
-        _getWorkoutTime(),
+        getWorkoutTime(workout),
         style: TextStyle(color: Colors.black45, fontSize: 14),
       )
     ],
