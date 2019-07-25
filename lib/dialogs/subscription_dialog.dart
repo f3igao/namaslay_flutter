@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:namaslay_flutter/widgets/subscription_button.dart';
 
 class SubscriptionDialog extends StatefulWidget {
   @override
@@ -30,24 +31,25 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     print('handling $purchases');
   }
 
-  void _handlePurchase(type) {
-    print(type);
+  void _handlePurchase(purchase) {
+    print('handling $purchase');
   }
 
-  double _getBtnWidth() => (MediaQuery.of(context).size.width) * 0.80;
-  double _getBtnHeight() => (MediaQuery.of(context).size.height) * 0.10;
+  // double _getBtnWidth() => (MediaQuery.of(context).size.width) * 0.80;
+  // double _getBtnHeight() => (MediaQuery.of(context).size.height) * 0.10;
 
   @override
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/images/sub-bg.jpg"),
+                image: AssetImage('assets/images/sub-bg.jpg'),
                 fit: BoxFit.cover)),
         child: Scaffold(
             backgroundColor: Colors.transparent,
             body: Stack(
               children: <Widget>[
+                // gradient overlay
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
@@ -62,50 +64,6 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                     ),
                   ),
                 ),
-                SafeArea(
-                  child: Text('unlock premium today'),
-                ),
-                Center(
-                  child: Wrap(
-                    runSpacing: 20,
-                    children: <Widget>[
-                      SizedBox(
-                        width: _getBtnWidth(),
-                        height: _getBtnHeight(),
-                        child: RaisedButton(
-                            onPressed: () {
-                              _handlePurchase(('monthly'));
-                            },
-                            child: Text('monthly'),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0))),
-                      ),
-                      SizedBox(
-                        width: _getBtnWidth(),
-                        height: _getBtnHeight(),
-                        child: RaisedButton(
-                          onPressed: () {
-                            _handlePurchase(('semi-annual'));
-                          },
-                          child: Text('semi-annual'),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)),
-                        ),
-                      ),
-                      SizedBox(
-                          width: _getBtnWidth(),
-                          height: _getBtnHeight(),
-                          child: RaisedButton(
-                            onPressed: () {
-                              _handlePurchase(('annual'));
-                            },
-                            child: Text('annual'),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30.0)),
-                          )),
-                    ],
-                  ),
-                ),
                 // cancel icon
                 Positioned(
                     left: 0.0,
@@ -117,6 +75,31 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         Navigator.pop(context);
                       },
                     ))),
+                SafeArea(
+                    child: Center(
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(
+                            vertical:
+                                (MediaQuery.of(context).size.height) * 0.10),
+                        child: Text(
+                          'Unlock Premium Today',
+                          style: TextStyle(fontSize: 30.0, color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Wrap(
+                        runSpacing: 20,
+                        children: <Widget>[
+                          SubscriptionButton(_handlePurchase, 'monthly'),
+                          SubscriptionButton(_handlePurchase, 'semi-annual'),
+                          SubscriptionButton(_handlePurchase, 'annual'),
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
               ],
             )));
   }
