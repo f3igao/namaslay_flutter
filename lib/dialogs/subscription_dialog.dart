@@ -35,69 +35,89 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
   }
 
   double _getBtnWidth() => (MediaQuery.of(context).size.width) * 0.80;
-  double _getBtnHeight() => (MediaQuery.of(context).size.height) * 0.11;
+  double _getBtnHeight() => (MediaQuery.of(context).size.height) * 0.10;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Stack(
-      children: <Widget>[
-        SafeArea(
-          child: Text('unlock premium today'),
-        ),
-        Center(
-          child: Wrap(
-            runSpacing: 20,
-            children: <Widget>[
-              SizedBox(
-                width: _getBtnWidth(),
-                height: _getBtnHeight(),
-                child: RaisedButton(
-                    onPressed: () {
-                      _handlePurchase(('monthly'));
-                    },
-                    child: Text('monthly'),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0))),
-              ),
-              SizedBox(
-                width: _getBtnWidth(),
-                height: _getBtnHeight(),
-                child: RaisedButton(
-                  onPressed: () {
-                    _handlePurchase(('semi-annual'));
-                  },
-                  child: Text('semi-annual'),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0)),
+    return Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/sub-bg.jpg"),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Stack(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.transparent,
+                        Colors.white,
+                      ],
+                      stops: [0, 0.80],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      tileMode: TileMode.repeated,
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(
-                  width: _getBtnWidth(),
-                  height: _getBtnHeight(),
-                  child: RaisedButton(
-                    onPressed: () {
-                      _handlePurchase(('annual'));
-                    },
-                    child: Text('annual'),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0)),
-                  )),
-            ],
-          ),
-        ),
-        // cancel icon
-        Positioned(
-            left: 0.0,
-            top: 0.0,
-            child: SafeArea(
-                child: IconButton(
-              icon: Icon(Icons.close, color: Colors.black54),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ))),
-      ],
-    ));
+                SafeArea(
+                  child: Text('unlock premium today'),
+                ),
+                Center(
+                  child: Wrap(
+                    runSpacing: 20,
+                    children: <Widget>[
+                      SizedBox(
+                        width: _getBtnWidth(),
+                        height: _getBtnHeight(),
+                        child: RaisedButton(
+                            onPressed: () {
+                              _handlePurchase(('monthly'));
+                            },
+                            child: Text('monthly'),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0))),
+                      ),
+                      SizedBox(
+                        width: _getBtnWidth(),
+                        height: _getBtnHeight(),
+                        child: RaisedButton(
+                          onPressed: () {
+                            _handlePurchase(('semi-annual'));
+                          },
+                          child: Text('semi-annual'),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)),
+                        ),
+                      ),
+                      SizedBox(
+                          width: _getBtnWidth(),
+                          height: _getBtnHeight(),
+                          child: RaisedButton(
+                            onPressed: () {
+                              _handlePurchase(('annual'));
+                            },
+                            child: Text('annual'),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30.0)),
+                          )),
+                    ],
+                  ),
+                ),
+                // cancel icon
+                Positioned(
+                    left: 0.0,
+                    top: 0.0,
+                    child: SafeArea(
+                        child: IconButton(
+                      icon: Icon(Icons.close, color: Colors.black54),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ))),
+              ],
+            )));
   }
 }
