@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:namaslay_flutter/widgets/subscription_button.dart';
 
+final String testID = 'gems_test';
+
 class SubscriptionDialog extends StatefulWidget {
   @override
   SubscriptionDialogState createState() => SubscriptionDialogState();
@@ -11,12 +13,32 @@ class SubscriptionDialog extends StatefulWidget {
 class SubscriptionDialogState extends State<SubscriptionDialog> {
   StreamSubscription<List<PurchaseDetails>> _subscription;
 
+  /// Is the API available on the device
+  bool available = true;
+
+  /// The In App Purchase plugin
+  InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
+
+  /// Products for sale
+  List<ProductDetails> _products = [];
+
+  /// Past purchases
+  List<PurchaseDetails> _purchases = [];
+
+  /// Updates to purchases
+  // StreamSubscription _subscription;
+
+  /// Consumable credits the user can buy
+  int credits = 0;
+
   @override
   void initState() {
+    // _initialize();
     final Stream purchaseUpdates =
         InAppPurchaseConnection.instance.purchaseUpdatedStream;
     _subscription = purchaseUpdates.listen((purchases) {
-      _handlePurchaseUpdates(purchases);
+      print('test');
+      // _handlePurchaseUpdates(purchases);
     });
     super.initState();
   }
@@ -27,8 +49,32 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     super.dispose();
   }
 
-  void _handlePurchaseUpdates(purchases) {
-    print('handling $purchases');
+  /// Initialize data
+  void _initialize() async {
+    // Check availability of In App Purchases
+    bool _available = await _iap.isAvailable();
+    print(_available);
+    print(_iap);
+    await _getProducts();
+
+    if (available) {
+      await _getProducts();
+      // await _getPastPurchases();
+
+      // Verify and deliver a purchase with your own business logic
+      // _verifyPurchase();
+    }
+  }
+
+  /// Get all products available for sale
+  Future<void> _getProducts() async {
+    print('hit get products');
+    Set<String> ids = Set.from([testID, 'test_a']);
+    ProductDetailsResponse response = await _iap.queryProductDetails(ids);
+    print(response.productDetails);
+    setState(() {
+      _products = response.productDetails;
+    });
   }
 
   void _handlePurchase(purchase) {

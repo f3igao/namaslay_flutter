@@ -12,6 +12,7 @@ class AppHome extends StatefulWidget {
 }
 
 class _AppHomeState extends State<AppHome> {
+  bool isPremium = false;
   int _selectedIndex = 0;
   static List<Widget> _tabOptions = <Widget>[
     HomePage(),
