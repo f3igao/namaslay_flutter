@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class SubscriptionButton extends StatelessWidget {
   final Function handlePurchase;
-  final String purchase;
+  final String productTitle;
+  final String productId;
 
-  SubscriptionButton(this.handlePurchase, this.purchase);
+  SubscriptionButton(this.handlePurchase, this.productTitle, this.productId);
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +14,9 @@ class SubscriptionButton extends StatelessWidget {
       height: (MediaQuery.of(context).size.height) * 0.10,
       child: RaisedButton(
           onPressed: () {
-            handlePurchase((purchase));
+            handlePurchase((productId));
           },
-          child: Text(purchase),
+          child: Text(productTitle),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0))),
     );

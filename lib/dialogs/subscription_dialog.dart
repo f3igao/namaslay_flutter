@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:namaslay_flutter/widgets/subscription_button.dart';
 
-final String testID = 'gems_test';
+final String monthlySubId = 'pwxvte76v7';
+final String semiAnnualSubId = 'pcon2ant3i';
+final String annualSubId = 'fctsnbiy2b';
 
 class SubscriptionDialog extends StatefulWidget {
   @override
@@ -33,13 +35,13 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
 
   @override
   void initState() {
-    // _initialize();
-    final Stream purchaseUpdates =
-        InAppPurchaseConnection.instance.purchaseUpdatedStream;
-    _subscription = purchaseUpdates.listen((purchases) {
-      print('test');
-      // _handlePurchaseUpdates(purchases);
-    });
+    _initialize();
+    // final Stream purchaseUpdates =
+    //     InAppPurchaseConnection.instance.purchaseUpdatedStream;
+    // _subscription = purchaseUpdates.listen((purchases) {
+    //   print('test');
+    //   // _handlePurchaseUpdates(purchases);
+    // });
     super.initState();
   }
 
@@ -49,36 +51,56 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     super.dispose();
   }
 
-  /// Initialize data
+  // Initialize data
   void _initialize() async {
-    // Check availability of In App Purchases
+    // Check store / iap availability
     bool _available = await _iap.isAvailable();
-    print(_available);
-    print(_iap);
-    await _getProducts();
-
-    if (available) {
+    if (_available) {
       await _getProducts();
       // await _getPastPurchases();
-
       // Verify and deliver a purchase with your own business logic
       // _verifyPurchase();
+    } else {
+      print('store is not available');
     }
+
+    // Listen to new purchases
+    _subscription = _iap.purchaseUpdatedStream.listen((data) => setState(() {
+          print('NEW PURCHASE');
+          _purchases.addAll(data);
+          // _verifyPurchase();
+        }));
   }
 
-  /// Get all products available for sale
+  // Get all products available for sale
   Future<void> _getProducts() async {
-    print('hit get products');
-    Set<String> ids = Set.from([testID, 'test_a']);
+    Set<String> ids = Set.from([monthlySubId, semiAnnualSubId, annualSubId]);
     ProductDetailsResponse response = await _iap.queryProductDetails(ids);
-    print(response.productDetails);
     setState(() {
       _products = response.productDetails;
     });
   }
 
-  void _handlePurchase(purchase) {
-    print('handling $purchase');
+  /// Purchase a product
+  // void _buyProduct(ProductDetails prod) {
+  //   print(prod);
+  //   final PurchaseParam purchaseParam = PurchaseParam(productDetails: prod);
+  //   // print(_products);
+  //   // print(_products[0]);
+  //   // _iap.buyNonConsumable(purchaseParam: purchaseParam);
+  //   _iap.buyConsumable(purchaseParam: purchaseParam, autoConsume: false);
+  // }
+
+  void _handlePurchase(String productId) {
+    ProductDetails targetProduct =
+        _products.singleWhere((p) => p.id == productId);
+    final PurchaseParam purchaseParam =
+        PurchaseParam(productDetails: targetProduct);
+
+    print('hit');
+
+    _iap.buyNonConsumable(purchaseParam: purchaseParam);
+    // _iap.buyConsumable(purchaseParam: purchaseParam, autoConsume: false);
   }
 
   @override
@@ -135,9 +157,12 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                       Wrap(
                         runSpacing: 20,
                         children: <Widget>[
-                          SubscriptionButton(_handlePurchase, 'monthly'),
-                          SubscriptionButton(_handlePurchase, 'semi-annual'),
-                          SubscriptionButton(_handlePurchase, 'annual'),
+                          SubscriptionButton(
+                              _handlePurchase, 'monthly', monthlySubId),
+                          SubscriptionButton(
+                              _handlePurchase, 'semi-annual', semiAnnualSubId),
+                          SubscriptionButton(
+                              _handlePurchase, 'annual', annualSubId),
                         ],
                       ),
                     ],
