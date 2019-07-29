@@ -37,41 +37,43 @@ class PosePage extends StatelessWidget {
                       child: Hero(
                         tag: "$pose['id']",
                         child: SizedBox(
-                          height: (MediaQuery.of(context).size.height) * 0.50,
+                            child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
                           child: CachedImage(
                               url: pose['imageUrl'], showLoader: true),
-                        ),
+                        )),
                       ),
                       margin: EdgeInsets.only(bottom: 50.0),
+                      padding: EdgeInsets.all(15.0),
                     ),
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
-                      child: Text('Benefit'.toUpperCase(),
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.purple)),
-                    ),
-                    Container(
-                      margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
-                      child: Text(mockBenefit,
-                          style:
-                              TextStyle(fontSize: 16.0, color: Colors.black87)),
-                    ),
-                    Container(
-                        margin: EdgeInsets.symmetric(
-                            horizontal: 16.0, vertical: 4.0),
-                        child: Text('Instructions'.toUpperCase(),
-                            style: TextStyle(
-                                fontSize: 14.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.purple))),
-                    Container(
-                        margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
-                        child: Text(mockInstructions,
-                            style: TextStyle(
-                                fontSize: 16.0, color: Colors.black87))),
+                    // Container(
+                    //   margin:
+                    //       EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+                    //   child: Text('Benefit'.toUpperCase(),
+                    //       style: TextStyle(
+                    //           fontSize: 14.0,
+                    //           fontWeight: FontWeight.bold,
+                    //           color: Colors.purple)),
+                    // ),
+                    // Container(
+                    //   margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
+                    //   child: Text(mockBenefit,
+                    //       style:
+                    //           TextStyle(fontSize: 16.0, color: Colors.black87)),
+                    // ),
+                    // Container(
+                    //     margin: EdgeInsets.symmetric(
+                    //         horizontal: 16.0, vertical: 4.0),
+                    //     child: Text('Instructions'.toUpperCase(),
+                    //         style: TextStyle(
+                    //             fontSize: 14.0,
+                    //             fontWeight: FontWeight.bold,
+                    //             color: Colors.purple))),
+                    // Container(
+                    //     margin: EdgeInsets.fromLTRB(16.0, 4.0, 16.0, 20.0),
+                    //     child: Text(mockInstructions,
+                    //         style: TextStyle(
+                    //             fontSize: 16.0, color: Colors.black87))),
                   ],
                 )),
               ],

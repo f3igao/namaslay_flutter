@@ -49,6 +49,7 @@ Widget posesCollection(BuildContext context, Filter filter) {
                 child: Stack(children: <Widget>[
                   Container(
                       child: ClipRRect(
+
                           borderRadius: BorderRadius.circular(8.0),
                           child: Hero(
                             tag: "$pose['id']",
