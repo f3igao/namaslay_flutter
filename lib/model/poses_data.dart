@@ -14,8 +14,8 @@ List<Filter> poseFilters = [
 
 Future fetchPosesData() async {
   var getPoses = Firestore.instance.collection('poses').getDocuments();
-  await getPoses.then((paylod) {
-    paylod.documents.forEach((pose) {
+  await getPoses.then((payload) {
+    payload.documents.forEach((pose) {
       poses.add(pose.data);
       if (pose.data['tags'].length > 0) {
         pose.data['tags'].forEach((tag) {

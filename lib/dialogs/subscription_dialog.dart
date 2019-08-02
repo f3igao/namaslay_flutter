@@ -7,6 +7,13 @@ final String monthlySubId = 'pwxvte76v7';
 final String semiAnnualSubId = 'pcon2ant3i';
 final String annualSubId = 'fctsnbiy2b';
 
+final String subTitle = 'Unlock Premium Today';
+final String subText =
+    'Get access to a growing catalog of posture guides, dynamic flows, and new workouts added every week. Curated and presented by experts.';
+final String subTrial = 'Try one week for free';
+final String subDisclaimer =
+    'After the free trial, each Namaslay Premium subscription tier has a cost as per above. The subscription renews automatically unless turned off in Account Settings at least 24 hours before the current period ends. Any unused portion of a free trial is forfeited after purchase. By continuing, you agree to our Terms of Service and Privacy Policy.';
+
 class SubscriptionDialog extends StatefulWidget {
   @override
   SubscriptionDialogState createState() => SubscriptionDialogState();
@@ -119,10 +126,10 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.transparent,
+                        Colors.white30,
                         Colors.white,
                       ],
-                      stops: [0, 0.80],
+                      stops: [0, 0.75],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       tileMode: TileMode.repeated,
@@ -135,27 +142,53 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                     top: 0.0,
                     child: SafeArea(
                         child: IconButton(
-                      icon: Icon(Icons.close, color: Colors.black54),
+                      icon: Icon(Icons.close, color: Colors.black87),
                       onPressed: () {
                         Navigator.pop(context);
                       },
                     ))),
                 SafeArea(
-                    child: Center(
+                  minimum: EdgeInsets.all(20.0),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
+                      Container(
+                        // margin: EdgeInsets.symmetric(
+                        //     vertical:
+                        //         (MediaQuery.of(context).size.height) * 0.10),
+                        child: Text(
+                          subTitle,
+                          style: TextStyle(
+                              fontSize: 24.0,
+                              color: Colors.black87,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                       Container(
                         margin: EdgeInsets.symmetric(
                             vertical:
-                                (MediaQuery.of(context).size.height) * 0.10),
+                                (MediaQuery.of(context).size.height) * 0.02),
                         child: Text(
-                          'Unlock Premium Today',
-                          style: TextStyle(fontSize: 30.0, color: Colors.white),
-                          textAlign: TextAlign.center,
+                          subText,
+                          style:
+                              TextStyle(fontSize: 12.0, color: Colors.black87),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            bottom:
+                                (MediaQuery.of(context).size.height) * 0.01),
+                        child: Text(
+                          subTrial,
+                          style: TextStyle(
+                              fontSize: 12.0,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Wrap(
-                        runSpacing: 20,
+                        runSpacing: 10,
+                        alignment: WrapAlignment.center,
                         children: <Widget>[
                           SubscriptionButton(
                               _handlePurchase, 'monthly', monthlySubId),
@@ -165,9 +198,19 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                               _handlePurchase, 'annual', annualSubId),
                         ],
                       ),
+                      Container(
+                        margin: EdgeInsets.only(
+                            top: (MediaQuery.of(context).size.height) * 0.03),
+                        child: Text(
+                          subDisclaimer,
+                          style:
+                              TextStyle(fontSize: 10.0, color: Colors.black54),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ],
                   ),
-                )),
+                ),
               ],
             )));
   }

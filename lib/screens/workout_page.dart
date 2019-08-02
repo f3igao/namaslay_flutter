@@ -38,7 +38,8 @@ class _WorkoutPageState extends State<WorkoutPage> {
 
   void _getWorkoutPoses(sequence) {
     sequence.forEach((poseId) {
-      workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId));
+      workoutPoses.add(poses.firstWhere((pose) => pose['id'] == poseId,
+          orElse: () => print('Error, pose not found.')));
     });
   }
 
