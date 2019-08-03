@@ -10,6 +10,8 @@ Future main() async {
   fetchWorkoutsData();
   runApp(MaterialApp(
     title: 'Namaslay',
+    // debugShowMaterialGrid: true,
+    // showSemanticsDebugger: true,
     debugShowCheckedModeBanner: false,
     home: SplashScreen(),
     routes: <String, WidgetBuilder>{

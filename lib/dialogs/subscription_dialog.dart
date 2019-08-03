@@ -148,26 +148,28 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                       },
                     ))),
                 SafeArea(
-                  minimum: EdgeInsets.all(20.0),
+                  minimum: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Container(
-                        // margin: EdgeInsets.symmetric(
-                        //     vertical:
-                        //         (MediaQuery.of(context).size.height) * 0.10),
+                        width: MediaQuery.of(context).size.width,
+                        margin: EdgeInsets.only(
+                            bottom:
+                                (MediaQuery.of(context).size.height) * 0.01),
                         child: Text(
                           subTitle,
+                          textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontSize: 24.0,
+                              fontSize: 26.0,
                               color: Colors.black87,
                               fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(
-                            vertical:
-                                (MediaQuery.of(context).size.height) * 0.02),
+                        margin: EdgeInsets.only(
+                            bottom:
+                                (MediaQuery.of(context).size.height) * 0.03),
                         child: Text(
                           subText,
                           style:
@@ -177,7 +179,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                       Container(
                         margin: EdgeInsets.only(
                             bottom:
-                                (MediaQuery.of(context).size.height) * 0.01),
+                                (MediaQuery.of(context).size.height) * 0.02),
                         child: Text(
                           subTrial,
                           style: TextStyle(
