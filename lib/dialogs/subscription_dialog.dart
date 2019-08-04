@@ -187,7 +187,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         ),
                       ),
                       Wrap(
-                        runSpacing: 10,
+                        runSpacing: 15,
                         alignment: WrapAlignment.center,
                         children: <Widget>[
                           SubscriptionButton(
