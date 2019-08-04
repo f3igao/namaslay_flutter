@@ -4,15 +4,14 @@ import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:namaslay_flutter/widgets/subscription_button.dart';
 
 final String monthlySubId = 'pwxvte76v7';
-final String semiAnnualSubId = 'pcon2ant3i';
 final String annualSubId = 'fctsnbiy2b';
 
 final String subTitle = 'Unlock Premium Today';
 final String subText =
-    'Get access to a growing catalog of posture guides, dynamic flows, and new workouts added every week. Curated and presented by experts.';
+    'Get access to a growing catalog of guided workouts and posture breakdowns, added every week. Curated and presented by experts.';
 final String subTrial = 'Try one week for free';
 final String subDisclaimer =
-    'After the free trial, each Namaslay Premium subscription tier has a cost as per above. The subscription renews automatically unless turned off in Account Settings at least 24 hours before the current period ends. Any unused portion of a free trial is forfeited after purchase. By continuing, you agree to our Terms of Service and Privacy Policy.';
+    'After the free trial, each Namaslay Premium subscription tier has a cost as per above. Subscription automatically renews unless turned off in iTunes Settings at least 24 hours before current period ends. Any unused portion of a free trial is forfeited after purchase. By continuing, you agree to our Terms and Privacy Policy.';
 
 class SubscriptionDialog extends StatefulWidget {
   @override
@@ -81,7 +80,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
 
   // Get all products available for sale
   Future<void> _getProducts() async {
-    Set<String> ids = Set.from([monthlySubId, semiAnnualSubId, annualSubId]);
+    Set<String> ids = Set.from([monthlySubId, annualSubId]);
     ProductDetailsResponse response = await _iap.queryProductDetails(ids);
     setState(() {
       _products = response.productDetails;
@@ -159,9 +158,8 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                                 (MediaQuery.of(context).size.height) * 0.01),
                         child: Text(
                           subTitle,
-                          textAlign: TextAlign.left,
                           style: TextStyle(
-                              fontSize: 26.0,
+                              fontSize: 28.0,
                               color: Colors.black87,
                               fontWeight: FontWeight.bold),
                         ),
@@ -173,7 +171,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         child: Text(
                           subText,
                           style:
-                              TextStyle(fontSize: 12.0, color: Colors.black87),
+                              TextStyle(fontSize: 14.0, color: Colors.black87),
                         ),
                       ),
                       Container(
@@ -194,8 +192,6 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         children: <Widget>[
                           SubscriptionButton(
                               _handlePurchase, 'monthly', monthlySubId),
-                          SubscriptionButton(
-                              _handlePurchase, 'semi-annual', semiAnnualSubId),
                           SubscriptionButton(
                               _handlePurchase, 'annual', annualSubId),
                         ],
