@@ -19,10 +19,8 @@ class SubscriptionDialog extends StatefulWidget {
 }
 
 class SubscriptionDialogState extends State<SubscriptionDialog> {
+  /// Updates to purchases
   StreamSubscription<List<PurchaseDetails>> _subscription;
-
-  /// Is the API available on the device
-  bool available = true;
 
   /// The In App Purchase plugin
   InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
@@ -33,21 +31,16 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
   /// Past purchases
   List<PurchaseDetails> _purchases = [];
 
-  /// Updates to purchases
-  // StreamSubscription _subscription;
-
-  /// Consumable credits the user can buy
-  int credits = 0;
-
   @override
   void initState() {
     _initialize();
-    // final Stream purchaseUpdates =
-    //     InAppPurchaseConnection.instance.purchaseUpdatedStream;
-    // _subscription = purchaseUpdates.listen((purchases) {
-    //   print('test');
-    //   // _handlePurchaseUpdates(purchases);
-    // });
+    final Stream purchaseUpdates =
+        InAppPurchaseConnection.instance.purchaseUpdatedStream;
+    _subscription = purchaseUpdates.listen((purchases) {
+      print('handle purchase updates');
+      print(purchases);
+      // _handlePurchaseUpdates(purchases);
+    });
     super.initState();
   }
 
@@ -59,7 +52,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
 
   // Initialize data
   void _initialize() async {
-    // Check store / iap availability
+    // Connect to storefront
     bool _available = await _iap.isAvailable();
     if (_available) {
       await _getProducts();
@@ -67,7 +60,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
       // Verify and deliver a purchase with your own business logic
       // _verifyPurchase();
     } else {
-      print('store is not available');
+      print('Store is not available.');
     }
 
     // Listen to new purchases
@@ -80,22 +73,18 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
 
   // Get all products available for sale
   Future<void> _getProducts() async {
-    Set<String> ids = Set.from([monthlySubId, annualSubId]);
-    ProductDetailsResponse response = await _iap.queryProductDetails(ids);
-    setState(() {
-      _products = response.productDetails;
-    });
+    Set<String> _ids = Set.from([monthlySubId, annualSubId]);
+    ProductDetailsResponse response = await _iap.queryProductDetails(_ids);
+    if (response.notFoundIDs.isNotEmpty) {
+      print('Cannot find product details.');
+    } else {
+      setState(() {
+        _products = response.productDetails;
+      });
+    }
   }
 
   /// Purchase a product
-  // void _buyProduct(ProductDetails prod) {
-  //   print(prod);
-  //   final PurchaseParam purchaseParam = PurchaseParam(productDetails: prod);
-  //   // print(_products);
-  //   // print(_products[0]);
-  //   // _iap.buyNonConsumable(purchaseParam: purchaseParam);
-  //   _iap.buyConsumable(purchaseParam: purchaseParam, autoConsume: false);
-  // }
 
   void _handlePurchase(String productId) {
     ProductDetails targetProduct =
@@ -103,10 +92,8 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     final PurchaseParam purchaseParam =
         PurchaseParam(productDetails: targetProduct);
 
-    print('hit');
-
     _iap.buyNonConsumable(purchaseParam: purchaseParam);
-    // _iap.buyConsumable(purchaseParam: purchaseParam, autoConsume: false);
+    // _iap.buyConsumable(purchaseParam: purchaseParam);
   }
 
   @override
@@ -147,7 +134,8 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                       },
                     ))),
                 SafeArea(
-                  minimum: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  minimum:
+                      EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
@@ -171,7 +159,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         child: Text(
                           subText,
                           style:
-                              TextStyle(fontSize: 14.0, color: Colors.black87),
+                              TextStyle(fontSize: 16.0, color: Colors.black87),
                         ),
                       ),
                       Container(
@@ -181,7 +169,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         child: Text(
                           subTrial,
                           style: TextStyle(
-                              fontSize: 12.0,
+                              fontSize: 14.0,
                               color: Colors.black54,
                               fontWeight: FontWeight.bold),
                         ),
@@ -190,10 +178,8 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         runSpacing: 15,
                         alignment: WrapAlignment.center,
                         children: <Widget>[
-                          SubscriptionButton(
-                              _handlePurchase, 'monthly', monthlySubId),
-                          SubscriptionButton(
-                              _handlePurchase, 'annual', annualSubId),
+                          SubscriptionButton(_handlePurchase, monthlySubId),
+                          SubscriptionButton(_handlePurchase, annualSubId),
                         ],
                       ),
                       Container(
