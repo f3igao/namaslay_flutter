@@ -11,7 +11,7 @@ class SubscriptionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: (MediaQuery.of(context).size.width) * 0.85,
-        height: (MediaQuery.of(context).size.height) * 0.12,
+        height: (MediaQuery.of(context).size.height) * 0.11,
         child: _getBtn(handlePurchase, productId));
   }
 }
@@ -35,9 +35,7 @@ _getBtn(handlePurchase, productId) {
             text: isAnnual ? priceAnnual : priceMonthly,
             style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
         TextSpan(text: isAnnual ? ' / YEAR' : ' / MONTH'),
-        TextSpan(
-            text: isAnnual ? ' (save 25%)' : '',
-            style: TextStyle(fontSize: 10.0, fontWeight: FontWeight.bold)),
+        TextSpan(text: isAnnual ? ' (save 25%)' : ''),
       ])),
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50.0),

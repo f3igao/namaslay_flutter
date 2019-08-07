@@ -8,7 +8,7 @@ final String annualSubId = 'fctsnbiy2b';
 
 final String subTitle = 'Unlock Premium Today';
 final String subText =
-    'Get access to a growing catalog of guided workouts and posture breakdowns, added every week. Curated and presented by experts.';
+    'Get access to a growing catalog of guided workouts and posture breakdowns, added every week and curated by experts.';
 final String subTrial = 'Try one week for free';
 final String subDisclaimer =
     'After the free trial, each Namaslay Premium subscription tier has a cost as per above. Subscription automatically renews unless turned off in iTunes Settings at least 24 hours before current period ends. Any unused portion of a free trial is forfeited after purchase. By continuing, you agree to our Terms and Privacy Policy.';
@@ -34,13 +34,15 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
   @override
   void initState() {
     _initialize();
-    final Stream purchaseUpdates =
-        InAppPurchaseConnection.instance.purchaseUpdatedStream;
-    _subscription = purchaseUpdates.listen((purchases) {
-      print('handle purchase updates');
-      print(purchases);
-      // _handlePurchaseUpdates(purchases);
-    });
+    // final Stream purchaseUpdates =
+    //     InAppPurchaseConnection.instance.purchaseUpdatedStream;
+    // _subscription = purchaseUpdates.listen((purchases) {
+    //   print('handle purchase updates');
+    //   print(purchases);
+    //   // _handlePurchaseUpdates(purchases);
+    // }
+
+    // );
     super.initState();
   }
 
@@ -93,7 +95,6 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
         PurchaseParam(productDetails: targetProduct);
 
     _iap.buyNonConsumable(purchaseParam: purchaseParam);
-    // _iap.buyConsumable(purchaseParam: purchaseParam);
   }
 
   @override
