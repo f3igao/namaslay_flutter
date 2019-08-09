@@ -1,10 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:namaslay_flutter/util/subscription_helpers.dart';
 import 'package:namaslay_flutter/widgets/subscription_button.dart';
-
-final String monthlySubId = 'pwxvte76v7';
-final String annualSubId = 'fctsnbiy2b';
 
 final String subTitle = 'Unlock Premium Today';
 final String subText =
@@ -44,7 +42,6 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     super.dispose();
   }
 
-  // Initialize data
   void _initialize() async {
     // Connect to storefront
     bool _available = await _iap.isAvailable();

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/dialogs/subscription_dialog.dart';
+import 'package:namaslay_flutter/util/subscription_helpers.dart';
 
 class SubscriptionButton extends StatelessWidget {
   final Function handlePurchase;

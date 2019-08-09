@@ -19,23 +19,3 @@ Future main() async {
     },
   ));
 }
-
-// class Namaslay extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     fetchPosesData();
-//     fetchWorkoutsData();
-
-//     return MaterialApp(
-//       // debugShowMaterialGrid: true,
-//       // showSemanticsDebugger: true,
-//       debugShowCheckedModeBanner: false,
-//       title: 'Namaslay',
-//       // home: SplashScreen(),
-//       home: AppHome(),
-//       routes: <String, WidgetBuilder>{
-//         HOME_SCREEN: (BuildContext context) => AppHome(),
-//       }
-//     );
-//   }
-// }

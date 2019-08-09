@@ -5,6 +5,8 @@ import 'package:namaslay_flutter/util/workout_helpers.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
 import 'package:namaslay_flutter/widgets/premium_lock.dart';
 
+import '../app.dart';
+
 Widget workoutCard(BuildContext context, Map workout) {
   Map<String, dynamic> workoutData = workout;
 
@@ -16,7 +18,7 @@ Widget workoutCard(BuildContext context, Map workout) {
 
   return InkWell(
       onTap: () {
-        workoutData['isPremium']
+        (workoutData['isPremium'] && !isPremium)
             ? _openSubscriptionDialog()
             : Navigator.push(
                 context,
@@ -52,7 +54,7 @@ Widget workoutCard(BuildContext context, Map workout) {
               Positioned(
                   right: 10.0,
                   top: 10.0,
-                  child: workoutData['isPremium']
+                  child: (workoutData['isPremium'] && !isPremium)
                       ? PremiumLock(20.0, 8.0)
                       : Container())
             ],
