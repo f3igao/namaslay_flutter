@@ -5,9 +5,8 @@ import 'package:namaslay_flutter/screens/home_page.dart';
 import 'package:namaslay_flutter/screens/poses_page.dart';
 import 'package:namaslay_flutter/screens/profile_page.dart';
 import 'package:namaslay_flutter/screens/workouts_page.dart';
+import 'package:namaslay_flutter/util/subscription_helpers.dart';
 
-final String monthlySubId = 'pwxvte76v7';
-final String annualSubId = 'fctsnbiy2b';
 bool isPremium = false;
 
 class AppHome extends StatefulWidget {
