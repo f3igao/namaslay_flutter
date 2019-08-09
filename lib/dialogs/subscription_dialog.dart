@@ -19,30 +19,22 @@ class SubscriptionDialog extends StatefulWidget {
 }
 
 class SubscriptionDialogState extends State<SubscriptionDialog> {
-  /// Updates to purchases
+  // Updates to purchases
   StreamSubscription<List<PurchaseDetails>> _subscription;
 
-  /// The In App Purchase plugin
+  // The In App Purchase plugin
   InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
 
-  /// Products for sale
+  // Products for sale
   List<ProductDetails> _products = [];
 
-  /// Past purchases
+  // Past purchases
   List<PurchaseDetails> _purchases = [];
+  // _hasPurchased(monthlySubId) == null;
 
   @override
   void initState() {
     _initialize();
-    // final Stream purchaseUpdates =
-    //     InAppPurchaseConnection.instance.purchaseUpdatedStream;
-    // _subscription = purchaseUpdates.listen((purchases) {
-    //   print('handle purchase updates');
-    //   print(purchases);
-    //   // _handlePurchaseUpdates(purchases);
-    // }
-
-    // );
     super.initState();
   }
 
@@ -58,7 +50,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     bool _available = await _iap.isAvailable();
     if (_available) {
       await _getProducts();
-      // await _getPastPurchases();
+      await _getPastPurchases();
       // Verify and deliver a purchase with your own business logic
       // _verifyPurchase();
     } else {
@@ -67,7 +59,6 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
 
     // Listen to new purchases
     _subscription = _iap.purchaseUpdatedStream.listen((data) => setState(() {
-          print('NEW PURCHASE');
           _purchases.addAll(data);
           // _verifyPurchase();
         }));
@@ -86,8 +77,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
     }
   }
 
-  /// Purchase a product
-
+  // Purchase a product
   void _handlePurchase(String productId) {
     ProductDetails targetProduct =
         _products.singleWhere((p) => p.id == productId);
@@ -95,6 +85,20 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
         PurchaseParam(productDetails: targetProduct);
 
     _iap.buyNonConsumable(purchaseParam: purchaseParam);
+  }
+
+  // Gets past purchases
+  Future<void> _getPastPurchases() async {
+    QueryPurchaseDetailsResponse response = await _iap.queryPastPurchases();
+    setState(() {
+      _purchases = response.pastPurchases;
+    });
+  }
+
+  // Returns purchase of specific product ID
+  PurchaseDetails _hasPurchased(String productID) {
+    return _purchases.firstWhere((purchase) => purchase.productID == productID,
+        orElse: () => null);
   }
 
   @override
