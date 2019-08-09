@@ -27,23 +27,25 @@ class _PosesListState extends State<PosesList> {
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
           Map<dynamic, dynamic> pose = _getPose(index);
-          return Container(
-            child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PosePage(pose: pose)));
-                },
-                child: Text(pose['name'],
-                    style: TextStyle(
-                      fontSize: 16,
-                    ))),
-            decoration: BoxDecoration(
-              color: Colors.black12,
-              border: Border.all(width: 1.0, color: Colors.white),
-            ),
-          );
+          return pose != null
+              ? Container(
+                  child: FlatButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PosePage(pose: pose)));
+                      },
+                      child: Text(pose['name'],
+                          style: TextStyle(
+                            fontSize: 16,
+                          ))),
+                  decoration: BoxDecoration(
+                    color: Colors.black12,
+                    border: Border.all(width: 1.0, color: Colors.white),
+                  ),
+                )
+              : Container();
         },
         childCount: widget.sequence.length,
       ),
