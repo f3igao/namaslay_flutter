@@ -93,10 +93,10 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
   }
 
   // Returns purchase of specific product ID
-  PurchaseDetails _hasPurchased(String productID) {
-    return _purchases.firstWhere((purchase) => purchase.productID == productID,
-        orElse: () => null);
-  }
+  // PurchaseDetails _hasPurchased(String productID) {
+  //   return _purchases.firstWhere((purchase) => purchase.productID == productID,
+  //       orElse: () => null);
+  // }
 
   @override
   Widget build(BuildContext context) {
