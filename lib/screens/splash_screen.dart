@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
+
+import 'package:namaslay_flutter/util/globals.dart' as globals;
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -8,7 +11,10 @@ class SplashScreen extends StatefulWidget {
 }
 
 class SplashScreenState extends State<SplashScreen> {
-  Future startTime() async {
+  InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
+  List<PurchaseDetails> _purchases = [];
+
+  Future _startTime() async {
     return Timer(Duration(seconds: 2), () {
       Navigator.of(context).pushReplacementNamed('/home');
     });
@@ -17,7 +23,28 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    startTime();
+    _initialize();
+    _startTime();
+  }
+
+  void _initialize() async {
+    bool _available = await _iap.isAvailable();
+    if (_available) {
+      await _getPastPurchases();
+    }
+  }
+
+  Future<void> _getPastPurchases() async {
+    QueryPurchaseDetailsResponse response = await _iap.queryPastPurchases();
+    setState(() {
+      _purchases = response.pastPurchases;
+      globals.isPremium = _hasPurchased(globals.monthlySubId) != null;
+    });
+  }
+
+  PurchaseDetails _hasPurchased(String productID) {
+    return _purchases.firstWhere((purchase) => purchase.productID == productID,
+        orElse: () => null);
   }
 
   @override

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/util/subscription_helpers.dart';
+import 'package:namaslay_flutter/util/globals.dart' as globals;
 
 class SubscriptionButton extends StatelessWidget {
   final Function handlePurchase;
@@ -17,7 +17,7 @@ class SubscriptionButton extends StatelessWidget {
 }
 
 _getBtn(handlePurchase, productId) {
-  final bool isAnnual = productId == annualSubId;
+  final bool isAnnual = productId == globals.annualSubId;
   final Color bgColor = isAnnual ? Colors.purple : Colors.white;
   final Color textColor = isAnnual ? Colors.white : Colors.purple;
   final String priceAnnual = '\$95.99';

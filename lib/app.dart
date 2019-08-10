@@ -1,13 +1,8 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:in_app_purchase/in_app_purchase.dart';
 import 'package:namaslay_flutter/screens/home_page.dart';
 import 'package:namaslay_flutter/screens/poses_page.dart';
 import 'package:namaslay_flutter/screens/profile_page.dart';
 import 'package:namaslay_flutter/screens/workouts_page.dart';
-import 'package:namaslay_flutter/util/subscription_helpers.dart';
-
-bool isPremium = false;
 
 class AppHome extends StatefulWidget {
   AppHome({Key key}) : super(key: key);
@@ -31,38 +26,14 @@ class _AppHomeState extends State<AppHome> {
     });
   }
 
-  InAppPurchaseConnection _iap = InAppPurchaseConnection.instance;
-  List<PurchaseDetails> _purchases = [];
-
   @override
   void initState() {
-    _initialize();
+    // _initialize();
     super.initState();
-  }
-
-  void _initialize() async {
-    bool _available = await _iap.isAvailable();
-    if (_available) {
-      await _getPastPurchases();
-    }
-  }
-
-  Future<void> _getPastPurchases() async {
-    QueryPurchaseDetailsResponse response = await _iap.queryPastPurchases();
-    setState(() {
-      _purchases = response.pastPurchases;
-    });
-  }
-
-  PurchaseDetails _hasPurchased(String productID) {
-    return _purchases.firstWhere((purchase) => purchase.productID == productID,
-        orElse: () => null);
   }
 
   @override
   Widget build(BuildContext context) {
-    isPremium = _hasPurchased(monthlySubId) != null;
-
     return Scaffold(
       body: Center(
         child: _tabOptions.elementAt(_selectedIndex),

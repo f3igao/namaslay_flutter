@@ -5,8 +5,7 @@ import 'package:namaslay_flutter/screens/workout_page.dart';
 import 'package:namaslay_flutter/util/workout_helpers.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
 import 'package:namaslay_flutter/widgets/premium_lock.dart';
-
-import '../app.dart';
+import 'package:namaslay_flutter/util/globals.dart' as globals;
 
 List<String> homepageSections = [
   'featured workouts',
@@ -106,7 +105,7 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
     children: <Widget>[
       InkWell(
           onTap: () {
-            (workout['isPremium'] && !isPremium)
+            (workout['isPremium'] && !globals.isPremium)
                 ? _openSubscriptionDialog()
                 : Navigator.push(
                     context,
@@ -136,7 +135,7 @@ Widget _buildWorkoutTile(BuildContext context, Map<dynamic, dynamic> workout) {
               Positioned(
                   right: 15.0,
                   top: 15.0,
-                  child: (workout['isPremium'] && !isPremium)
+                  child: (workout['isPremium'] && !globals.isPremium)
                       ? PremiumLock(18.0, 5.0)
                       : Container())
             ],

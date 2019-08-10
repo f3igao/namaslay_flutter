@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:namaslay_flutter/util/subscription_helpers.dart';
 import 'package:namaslay_flutter/widgets/subscription_button.dart';
+import 'package:namaslay_flutter/util/globals.dart' as globals;
 
 final String subTitle = 'Unlock Premium Today';
 final String subText =
@@ -63,7 +63,7 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
 
   // Get all products available for sale
   Future<void> _getProducts() async {
-    Set<String> _ids = Set.from([monthlySubId, annualSubId]);
+    Set<String> _ids = Set.from([globals.monthlySubId, globals.annualSubId]);
     ProductDetailsResponse response = await _iap.queryProductDetails(_ids);
     if (response.notFoundIDs.isNotEmpty) {
       print('Cannot find product details.');
@@ -180,8 +180,8 @@ class SubscriptionDialogState extends State<SubscriptionDialog> {
                         runSpacing: 15,
                         alignment: WrapAlignment.center,
                         children: <Widget>[
-                          SubscriptionButton(_handlePurchase, monthlySubId),
-                          SubscriptionButton(_handlePurchase, annualSubId),
+                          SubscriptionButton(_handlePurchase, globals.monthlySubId),
+                          SubscriptionButton(_handlePurchase, globals.annualSubId),
                         ],
                       ),
                       Container(
