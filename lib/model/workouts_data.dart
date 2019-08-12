@@ -9,6 +9,8 @@ Future fetchWorkoutsData() async {
   await getWorkouts.then((paylod) {
     paylod.documents.forEach((workout) {
       workouts.add(workout.data);
+
+      // add tags per each workout
       if (workout.data.containsKey('tags') && workout.data['tags'].length > 0) {
         workout.data['tags'].forEach((tag) {
           String currentFilter = buildTitle(tag.toString());
