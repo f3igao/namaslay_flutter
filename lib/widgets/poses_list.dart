@@ -14,7 +14,7 @@ class PosesList extends StatefulWidget {
 class _PosesListState extends State<PosesList> {
   Map<dynamic, dynamic> _getPose(int index) {
     return poses.firstWhere((pose) => pose['id'] == widget.sequence[index],
-        orElse: () => print('Error, pose not found.'));
+        orElse: () => print('Error, pose not found in poses list state.'));
   }
 
   @override

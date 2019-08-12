@@ -19,8 +19,8 @@ class PosesPage extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.purple,
-            tabs: poseFilters.map((Filter filter) {
-              return Tab(text: filter.title);
+            tabs: poseFilters.map((String filter) {
+              return Tab(text: filter);
             }).toList(),
             labelColor: Colors.black87,
             unselectedLabelColor: Colors.black26,
@@ -28,7 +28,7 @@ class PosesPage extends StatelessWidget {
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
-          children: poseFilters.map((Filter filter) {
+          children: poseFilters.map((String filter) {
             return PosesCollection(filter: filter);
           }).toList(),
         ),

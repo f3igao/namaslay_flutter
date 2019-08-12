@@ -1,5 +1,6 @@
-
 import 'package:namaslay_flutter/model/workouts_data.dart';
+
+String buildTitle(string) => '${string[0].toUpperCase()}${string.substring(1)}';
 
 List<dynamic> latestWorkouts() {
   List<dynamic> list = []..addAll(workouts);
@@ -24,18 +25,19 @@ int _totalTime(workout) {
   });
   int poseCount = sequence.length;
   int minutes = (poseCount * 10 / 60).round();
-
   return minutes;
 }
 
 List<dynamic> shortWorkouts() {
-  List<dynamic> list = workouts.where((workout) => _totalTime(workout) <= 5).toList();
+  List<dynamic> list =
+      workouts.where((workout) => _totalTime(workout) <= 5).toList();
   int end = (list.length >= 5) ? 5 : list.length;
   return list.sublist(0, end);
 }
 
 List<dynamic> taggedWorkouts(tag) {
-  List<dynamic> list = workouts.where((workout) => workout['tags'].contains(tag)).toList();
+  List<dynamic> list =
+      workouts.where((workout) => workout['tags'].contains(tag)).toList();
   int end = (list.length >= 5) ? 5 : list.length;
   return list.sublist(0, end);
 }

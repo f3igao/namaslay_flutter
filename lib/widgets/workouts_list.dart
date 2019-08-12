@@ -5,7 +5,7 @@ import 'package:namaslay_flutter/widgets/workout_card.dart';
 class WorkoutsList extends StatelessWidget {
   const WorkoutsList({Key key, this.filter}) : super(key: key);
 
-  final Filter filter;
+  final String filter;
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,10 @@ class WorkoutsList extends StatelessWidget {
   }
 }
 
-Widget workoutsList(BuildContext context, Filter filter) {
+Widget workoutsList(BuildContext context, String filter) {
   filterWorkouts(tags) {
-    if (filter.title == 'All') return true;
-    return tags.contains(filter.title.toLowerCase());
+    if (filter == 'All') return true;
+    return tags.contains(filter.toLowerCase());
   }
 
   return Column(

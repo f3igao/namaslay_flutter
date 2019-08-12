@@ -1,25 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-class Filter {
-  const Filter({this.title});
-  final String title;
-}
-
-String buildTitle(string) => '${string[0].toUpperCase()}${string.substring(1)}';
+import 'package:namaslay_flutter/util/model_helpers.dart';
 
 List<dynamic> workouts = [];
-List<Filter> workoutFilters = [
-  const Filter(title: 'All'),
-];
+List<String> workoutFilters = ['All'];
 
 Future fetchWorkoutsData() async {
   var getWorkouts = Firestore.instance.collection('workouts').getDocuments();
   await getWorkouts.then((paylod) {
     paylod.documents.forEach((workout) {
       workouts.add(workout.data);
-      if (workout.data['tags'].length > 0) {
+      if (workout.data.containsKey('tags') && workout.data['tags'].length > 0) {
         workout.data['tags'].forEach((tag) {
-          workoutFilters.add(Filter(title: buildTitle(tag.toString())));
+          String currentFilter = buildTitle(tag.toString());
+          if (!workoutFilters.contains(currentFilter)) {
+            workoutFilters.add(currentFilter);
+          }
         });
       }
     });

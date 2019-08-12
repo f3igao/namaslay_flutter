@@ -19,8 +19,8 @@ class WorkoutsPage extends StatelessWidget {
           bottom: TabBar(
             isScrollable: true,
             indicatorColor: Colors.purple,
-            tabs: workoutFilters.map((Filter filter) {
-              return Tab(text: filter.title);
+            tabs: workoutFilters.map((String filter) {
+              return Tab(text: filter);
             }).toList(),
             labelColor: Colors.black87,
             unselectedLabelColor: Colors.black26,
@@ -28,7 +28,7 @@ class WorkoutsPage extends StatelessWidget {
         ),
         body: TabBarView(
           physics: NeverScrollableScrollPhysics(),
-          children: workoutFilters.map((Filter filter) {
+          children: workoutFilters.map((String filter) {
             return WorkoutsList(filter: filter);
           }).toList(),
         ),

@@ -7,7 +7,7 @@ import 'cached_image.dart';
 class PosesCollection extends StatelessWidget {
   const PosesCollection({Key key, this.filter}) : super(key: key);
 
-  final Filter filter;
+  final String filter;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,10 @@ class PosesCollection extends StatelessWidget {
   }
 }
 
-Widget posesCollection(BuildContext context, Filter filter) {
+Widget posesCollection(BuildContext context, String filter) {
   filterPoses(tags) {
-    if (filter.title == 'All') return true;
-    return tags.contains(filter.title.toLowerCase());
+    if (filter == 'All') return true;
+    return tags.contains(filter.toLowerCase());
   }
 
   List<dynamic> filteredPoses =
@@ -49,7 +49,6 @@ Widget posesCollection(BuildContext context, Filter filter) {
                 child: Stack(children: <Widget>[
                   Container(
                       child: ClipRRect(
-
                           borderRadius: BorderRadius.circular(8.0),
                           child: Hero(
                             tag: "$pose['id']",
