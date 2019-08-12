@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/model/poses_data.dart';
 import 'package:namaslay_flutter/screens/pose_page.dart';
-
 import 'cached_image.dart';
 
 class PosesCollection extends StatelessWidget {
