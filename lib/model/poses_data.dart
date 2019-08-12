@@ -16,6 +16,7 @@ Future fetchPosesData() async {
           }
         });
       }
+      poses.add(pose.data);
     });
   });
 }
