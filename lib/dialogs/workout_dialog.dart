@@ -116,7 +116,9 @@ class WorkoutDialogState extends State<WorkoutDialog>
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width * 0.85,
+                margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: LinearProgressIndicator(
                   value: progress,
                   backgroundColor: Colors.purpleAccent,
@@ -124,6 +126,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
                 ),
               ),
               Container(
+                alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 height: (MediaQuery.of(context).size.height) * 0.50,
                 child: ClipRRect(
@@ -133,9 +136,11 @@ class WorkoutDialogState extends State<WorkoutDialog>
                 ),
               ),
               Container(
+                alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
                   widget.workoutPoses[currentIndex]['name'],
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.w600,

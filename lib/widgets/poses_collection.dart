@@ -19,9 +19,14 @@ class PosesCollection extends StatelessWidget {
 }
 
 Widget posesCollection(BuildContext context, String filter) {
-  filterPoses(tags) {
-    if (filter == 'All') return true;
-    return tags.contains(filter.toLowerCase());
+  bool filterPoses(tags) {
+    if (filter == 'All') {
+      return true;
+    } else if (tags != null) {
+      return tags.contains(filter.toLowerCase());
+    } else {
+      return false;
+    }
   }
 
   List<dynamic> filteredPoses =
