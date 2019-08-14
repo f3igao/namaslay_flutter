@@ -35,9 +35,9 @@ Widget posesCollection(BuildContext context, String filter) {
     slivers: <Widget>[
       SliverGrid(
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 200.0,
-          mainAxisSpacing: 20.0,
-          crossAxisSpacing: 20.0,
+          maxCrossAxisExtent: 200,
+          mainAxisSpacing: 15.0,
+          crossAxisSpacing: 0.0,
           childAspectRatio: 1.1,
         ),
         delegate: SliverChildBuilderDelegate(
@@ -68,7 +68,10 @@ Widget posesCollection(BuildContext context, String filter) {
                                 offset: Offset(2.0, 6.0))
                           ])),
                   Positioned(
-                    child: Text(pose['name']),
+                    child: Container(
+                      child: Text(pose['name']),
+                      width: MediaQuery.of(context).size.width / 3,
+                    ),
                     left: 5.0,
                     top: 5.0,
                   )

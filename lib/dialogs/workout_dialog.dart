@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:namaslay_flutter/widgets/cached_image.dart';
 import 'package:namaslay_flutter/widgets/countdown.dart';
+// import 'package:namaslay_flutter/widgets/workout_images.dart';
 
 class WorkoutDialog extends StatefulWidget {
   final List<dynamic> workoutPoses;
@@ -42,19 +43,17 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   Timer _startWorkoutTimer() {
     isPlaying = true;
-    return Timer.periodic(Duration(seconds: 3), (timer) {
+    return Timer.periodic(Duration(seconds: 5), (timer) {
       if (currentIndex >= poseCount - 1) {
         timer.cancel();
         setState(() {
           progress = 1.0;
         });
-        return Timer(Duration(seconds: 2), _completeWorkout);
+        _completeWorkout();
       } else {
-        return Timer(Duration(seconds: 0), () {
-          setState(() {
-            currentIndex += 1;
-            progress = currentIndex / poseCount;
-          });
+        setState(() {
+          currentIndex += 1;
+          progress = currentIndex / poseCount;
         });
       }
     });
@@ -102,6 +101,10 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   @override
   Widget build(BuildContext context) {
+    // int prevIndex = currentIndex == 0 ? 0 : currentIndex - 1;
+    // String prevImageUrl = widget.workoutPoses[prevIndex]['imageUrl'];
+    // String currImageUrl = widget.workoutPoses[currentIndex]['imageUrl'];
+
     return Scaffold(
         body: Stack(
       children: <Widget>[
@@ -117,7 +120,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
             children: <Widget>[
               Container(
                 alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width * 0.85,
+                width: MediaQuery.of(context).size.width * 0.90,
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: LinearProgressIndicator(
                   value: progress,
@@ -125,8 +128,10 @@ class WorkoutDialogState extends State<WorkoutDialog>
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
                 ),
               ),
+              // WorkoutImages(prevImageUrl, currImageUrl),
               Container(
                 alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width * 0.90,
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 height: (MediaQuery.of(context).size.height) * 0.50,
                 child: ClipRRect(
@@ -142,7 +147,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
                   widget.workoutPoses[currentIndex]['name'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      fontSize: 36,
+                      fontSize: 28,
                       fontWeight: FontWeight.w600,
                       color: Colors.black54),
                 ),
