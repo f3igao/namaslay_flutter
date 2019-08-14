@@ -66,10 +66,11 @@ Widget posesCollection(BuildContext context, String filter) {
                                 color: Colors.black12,
                                 blurRadius: 10.0,
                                 offset: Offset(2.0, 6.0))
-                          ])),
+                          ])
+                          ),
                   Positioned(
                     child: Container(
-                      child: Text(pose['name']),
+                      child: Text(pose['name'], softWrap: true,),
                       width: MediaQuery.of(context).size.width / 3,
                     ),
                     left: 5.0,

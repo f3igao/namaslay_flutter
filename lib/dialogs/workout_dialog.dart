@@ -17,7 +17,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
     with TickerProviderStateMixin {
   AnimationController _controller;
   int poseCount;
-  int currentIndex = 0;
+  int currentIndex = -1;
   double progress = 0.0;
   int time;
   Timer workoutTimer;
@@ -41,22 +41,32 @@ class WorkoutDialogState extends State<WorkoutDialog>
     _controller.forward(from: 0.0);
   }
 
-  Timer _startWorkoutTimer() {
+  _startWorkoutTimer() {
     isPlaying = true;
-    return Timer.periodic(Duration(seconds: 5), (timer) {
-      if (currentIndex >= poseCount - 1) {
-        timer.cancel();
-        setState(() {
-          progress = 1.0;
-        });
-        _completeWorkout();
-      } else {
-        setState(() {
-          currentIndex += 1;
-          progress = currentIndex / poseCount;
-        });
-      }
-    });
+    if (currentIndex < 0) {
+      setState(() {
+        currentIndex += 1;
+        progress = currentIndex / poseCount;
+      });
+      _startWorkoutTimer();
+    } else {
+      return Timer.periodic(Duration(seconds: 8), (timer) {
+        if (currentIndex >= poseCount - 1) {
+          if (timer != null) {
+            timer.cancel();
+          }
+          setState(() {
+            progress = 1.0;
+          });
+          _completeWorkout();
+        } else {
+          setState(() {
+            currentIndex += 1;
+            progress = currentIndex / poseCount;
+          });
+        }
+      });
+    }
   }
 
   void _stopWorkout() {
@@ -79,7 +89,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
               onPressed: () {
                 setState(() {
                   isPlaying = false;
-                  currentIndex = 0;
+                  currentIndex = -1;
                   progress = 0.0;
                   _controller.forward(from: 0.0);
                 });
@@ -101,9 +111,9 @@ class WorkoutDialogState extends State<WorkoutDialog>
 
   @override
   Widget build(BuildContext context) {
-    // int prevIndex = currentIndex == 0 ? 0 : currentIndex - 1;
+    int activeIndex = currentIndex == -1 ? 0 : currentIndex;
+    String currImageUrl = widget.workoutPoses[activeIndex]['imageUrl'];
     // String prevImageUrl = widget.workoutPoses[prevIndex]['imageUrl'];
-    // String currImageUrl = widget.workoutPoses[currentIndex]['imageUrl'];
 
     return Scaffold(
         body: Stack(
@@ -137,14 +147,14 @@ class WorkoutDialogState extends State<WorkoutDialog>
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: CachedImage(
-                      url: widget.workoutPoses[currentIndex]['imageUrl']),
+                      url: currImageUrl),
                 ),
               ),
               Container(
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
-                  widget.workoutPoses[currentIndex]['name'],
+                  widget.workoutPoses[activeIndex]['name'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 28,

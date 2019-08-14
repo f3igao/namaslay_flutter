@@ -29,7 +29,7 @@ class PoseHeader implements SliverPersistentHeaderDelegate {
                       fontSize: 32,
                       fontWeight: FontWeight.w600,
                       color: Colors.black54)),
-              Text(poseSanskrit, style: TextStyle(color: Colors.purple))
+              Text(poseSanskrit, style: TextStyle(fontSize: 18, color: Colors.purple))
             ],
           ),
         ),

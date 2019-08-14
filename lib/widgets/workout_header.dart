@@ -67,24 +67,24 @@ class WorkoutHeader implements SliverPersistentHeaderDelegate {
             ))),
         // play button
         Positioned(
-          bottom: 0.0,
-          left: (MediaQuery.of(context).size.width) * 0.50 - 75.0,
-          child: FractionalTranslation(
-              translation: Offset(0, 0.5),
-              child: Container(
-                width: 150.0,
-                height: 60.0,
-                child: FloatingActionButton.extended(
-                  onPressed: () {
-                    openWorkoutDialog();
-                  },
-                  icon: Icon(Icons.play_arrow),
-                  label: Text('play'.toUpperCase(),
-                      style: TextStyle(fontSize: 20.0)),
-                  backgroundColor: Colors.purple,
-                ),
-              )),
-        ),
+            bottom: 0.0,
+            left: (MediaQuery.of(context).size.width) * 0.50 - 75.0,
+            child: FractionalTranslation(
+                translation: Offset(0, 0.5),
+                child: Container(
+                  width: 150.0,
+                  height: 60.0,
+                  child: FloatingActionButton.extended(
+                    elevation: 2.0,
+                    onPressed: () {
+                      openWorkoutDialog();
+                    },
+                    icon: Icon(Icons.play_arrow),
+                    label: Text('play'.toUpperCase(),
+                        style: TextStyle(fontSize: 20.0)),
+                    backgroundColor: Colors.purple,
+                  ),
+                ))),
       ],
     );
   }
