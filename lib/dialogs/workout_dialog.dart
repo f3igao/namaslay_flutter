@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:namaslay_flutter/widgets/cached_image.dart';
 import 'package:namaslay_flutter/widgets/countdown.dart';
-// import 'package:namaslay_flutter/widgets/workout_images.dart';
+import 'package:namaslay_flutter/widgets/workout_images.dart';
 
 class WorkoutDialog extends StatefulWidget {
   final List<dynamic> workoutPoses;
@@ -50,7 +49,7 @@ class WorkoutDialogState extends State<WorkoutDialog>
       });
       _startWorkoutTimer();
     } else {
-      return Timer.periodic(Duration(seconds: 8), (timer) {
+      return Timer.periodic(Duration(seconds: 5), (timer) {
         if (currentIndex >= poseCount - 1) {
           if (timer != null) {
             timer.cancel();
@@ -112,8 +111,9 @@ class WorkoutDialogState extends State<WorkoutDialog>
   @override
   Widget build(BuildContext context) {
     int activeIndex = currentIndex == -1 ? 0 : currentIndex;
+    int prevIndex = activeIndex == 0 ? 0 : activeIndex - 1;
     String currImageUrl = widget.workoutPoses[activeIndex]['imageUrl'];
-    // String prevImageUrl = widget.workoutPoses[prevIndex]['imageUrl'];
+    String prevImageUrl = widget.workoutPoses[prevIndex]['imageUrl'];
 
     return Scaffold(
         body: Stack(
@@ -138,23 +138,12 @@ class WorkoutDialogState extends State<WorkoutDialog>
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
                 ),
               ),
-              // WorkoutImages(prevImageUrl, currImageUrl),
-              Container(
-                alignment: Alignment.center,
-                width: MediaQuery.of(context).size.width * 0.90,
-                margin: EdgeInsets.symmetric(vertical: 20.0),
-                height: (MediaQuery.of(context).size.height) * 0.50,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: CachedImage(
-                      url: currImageUrl),
-                ),
-              ),
+              WorkoutImages(prevImageUrl, currImageUrl),
               Container(
                 alignment: Alignment.center,
                 margin: EdgeInsets.symmetric(vertical: 20.0),
                 child: Text(
-                  widget.workoutPoses[activeIndex]['name'],
+                  widget.workoutPoses[prevIndex]['name'],
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 28,

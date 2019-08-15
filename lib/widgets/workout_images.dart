@@ -16,25 +16,11 @@ bool _showFirst = true;
 
 class _WorkoutImagesState extends State<WorkoutImages>
     with TickerProviderStateMixin {
-  AnimationController _controller;
 
-  @override
-  void initState() {
-    super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10),
-    );
-
-    _controller.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _showFirst = false;
-      }
-    });
-
-    // _controller.forward(from: 0.0);
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
