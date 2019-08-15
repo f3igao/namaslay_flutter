@@ -31,6 +31,9 @@ Widget posesCollection(BuildContext context, String filter) {
   List<dynamic> filteredPoses =
       poses.where((pose) => filterPoses(pose['tags'])).toList();
 
+  List<dynamic> displayedPoses =
+      filteredPoses.where((pose) => pose['imageUrl'] != null && pose['imageUrl'] != '').toList();
+
   return CustomScrollView(
     slivers: <Widget>[
       SliverGrid(
@@ -42,7 +45,7 @@ Widget posesCollection(BuildContext context, String filter) {
         ),
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
-            final pose = filteredPoses[index];
+            final pose = displayedPoses[index];
             return InkWell(
                 onTap: () {
                   Navigator.push(
@@ -66,11 +69,13 @@ Widget posesCollection(BuildContext context, String filter) {
                                 color: Colors.black12,
                                 blurRadius: 10.0,
                                 offset: Offset(2.0, 6.0))
-                          ])
-                          ),
+                          ])),
                   Positioned(
                     child: Container(
-                      child: Text(pose['name'], softWrap: true,),
+                      child: Text(
+                        pose['name'],
+                        softWrap: true,
+                      ),
                       width: MediaQuery.of(context).size.width / 3,
                     ),
                     left: 5.0,
@@ -78,7 +83,7 @@ Widget posesCollection(BuildContext context, String filter) {
                   )
                 ]));
           },
-          childCount: filteredPoses.length,
+          childCount: displayedPoses.length,
         ),
       ),
     ],
