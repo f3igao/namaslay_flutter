@@ -15,25 +15,13 @@ class WorkoutPage extends StatefulWidget {
 
 class _WorkoutPageState extends State<WorkoutPage> {
   List<dynamic> workoutPoses = [];
-  List<dynamic> sequence;
+  List<dynamic> sequence = [];
 
   @override
   void initState() {
-    Map sequenceRaw = widget.workoutData['sequence'];
-    sequence = _configureSequence(sequenceRaw);
+    sequence.addAll(widget.workoutData['sequence']);
     _getWorkoutPoses(sequence);
-
     super.initState();
-  }
-
-  List<dynamic> _configureSequence(data) {
-    List<dynamic> sequence = [];
-    List<dynamic> sections = data.keys.toList();
-    sections.sort();
-    sections.forEach((section) {
-      sequence.addAll(data[section]);
-    });
-    return sequence;
   }
 
   void _getWorkoutPoses(sequence) {
@@ -56,7 +44,9 @@ class _WorkoutPageState extends State<WorkoutPage> {
     }
 
     String _getWorkoutTime() {
-      return (sequence.length * 10 / 60).round().toString();
+      return sequence.length > 0
+          ? (sequence.length * 10 / 60).round().toString()
+          : '0';
     }
 
     return Scaffold(

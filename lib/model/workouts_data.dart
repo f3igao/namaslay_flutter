@@ -6,11 +6,10 @@ List<String> workoutFilters = ['All'];
 
 Future fetchWorkoutsData() async {
   var getWorkouts = Firestore.instance.collection('workouts').getDocuments();
-  await getWorkouts.then((paylod) {
-    paylod.documents.forEach((workout) {
+  await getWorkouts.then((payload) {
+    payload.documents.forEach((workout) {
       workouts.add(workout.data);
-
-      // add tags per each workout
+      // add tags for each workout
       if (workout.data.containsKey('tags') && workout.data['tags'].length > 0) {
         workout.data['tags'].forEach((tag) {
           String currentFilter = buildTitle(tag.toString());
