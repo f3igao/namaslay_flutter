@@ -6,6 +6,7 @@ import 'model/poses_data.dart';
 import 'model/workouts_data.dart';
 
 Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   fetchPosesData();
   fetchWorkoutsData();
   runApp(MaterialApp(

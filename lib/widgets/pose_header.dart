@@ -52,4 +52,7 @@ class PoseHeader implements SliverPersistentHeaderDelegate {
 
   @override
   FloatingHeaderSnapConfiguration get snapConfiguration => null;
+
+  @override
+  OverScrollHeaderStretchConfiguration get stretchConfiguration => null;
 }
